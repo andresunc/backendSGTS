@@ -13,6 +13,7 @@ public class ServicioDto {
 	private Integer recurrencia;
 	private Integer referencia;
 	private LocalDateTime fecha_notificacion;
+	private String rubro;
 	private Double total_presupuestado;
 	private String comentario;
 	private List<ItemChecklistDto> itemChecklistDto;
@@ -83,11 +84,19 @@ public class ServicioDto {
 		this.fecha_notificacion = fecha_notificacion;
 	}
 
-	public double getTotal_presupuestado() {
+	public Double getTotal_presupuestado() {
 		return total_presupuestado;
 	}
 
-	public void setTotal_presupuestado(double total_presupuestado) {
+	public String getRubro() {
+		return rubro;
+	}
+
+	public void setRubro(String rubro) {
+		this.rubro = rubro;
+	}
+
+	public void setTotal_presupuestado(Double total_presupuestado) {
 		this.total_presupuestado = total_presupuestado;
 	}
 

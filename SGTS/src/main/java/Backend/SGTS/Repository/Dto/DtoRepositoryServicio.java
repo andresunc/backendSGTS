@@ -33,6 +33,7 @@ public class DtoRepositoryServicio {
                 + "    sv.Recurrencia as 'recurrencia',"
                 + "    sv.Referencia_Id_Servicio as 'referencia',"
                 + "    sv.Fecha_Hora_Alerta_Venc as 'fecha_notificacion',"
+                + "    ru.Rubro as 'rubro',"
                 + "    se.Costo_Servicio as 'total_presupuestado',"
                 + "    sv.Comentario as 'comentario'"
                 + "FROM"
@@ -58,6 +59,7 @@ public class DtoRepositoryServicio {
             servicioDto.setRecurrencia(resultSet.getInt("recurrencia"));
             servicioDto.setReferencia(resultSet.getInt("referencia"));
             servicioDto.setFecha_notificacion(resultSet.getObject("fecha_notificacion", LocalDateTime.class));
+            servicioDto.setRubro(resultSet.getString("rubro"));
             servicioDto.setTotal_presupuestado(resultSet.getDouble("total_presupuestado"));
             servicioDto.setComentario(resultSet.getString("comentario"));
             servicioDto.setItemChecklistDto(dtoRepositoryItemChecklist.obtenerItemChecklistDto(servicioDto.getId()));

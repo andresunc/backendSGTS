@@ -99,7 +99,7 @@ public class ItemChecklistDto {
 		this.urlComprobante = urlComprobante;
 	}
 
-	public boolean isCompleto() {
+	public boolean getCompleto() {
 		return completo;
 	}
 

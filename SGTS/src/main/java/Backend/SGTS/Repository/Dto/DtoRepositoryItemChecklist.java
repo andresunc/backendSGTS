@@ -26,7 +26,8 @@ public class DtoRepositoryItemChecklist {
                 + "itch.Tasa_Valor as 'valor_tasa',"
                 + "itch.Tasa_Cantidad_Hojas as 'hojas',"
                 + "per.Nombre + ' ' + per.Apellido as 'responsable',"
-                + "itch.Url_comprobante_tasa as 'url_comprobante'"
+                + "itch.Url_comprobante_tasa as 'url_comprobante',"
+                + "itch.completo as 'completo'"
                 + "FROM item_checklist itch "
                 + "LEFT JOIN servicio sv ON sv.id_Servicio = itch.Servicio_id_Servicio "
                 + "LEFT JOIN item it ON it.id_Item = itch.Item_id_Item "
@@ -48,6 +49,7 @@ public class DtoRepositoryItemChecklist {
             itemChecklistDto.setHojas(resultSet.getInt("hojas"));
             itemChecklistDto.setResponsable(resultSet.getString("responsable"));
             itemChecklistDto.setUrlComprobante(resultSet.getString("url_comprobante"));
+            itemChecklistDto.setCompleto(resultSet.getBoolean("completo"));
             
             return itemChecklistDto;
         });

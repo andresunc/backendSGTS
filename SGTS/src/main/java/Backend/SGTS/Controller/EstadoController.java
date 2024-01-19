@@ -23,6 +23,18 @@ public class EstadoController {
 	@Autowired
 	EstadoService estadoService;
 	
+	// Obtengo todos los estados no eliminados
+	@GetMapping("/getAllNotDeleted")
+	public List<EstadoEntity> getAllNotDeleted() {
+		return estadoService.getAllNotDeleted();
+	}
+	
+	// Obtengo todos los estados eliminados
+	@GetMapping("/getAllDeleted")
+	public List<EstadoEntity> getAllDeleted() {
+		return estadoService.getAllDeleted();
+	}
+	
 	// Obtengo todos los estados
 	@GetMapping("/getAll")
 	public List<EstadoEntity> getAll() {
@@ -47,15 +59,17 @@ public class EstadoController {
 
 		EstadoEntity upDateEstado = estadoService.getById(id);
 		upDateEstado.setTipoEstado(estado.getTipoEstado());
+		upDateEstado.setEliminado(estado.getEliminado());
 		estadoService.update(upDateEstado);
 
 		return upDateEstado;
 	}
 	
-	// Elimino un estado
+	/* Método restringido para conservar la consistencia de la bd
 	@DeleteMapping("/delete/{id}")
 	public void delete(@PathVariable Integer id) {
 		estadoService.delete(id);
 	}
+	*/
 	
 }

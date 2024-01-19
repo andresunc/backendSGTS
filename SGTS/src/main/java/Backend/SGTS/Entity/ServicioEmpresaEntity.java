@@ -1,7 +1,7 @@
 package Backend.SGTS.Entity;
 
 import jakarta.persistence.*;
-
+import java.sql.Date;
 import java.util.Objects;
 
 @Entity
@@ -12,8 +12,11 @@ public class ServicioEmpresaEntity {
     @Column(name = "id_Servicio_Empresa", nullable = false)
     private Integer idServicioEmpresa;
     @Basic
-    @Column(name = "Costo_Servicio", nullable = false, precision = 0)
+    @Column(name = "Costo_Servicio", nullable = true, precision = 0)
     private double costoServicio;
+    @Basic
+    @Column(name = "Alta", nullable = false)
+    private Date alta;
     @Basic
     @Column(name = "Servicio_id_Servicio", nullable = false)
     private int servicioIdServicio;
@@ -24,14 +27,26 @@ public class ServicioEmpresaEntity {
     @Column(name = "Recurso_GG_id_Recurso_GG", nullable = false)
     private int recursoGgIdRecursoGg;
     @Basic
-    @Column(name = "Elinimado", nullable = true)
-    private Byte elinimado;
+    @Column(name = "Eliminado", nullable = true)
+    private Byte eliminado;
 
     public int getIdServicioEmpresa() {
         return idServicioEmpresa;
     }
 
-    public void setIdServicioEmpresa(int idServicioEmpresa) {
+    public void setIdServicioEmpresa(Integer idServicioEmpresa) {
+		this.idServicioEmpresa = idServicioEmpresa;
+	}
+
+	public Date getAlta() {
+		return alta;
+	}
+
+	public void setAlta(Date alta) {
+		this.alta = alta;
+	}
+
+	public void setIdServicioEmpresa(int idServicioEmpresa) {
         this.idServicioEmpresa = idServicioEmpresa;
     }
 
@@ -67,12 +82,12 @@ public class ServicioEmpresaEntity {
         this.recursoGgIdRecursoGg = recursoGgIdRecursoGg;
     }
 
-    public Byte getElinimado() {
-        return elinimado;
+    public Byte getEliminado() {
+        return eliminado;
     }
 
-    public void setElinimado(Byte elinimado) {
-        this.elinimado = elinimado;
+    public void setEliminado(Byte eliminado) {
+        this.eliminado = eliminado;
     }
 
     @Override
@@ -80,11 +95,11 @@ public class ServicioEmpresaEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ServicioEmpresaEntity that = (ServicioEmpresaEntity) o;
-        return idServicioEmpresa == that.idServicioEmpresa && Double.compare(costoServicio, that.costoServicio) == 0 && servicioIdServicio == that.servicioIdServicio && empresaIdEmpresa == that.empresaIdEmpresa && recursoGgIdRecursoGg == that.recursoGgIdRecursoGg && Objects.equals(elinimado, that.elinimado);
+        return idServicioEmpresa == that.idServicioEmpresa && Double.compare(costoServicio, that.costoServicio) == 0 && servicioIdServicio == that.servicioIdServicio && empresaIdEmpresa == that.empresaIdEmpresa && recursoGgIdRecursoGg == that.recursoGgIdRecursoGg && Objects.equals(eliminado, that.eliminado);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idServicioEmpresa, costoServicio, servicioIdServicio, empresaIdEmpresa, recursoGgIdRecursoGg, elinimado);
+        return Objects.hash(idServicioEmpresa, costoServicio, servicioIdServicio, empresaIdEmpresa, recursoGgIdRecursoGg, eliminado);
     }
 }

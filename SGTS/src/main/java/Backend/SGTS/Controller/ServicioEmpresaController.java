@@ -48,11 +48,12 @@ public class ServicioEmpresaController {
 		ServicioEmpresaEntity upDateServicioEmpresa = servicioEmpresaService.getById(id);
 		
 		upDateServicioEmpresa.setCostoServicio(servicioEmpresa.getCostoServicio());
+		upDateServicioEmpresa.setAlta(servicioEmpresa.getAlta());
 		/* Evito que se cambie el ID del servicio original aunque sí se puede editar el servicio original */
 		upDateServicioEmpresa.setServicioIdServicio(upDateServicioEmpresa.getServicioIdServicio());
 		upDateServicioEmpresa.setEmpresaIdEmpresa(servicioEmpresa.getEmpresaIdEmpresa());
 		upDateServicioEmpresa.setRecursoGgIdRecursoGg(servicioEmpresa.getRecursoGgIdRecursoGg());
-		upDateServicioEmpresa.setElinimado(servicioEmpresa.getElinimado());
+		upDateServicioEmpresa.setEliminado(servicioEmpresa.getEliminado());
 		
 		servicioEmpresaService.update(upDateServicioEmpresa);
 

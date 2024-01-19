@@ -14,8 +14,23 @@ public class EstadoEntity {
     @Basic
     @Column(name = "Tipo_Estado", nullable = false, length = 45)
     private String tipoEstado;
+    @Basic
+    @Column(name = "Eliminado", nullable = true)
+    private Byte eliminado;
 
-    public int getIdEstado() {
+    public Byte getEliminado() {
+		return eliminado;
+	}
+
+	public void setEliminado(Byte eliminado) {
+		this.eliminado = eliminado;
+	}
+
+	public void setIdEstado(Integer idEstado) {
+		this.idEstado = idEstado;
+	}
+
+	public int getIdEstado() {
         return idEstado;
     }
 
@@ -36,11 +51,11 @@ public class EstadoEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EstadoEntity that = (EstadoEntity) o;
-        return idEstado == that.idEstado && Objects.equals(tipoEstado, that.tipoEstado);
+        return idEstado == that.idEstado && Objects.equals(tipoEstado, that.tipoEstado) && Objects.equals(eliminado, that.eliminado);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idEstado, tipoEstado);
+        return Objects.hash(idEstado, tipoEstado, eliminado);
     }
 }

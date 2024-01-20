@@ -1,7 +1,8 @@
 package Backend.SGTS.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,14 +23,11 @@ public class ItemChecklistController {
 	ItemChecklistService itemChecklistService;
 	
 	
-	/*
-	 * Gateway deshabilitado para eitar traer todos los ítem de checklist
 	// Obtengo todos los items de checklist
 	@GetMapping("/getAll")
 	public List<ItemChecklistEntity> getAll() {
 		return itemChecklistService.getAll();
 	}
-	*/
 	
 	// Obtengo un item de checklist por id
 	@GetMapping("/{id}")
@@ -65,10 +63,11 @@ public class ItemChecklistController {
 		itemChecklistService.update(upDateItemChecklist);
 		return upDateItemChecklist;
 	}
-	
-	// Elimino un item de checklist
+	/* Función deshabilitada, no borramos un ítem del checklist
+	 * 
 	@DeleteMapping("/delete/{id}")
 	public void delete(@PathVariable Integer id) {
 		itemChecklistService.delete(id);
 	}
+	*/
 }

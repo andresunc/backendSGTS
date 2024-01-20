@@ -18,11 +18,11 @@ public class RecursoGgEntity {
     @Column(name = "Persona_id_Persona", nullable = false)
     private int personaIdPersona;
 
-    public int getIdRecursoGg() {
+    public Integer getIdRecursoGg() {
         return idRecursoGg;
     }
 
-    public void setIdRecursoGg(int idRecursoGg) {
+    public void setIdRecursoGg(Integer idRecursoGg) {
         this.idRecursoGg = idRecursoGg;
     }
 

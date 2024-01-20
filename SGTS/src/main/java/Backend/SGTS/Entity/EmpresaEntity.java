@@ -27,11 +27,11 @@ public class EmpresaEntity {
     @Column(name = "Razon_Social", nullable = false, length = 100)
     private String razonSocial;
 
-    public int getIdEmpresa() {
+    public Integer getIdEmpresa() {
         return idEmpresa;
     }
 
-    public void setIdEmpresa(int idEmpresa) {
+    public void setIdEmpresa(Integer idEmpresa) {
         this.idEmpresa = idEmpresa;
     }
 

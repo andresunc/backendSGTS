@@ -35,11 +35,11 @@ public class ServicioEntity {
     @Column(name = "Expediente", nullable = true, length = 45)
     private String expediente;
 
-    public int getIdServicio() {
+    public Integer getIdServicio() {
         return idServicio;
     }
 
-    public void setIdServicio(int idServicio) {
+    public void setIdServicio(Integer idServicio) {
         this.idServicio = idServicio;
     }
 

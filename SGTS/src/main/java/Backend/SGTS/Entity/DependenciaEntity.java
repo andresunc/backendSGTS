@@ -15,11 +15,11 @@ public class DependenciaEntity {
     @Column(name = "Dependencia", nullable = false, length = 45)
     private String dependencia;
 
-    public int getIdDependencia() {
+    public Integer getIdDependencia() {
         return idDependencia;
     }
 
-    public void setIdDependencia(int idDependencia) {
+    public void setIdDependencia(Integer idDependencia) {
         this.idDependencia = idDependencia;
     }
 

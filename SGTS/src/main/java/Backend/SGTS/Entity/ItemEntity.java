@@ -27,11 +27,11 @@ public class ItemEntity {
     @Column(name = "Requisito_id_Requisito", nullable = false)
     private int requisitoIdRequisito;
 
-    public int getIdItem() {
+    public Integer getIdItem() {
         return idItem;
     }
 
-    public void setIdItem(int idItem) {
+    public void setIdItem(Integer idItem) {
         this.idItem = idItem;
     }
 

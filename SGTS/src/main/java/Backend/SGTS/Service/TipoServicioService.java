@@ -37,6 +37,16 @@ public class TipoServicioService {
 	
 	// Elimino un tipo de servicio
 	public void delete(Integer id) {
-		tipoServicioRepository.deleteById(id);
+		// Agregar lógica para eliminar de manera lógica
+	}
+	
+	// Obtengo todos los tipos de servicio no eliminados
+	public List<TipoServicioEntity> getAllNotDeleted() {
+		return tipoServicioRepository.findByEliminadoFalse();
+	}
+	
+	// Obtengo todos los tipos de servicio eliminados
+	public List<TipoServicioEntity> getAllDeleted() {
+		return tipoServicioRepository.findByEliminadoTrue();
 	}
 }

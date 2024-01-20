@@ -15,11 +15,11 @@ public class RubroEntity {
     @Column(name = "Rubro", nullable = false, length = 45)
     private String rubro;
 
-    public int getIdRubro() {
+    public Integer getIdRubro() {
         return idRubro;
     }
 
-    public void setIdRubro(int idRubro) {
+    public void setIdRubro(Integer idRubro) {
         this.idRubro = idRubro;
     }
 

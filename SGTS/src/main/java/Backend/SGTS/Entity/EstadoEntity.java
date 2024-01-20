@@ -26,15 +26,11 @@ public class EstadoEntity {
 		this.eliminado = eliminado;
 	}
 
-	public void setIdEstado(Integer idEstado) {
-		this.idEstado = idEstado;
-	}
-
-	public int getIdEstado() {
+	public Integer getIdEstado() {
         return idEstado;
     }
 
-    public void setIdEstado(int idEstado) {
+    public void setIdEstado(Integer idEstado) {
         this.idEstado = idEstado;
     }
 
@@ -46,16 +42,23 @@ public class EstadoEntity {
         this.tipoEstado = tipoEstado;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        EstadoEntity that = (EstadoEntity) o;
-        return idEstado == that.idEstado && Objects.equals(tipoEstado, that.tipoEstado) && Objects.equals(eliminado, that.eliminado);
-    }
+	@Override
+	public int hashCode() {
+		return Objects.hash(eliminado, idEstado, tipoEstado);
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(idEstado, tipoEstado, eliminado);
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		EstadoEntity other = (EstadoEntity) obj;
+		return Objects.equals(eliminado, other.eliminado) && Objects.equals(idEstado, other.idEstado)
+				&& Objects.equals(tipoEstado, other.tipoEstado);
+	}
+
+    
 }

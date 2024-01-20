@@ -35,11 +35,10 @@ public class EstadoService {
 		return estadoRepository.save(estado);
 	}
 	
-	/* Método restringido para conservar la consistencia de la bd
+    // Elimino un estado de manera lógica
 	public void delete(Integer id) {
-		estadoRepository.deleteById(id);
-	} 
-	*/
+		// Agregar lógica para eliminar de manera lógica
+	}
 	
 	// Obtengo todos los estados no eliminados
 	public List<EstadoEntity> getAllNotDeleted() {

@@ -30,7 +30,7 @@ public class ServicioEmpresaEntity {
     @Column(name = "Eliminado", nullable = true)
     private Byte eliminado;
 
-    public int getIdServicioEmpresa() {
+    public Integer getIdServicioEmpresa() {
         return idServicioEmpresa;
     }
 

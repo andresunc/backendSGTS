@@ -15,11 +15,11 @@ public class RiesgoEntity {
     @Column(name = "Riesgo", nullable = false, length = 45)
     private String riesgo;
 
-    public int getIdRiesgo() {
+    public Integer getIdRiesgo() {
         return idRiesgo;
     }
 
-    public void setIdRiesgo(int idRiesgo) {
+    public void setIdRiesgo(Integer idRiesgo) {
         this.idRiesgo = idRiesgo;
     }
 

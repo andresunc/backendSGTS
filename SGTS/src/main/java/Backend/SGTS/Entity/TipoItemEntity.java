@@ -15,11 +15,11 @@ public class TipoItemEntity {
     @Column(name = "Tipo_Item", nullable = false, length = 45)
     private String tipoItem;
 
-    public int getIdTipoItem() {
+    public Integer getIdTipoItem() {
         return idTipoItem;
     }
 
-    public void setIdTipoItem(int idTipoItem) {
+    public void setIdTipoItem(Integer idTipoItem) {
         this.idTipoItem = idTipoItem;
     }
 

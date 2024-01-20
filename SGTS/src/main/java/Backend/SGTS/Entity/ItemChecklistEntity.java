@@ -49,11 +49,11 @@ public class ItemChecklistEntity {
     @Column(name = "Completo", nullable = true)
     private Byte completo;
 
-    public int getIdItemChecklist() {
+    public Integer getIdItemChecklist() {
         return idItemChecklist;
     }
 
-    public void setIdItemChecklist(int idItemChecklist) {
+    public void setIdItemChecklist(Integer idItemChecklist) {
         this.idItemChecklist = idItemChecklist;
     }
 

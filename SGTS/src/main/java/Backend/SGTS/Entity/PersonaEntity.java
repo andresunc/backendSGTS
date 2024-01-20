@@ -27,11 +27,11 @@ public class PersonaEntity {
     @Column(name = "Email", nullable = true, length = 100)
     private String email;
 
-    public int getIdPersona() {
+    public Integer getIdPersona() {
         return idPersona;
     }
 
-    public void setIdPersona(int idPersona) {
+    public void setIdPersona(Integer idPersona) {
         this.idPersona = idPersona;
     }
 

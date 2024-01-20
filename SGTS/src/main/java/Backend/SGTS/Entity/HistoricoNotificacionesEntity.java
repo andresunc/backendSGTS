@@ -25,11 +25,11 @@ public class HistoricoNotificacionesEntity {
     @Column(name = "Item_Checklist_id_Item_Checklist", nullable = false)
     private int itemChecklistIdItemChecklist;
 
-    public int getIdHistoricoNotificaciones() {
+    public Integer getIdHistoricoNotificaciones() {
         return idHistoricoNotificaciones;
     }
 
-    public void setIdHistoricoNotificaciones(int idHistoricoNotificaciones) {
+    public void setIdHistoricoNotificaciones(Integer idHistoricoNotificaciones) {
         this.idHistoricoNotificaciones = idHistoricoNotificaciones;
     }
 

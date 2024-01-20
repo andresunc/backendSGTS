@@ -22,11 +22,11 @@ public class HistoricoEstadoEntity {
     @Column(name = "Estado_id_Estado", nullable = false)
     private int estadoIdEstado;
 
-    public int getIdHistoricoEstado() {
+    public Integer getIdHistoricoEstado() {
         return idHistoricoEstado;
     }
 
-    public void setIdHistoricoEstado(int idHistoricoEstado) {
+    public void setIdHistoricoEstado(Integer idHistoricoEstado) {
         this.idHistoricoEstado = idHistoricoEstado;
     }
 

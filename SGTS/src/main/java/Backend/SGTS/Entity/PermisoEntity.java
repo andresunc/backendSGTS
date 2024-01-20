@@ -15,11 +15,11 @@ public class PermisoEntity {
     @Column(name = "Permiso", nullable = false)
     private int permiso;
 
-    public int getIdPermiso() {
+    public Integer getIdPermiso() {
         return idPermiso;
     }
 
-    public void setIdPermiso(int idPermiso) {
+    public void setIdPermiso(Integer idPermiso) {
         this.idPermiso = idPermiso;
     }
 

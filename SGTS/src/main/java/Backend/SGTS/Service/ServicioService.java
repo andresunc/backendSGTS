@@ -37,6 +37,6 @@ public class ServicioService {
 	
 	// Elimino un servicio
 	public void delete(Integer id) {
-		servicioRepository.deleteById(id);
+		// Método para eliminar un servicio
 	}
 }

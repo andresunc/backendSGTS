@@ -14,12 +14,15 @@ public class TipoServicioEntity {
     @Basic
     @Column(name = "Tipo_Servicio", nullable = false, length = 45)
     private String tipoServicio;
+    @Basic
+    @Column(name = "Eliminado", nullable = true)
+    private Byte eliminado;
 
-    public int getIdTipoServicio() {
+    public Integer getIdTipoServicio() {
         return idTipoServicio;
     }
 
-    public void setIdTipoServicio(int idTipoServicio) {
+    public void setIdTipoServicio(Integer idTipoServicio) {
         this.idTipoServicio = idTipoServicio;
     }
 
@@ -31,7 +34,15 @@ public class TipoServicioEntity {
         this.tipoServicio = tipoServicio;
     }
 
-    @Override
+    public Byte getEliminado() {
+		return eliminado;
+	}
+
+	public void setEliminado(Byte eliminado) {
+		this.eliminado = eliminado;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

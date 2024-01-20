@@ -23,6 +23,18 @@ public class TipoServicioController {
 	@Autowired
 	TipoServicioService tipoServicioService;
 	
+	// Obtengo todos los tipoServicios no eliminados
+	@GetMapping("/getAllNotDeleted")
+	public List<TipoServicioEntity> getAllNotDeleted() {
+		return tipoServicioService.getAllNotDeleted();
+	}
+	
+	// Obtengo todos los tipoServicios eliminados
+	@GetMapping("/getAllDeleted")
+	public List<TipoServicioEntity> getAllDeleted() {
+		return tipoServicioService.getAllDeleted();
+	}
+	
 	// Obtengo todos los tipoServicios
 	@GetMapping("/getAll")
 	public List<TipoServicioEntity> getAll() {
@@ -55,6 +67,6 @@ public class TipoServicioController {
 	// Elimino un tipoServicio
 	@DeleteMapping("/delete/{id}")
 	public void delete(@PathVariable Integer id) {
-		tipoServicioService.delete(id);
+		// Agregar lógica para eliminar un tipoServicio de manera lógica
 	}
 }

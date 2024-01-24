@@ -3,7 +3,7 @@ package Backend.SGTS.Constants;
 public class SqlQueriesServicios {
 
 	/* Tomar los Servicios */
-	private String allServiceNotDeleted = "WITH UltimoEstado AS ("
+	private String serviceNotDeleted = "WITH UltimoEstado AS ("
             + "    SELECT"
             + "        hse.Servicio_id_Servicio,"
             + "        hse.Estado_id_Estado,"
@@ -40,9 +40,14 @@ public class SqlQueriesServicios {
 	public SqlQueriesServicios() {
 		super();
 	}
-
-	public String getAllServiceNotDeleted() {
-		return allServiceNotDeleted;
+	
+	public String getServices(Integer limit) {
+	    try {
+	        return (limit == 0) ? serviceNotDeleted : serviceNotDeleted + "    LIMIT " + limit;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return "Error al obtener servicios";
+	    }
 	}
 
 }

@@ -17,8 +17,10 @@ public class DtoRepositoryServicio {
 	DtoRepositoryItemChecklist dtoRepositoryItemChecklist;
 	SqlQueriesServicios sqlQueries = new SqlQueriesServicios();
 
-	public List<ServicioDto> obtenerServiciosDto() {
-        String sql = sqlQueries.getAllServiceNotDeleted();
+	public List<ServicioDto> obtenerServiciosDto(Integer limit) {
+		
+		// Obtener servicios con limite variable.
+        String sql = sqlQueries.getServices(limit);
 
         return jdbcTemplate.query(sql, (resultSet, rowNum) -> {
             ServicioDto servicioDto = new ServicioDto();

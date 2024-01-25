@@ -22,7 +22,7 @@ public class ServicioDtoController {
 	 * Si el valor es 0 traerá todos los servicios.
 	 * */
 	@RequestMapping("/getTopServices")
-	public Object getAllServicios(@RequestParam(value = "limit", required = false)Integer limit) {
+	public Object getAllServicios(@RequestParam Integer limit) {
 		return dtoRepositoryServicio.obtenerServiciosDto(limit);
 	}
 }

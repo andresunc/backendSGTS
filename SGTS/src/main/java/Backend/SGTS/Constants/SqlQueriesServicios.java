@@ -43,11 +43,10 @@ public class SqlQueriesServicios {
 	
 	public String getServices(Integer limit) {
 	    try {
-	        return (limit == 0) ? serviceNotDeleted : serviceNotDeleted + "    LIMIT " + limit;
+	        return (limit <= 0) ? serviceNotDeleted : serviceNotDeleted + "    LIMIT " + limit;
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	        return "Error al obtener servicios";
 	    }
 	}
-
 }

@@ -61,4 +61,10 @@ public class ContactoEmpresaController {
 	public void delete(@PathVariable("id") Integer id) {
 		contactoEmpresaService.delete(id);
 	}
+	
+	// Obtengo todos los contactos por idEmpresa
+	@GetMapping("/getByIdEmpresa/{empresaIdEmpresa}")
+	public List<ContactoEmpresaEntity> getByIdEmpresa(@PathVariable Integer empresaIdEmpresa) {
+		return contactoEmpresaService.getByIdEmpresa(empresaIdEmpresa);
+	}
 }

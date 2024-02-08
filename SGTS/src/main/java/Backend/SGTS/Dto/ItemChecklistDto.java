@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 public class ItemChecklistDto {
 
+	private Integer idItemChecklist;
 	private String nombreItem;
 	private LocalDateTime inicioEstimado;
 	private LocalDateTime finEstimado;
@@ -17,6 +18,14 @@ public class ItemChecklistDto {
 	private boolean completo;
 
 	public ItemChecklistDto() {
+	}
+
+	public Integer getIdItemChecklist() {
+		return idItemChecklist;
+	}
+
+	public void setIdItemChecklist(Integer idItemChecklist) {
+		this.idItemChecklist = idItemChecklist;
 	}
 
 	public String getNombreItem() {

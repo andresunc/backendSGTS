@@ -5,27 +5,39 @@ import java.util.List;
 
 public class ServicioDto {
 
-	private Integer id;
+	private Integer idServicio;
+	private Integer idTipoServicio;
 	private String tipo;
+	private Integer idCliente;
 	private String cliente;
 	private Integer idEstado;
 	private String estado;
 	private Integer recurrencia;
 	private Integer referencia;
 	private LocalDateTime fecha_notificacion;
+	private Integer idRubro;
 	private String rubro;
+	private Integer idServicioEmpresa;
 	private Double total_presupuestado;
 	private String comentario;
 	private List<ItemChecklistDto> itemChecklistDto;
 	
 	public ServicioDto() {}
 
-	public Integer getId() {
-		return id;
+	public Integer getIdServicio() {
+		return idServicio;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdServicio(Integer idServicio) {
+		this.idServicio = idServicio;
+	}
+
+	public Integer getIdTipoServicio() {
+		return idTipoServicio;
+	}
+
+	public void setIdTipoServicio(Integer idTipoServicio) {
+		this.idTipoServicio = idTipoServicio;
 	}
 
 	public String getTipo() {
@@ -34,6 +46,14 @@ public class ServicioDto {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	public Integer getIdCliente() {
+		return idCliente;
+	}
+
+	public void setIdCliente(Integer idCliente) {
+		this.idCliente = idCliente;
 	}
 
 	public String getCliente() {
@@ -84,8 +104,12 @@ public class ServicioDto {
 		this.fecha_notificacion = fecha_notificacion;
 	}
 
-	public Double getTotal_presupuestado() {
-		return total_presupuestado;
+	public Integer getIdRubro() {
+		return idRubro;
+	}
+
+	public void setIdRubro(Integer idRubro) {
+		this.idRubro = idRubro;
 	}
 
 	public String getRubro() {
@@ -94,6 +118,18 @@ public class ServicioDto {
 
 	public void setRubro(String rubro) {
 		this.rubro = rubro;
+	}
+
+	public Integer getIdServicioEmpresa() {
+		return idServicioEmpresa;
+	}
+
+	public void setIdServicioEmpresa(Integer idServicioEmpresa) {
+		this.idServicioEmpresa = idServicioEmpresa;
+	}
+
+	public Double getTotal_presupuestado() {
+		return total_presupuestado;
 	}
 
 	public void setTotal_presupuestado(Double total_presupuestado) {

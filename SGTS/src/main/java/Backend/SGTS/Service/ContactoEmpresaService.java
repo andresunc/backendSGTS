@@ -39,4 +39,9 @@ public class ContactoEmpresaService {
 	public void delete(Integer id) {
 		contactoEmpresaRepository.deleteById(id);
 	}
+	
+	// Obtengo todos los contactos por idEmpresa
+	public List<ContactoEmpresaEntity> getByIdEmpresa(Integer empresaIdEmpresa) {
+		return contactoEmpresaRepository.findByEmpresaIdEmpresa(empresaIdEmpresa);
+	}
 }

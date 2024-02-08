@@ -3,6 +3,7 @@ package Backend.SGTS.Constants;
 public class SqlQueriesItemChecklist {
 
 	private String itemChecklistDto = "SELECT "
+			+ "itch.id_Item_Checklist as 'idItemChecklist',"
             + "req.descripcion as 'nombre_item',"
             + "itch.Inicio_Estandar as 'inicio_estimado',"
             + "itch.Fin_Estandar as 'fin_estimado',"

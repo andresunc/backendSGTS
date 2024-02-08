@@ -22,6 +22,7 @@ public class DtoRepositoryItemChecklist {
 
         return jdbcTemplate.query(sql, new Object[]{idServicio}, (resultSet, rowNum) -> {
             ItemChecklistDto itemChecklistDto = new ItemChecklistDto();
+            itemChecklistDto.setIdItemChecklist(resultSet.getInt("idItemChecklist"));
             itemChecklistDto.setNombreItem(resultSet.getString("nombre_item"));
             itemChecklistDto.setInicioEstimado(resultSet.getTimestamp("inicio_estimado").toLocalDateTime());
             itemChecklistDto.setFinEstimado(resultSet.getTimestamp("fin_estimado").toLocalDateTime());

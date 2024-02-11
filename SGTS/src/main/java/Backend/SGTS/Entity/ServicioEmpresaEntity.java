@@ -29,6 +29,9 @@ public class ServicioEmpresaEntity {
     @Basic
     @Column(name = "Eliminado", nullable = true)
     private Byte eliminado;
+    
+	public ServicioEmpresaEntity() {
+	}
 
     public Integer getIdServicioEmpresa() {
         return idServicioEmpresa;

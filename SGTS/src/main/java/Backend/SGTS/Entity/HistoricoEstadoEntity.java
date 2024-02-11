@@ -21,6 +21,9 @@ public class HistoricoEstadoEntity {
     @Basic
     @Column(name = "Estado_id_Estado", nullable = false)
     private int estadoIdEstado;
+    
+	public HistoricoEstadoEntity() {
+	}
 
     public Integer getIdHistoricoEstado() {
         return idHistoricoEstado;

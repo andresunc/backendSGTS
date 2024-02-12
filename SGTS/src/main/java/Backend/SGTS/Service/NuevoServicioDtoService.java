@@ -2,13 +2,16 @@ package Backend.SGTS.Service;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import Backend.SGTS.Dto.NuevoServicioDTO;
+import Backend.SGTS.Entity.ItemChecklistEntity;
 import Backend.SGTS.Entity.ServicioEntity;
 import Backend.SGTS.Repository.HistoricoEstadoRepository;
+import Backend.SGTS.Repository.ItemChecklistRepository;
 import Backend.SGTS.Repository.ServicioEmpresaRepository;
 import Backend.SGTS.Repository.ServicioRepository;
 import jakarta.transaction.Transactional;
@@ -22,6 +25,8 @@ public class NuevoServicioDtoService {
 	HistoricoEstadoRepository historicoEstadoRepository;
 	@Autowired
 	ServicioEmpresaRepository servicioEmpresaRepository;
+	@Autowired
+    ItemChecklistRepository itemChecklistRepository;
 
 	@Transactional
 	public NuevoServicioDTO crearServicio(NuevoServicioDTO nuevoServicioDTO) {
@@ -38,7 +43,17 @@ public class NuevoServicioDtoService {
 		// Paso 3: Guardar el servicio de la empresa;
         nuevoServicioDTO.getServicioEmpresa().setAlta(new Date(System.currentTimeMillis()));
         nuevoServicioDTO.getServicioEmpresa().setServicioIdServicio(idServicio);
+        nuevoServicioDTO.getServicioEmpresa().setEliminado((byte) 0);
         servicioEmpresaRepository.save(nuevoServicioDTO.getServicioEmpresa());
+        
+        // Paso 4: Guardar la lista de ItemChecklistEntity si existe
+        List<ItemChecklistEntity> itemChecklistEntities = nuevoServicioDTO.getItemChecklist();
+        if (itemChecklistEntities != null && !itemChecklistEntities.isEmpty()) {
+            for (ItemChecklistEntity itemChecklistEntity : itemChecklistEntities) {
+                itemChecklistEntity.setServicioIdServicio(idServicio);
+                itemChecklistRepository.save(itemChecklistEntity);
+            }
+        }
 
 		return nuevoServicioDTO;
 	}

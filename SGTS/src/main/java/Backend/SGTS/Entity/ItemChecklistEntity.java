@@ -48,6 +48,8 @@ public class ItemChecklistEntity {
     @Basic
     @Column(name = "Completo", nullable = true)
     private Byte completo;
+    
+    public ItemChecklistEntity() {}
 
     public Integer getIdItemChecklist() {
         return idItemChecklist;

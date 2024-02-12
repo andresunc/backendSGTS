@@ -30,8 +30,7 @@ public class ServicioEmpresaEntity {
     @Column(name = "Eliminado", nullable = true)
     private Byte eliminado;
     
-	public ServicioEmpresaEntity() {
-	}
+	public ServicioEmpresaEntity() {}
 
     public Integer getIdServicioEmpresa() {
         return idServicioEmpresa;
@@ -105,4 +104,12 @@ public class ServicioEmpresaEntity {
     public int hashCode() {
         return Objects.hash(idServicioEmpresa, costoServicio, servicioIdServicio, empresaIdEmpresa, recursoGgIdRecursoGg, eliminado);
     }
+    
+    @Override
+	public String toString() {
+		return "ServicioEmpresaEntity [idServicioEmpresa=" + idServicioEmpresa + ", costoServicio=" + costoServicio
+				+ ", alta=" + alta + ", servicioIdServicio=" + servicioIdServicio + ", empresaIdEmpresa="
+				+ empresaIdEmpresa + ", recursoGgIdRecursoGg=" + recursoGgIdRecursoGg + ", eliminado=" + eliminado
+				+ "]";
+	}
 }

@@ -34,6 +34,8 @@ public class ServicioEntity {
     @Basic
     @Column(name = "Expediente", nullable = true, length = 45)
     private String expediente;
+    
+    public ServicioEntity() {}
 
     public Integer getIdServicio() {
         return idServicio;
@@ -111,4 +113,12 @@ public class ServicioEntity {
     public int hashCode() {
         return Objects.hash(idServicio, fechaVencExpediente, fechaHoraAlertaVenc, recurrencia, referenciaIdServicio, tipoServicioIdTipoServicio, comentario, expediente);
     }
+    
+    @Override
+	public String toString() {
+		return "ServicioEntity [idServicio=" + idServicio + ", fechaVencExpediente=" + fechaVencExpediente
+				+ ", fechaHoraAlertaVenc=" + fechaHoraAlertaVenc + ", recurrencia=" + recurrencia
+				+ ", referenciaIdServicio=" + referenciaIdServicio + ", tipoServicioIdTipoServicio="
+				+ tipoServicioIdTipoServicio + ", comentario=" + comentario + ", expediente=" + expediente + "]";
+	}
 }

@@ -22,8 +22,7 @@ public class HistoricoEstadoEntity {
     @Column(name = "Estado_id_Estado", nullable = false)
     private int estadoIdEstado;
     
-	public HistoricoEstadoEntity() {
-	}
+	public HistoricoEstadoEntity() {}
 
     public Integer getIdHistoricoEstado() {
         return idHistoricoEstado;
@@ -69,4 +68,10 @@ public class HistoricoEstadoEntity {
     public int hashCode() {
         return Objects.hash(idHistoricoEstado, fecha, servicioIdServicio, estadoIdEstado);
     }
+    
+    @Override
+	public String toString() {
+		return "HistoricoEstadoEntity [idHistoricoEstado=" + idHistoricoEstado + ", fecha=" + fecha
+				+ ", servicioIdServicio=" + servicioIdServicio + ", estadoIdEstado=" + estadoIdEstado + "]";
+	}
 }

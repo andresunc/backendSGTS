@@ -12,7 +12,7 @@ public class SqlQueriesItemChecklist {
             + "itch.Notificado as 'notificado',"
             + "itch.Tasa_Valor as 'valor_tasa',"
             + "itch.Tasa_Cantidad_Hojas as 'hojas',"
-            + "per.Nombre + ' ' + per.Apellido as 'responsable',"
+            + "concat(per.Nombre, ' ' , per.Apellido) as 'responsable',"
             + "itch.Url_comprobante_tasa as 'url_comprobante',"
             + "itch.completo as 'completo'"
             + "FROM item_checklist itch "

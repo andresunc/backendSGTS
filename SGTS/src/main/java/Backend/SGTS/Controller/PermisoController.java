@@ -47,6 +47,7 @@ public class PermisoController {
 
 		PermisoEntity upDatePermiso = permisoService.getById(id);
 		upDatePermiso.setPermiso(permiso.getPermiso());
+		upDatePermiso.setDescripcion(permiso.getDescripcion());
 		permisoService.update(upDatePermiso);
 
 		return upDatePermiso;

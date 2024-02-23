@@ -14,6 +14,9 @@ public class PermisoEntity {
     @Basic
     @Column(name = "Permiso", nullable = false)
     private int permiso;
+    @Basic
+    @Column(name = "Descripcion", length = 45)
+    private String descripcion;
 
     public Integer getIdPermiso() {
         return idPermiso;
@@ -31,16 +34,30 @@ public class PermisoEntity {
         this.permiso = permiso;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        PermisoEntity that = (PermisoEntity) o;
-        return idPermiso == that.idPermiso && permiso == that.permiso;
-    }
+	public String getDescripcion() {
+		return descripcion;
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(idPermiso, permiso);
-    }
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(descripcion, idPermiso, permiso);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PermisoEntity other = (PermisoEntity) obj;
+		return Objects.equals(descripcion, other.descripcion) && Objects.equals(idPermiso, other.idPermiso)
+				&& permiso == other.permiso;
+	}
+
 }

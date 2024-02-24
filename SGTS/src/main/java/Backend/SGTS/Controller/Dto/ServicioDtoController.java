@@ -1,4 +1,4 @@
-package Backend.SGTS.Controller;
+package Backend.SGTS.Controller.Dto;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;

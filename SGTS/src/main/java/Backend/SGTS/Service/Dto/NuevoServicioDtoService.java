@@ -1,4 +1,4 @@
-package Backend.SGTS.Service;
+package Backend.SGTS.Service.Dto;
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import Backend.SGTS.Dto.NuevoServicioDTO;
+import Backend.SGTS.Dto.NuevoServicioDto;
 import Backend.SGTS.Entity.ItemChecklistEntity;
 import Backend.SGTS.Entity.ServicioEntity;
 import Backend.SGTS.Repository.HistoricoEstadoRepository;
@@ -29,7 +29,7 @@ public class NuevoServicioDtoService {
     ItemChecklistRepository itemChecklistRepository;
 
 	@Transactional
-	public NuevoServicioDTO crearServicio(NuevoServicioDTO nuevoServicioDTO) {
+	public NuevoServicioDto crearServicio(NuevoServicioDto nuevoServicioDTO) {
 
 		// Paso 1: Guardar el servicio y obtener su ID
 		ServicioEntity servicio = servicioRepository.save(nuevoServicioDTO.getServicio());

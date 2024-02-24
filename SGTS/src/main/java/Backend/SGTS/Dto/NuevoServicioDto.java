@@ -7,14 +7,14 @@ import Backend.SGTS.Entity.ItemChecklistEntity;
 import Backend.SGTS.Entity.ServicioEmpresaEntity;
 import Backend.SGTS.Entity.ServicioEntity;
 
-public class NuevoServicioDTO {
+public class NuevoServicioDto {
 
 	private ServicioEntity servicio;
 	private HistoricoEstadoEntity historicoEstado;
 	private ServicioEmpresaEntity servicioEmpresa;
 	private List<ItemChecklistEntity> itemChecklist;
 	
-	public NuevoServicioDTO() {}
+	public NuevoServicioDto() {}
 
 	public ServicioEntity getServicio() {
 		return servicio;

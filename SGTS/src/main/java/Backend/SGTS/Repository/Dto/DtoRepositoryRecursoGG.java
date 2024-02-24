@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import Backend.SGTS.Constants.SqlQueriesRecursoGG;
-import Backend.SGTS.Dto.RecursoGgDto;
+import Backend.SGTS.Entity.Dto.RecursoGgDto;
 
 @Repository
 public class DtoRepositoryRecursoGG {

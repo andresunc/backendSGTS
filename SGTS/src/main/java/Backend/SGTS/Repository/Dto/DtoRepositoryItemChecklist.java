@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import Backend.SGTS.Constants.SqlQueriesItemChecklist;
-import Backend.SGTS.Dto.ItemChecklistDto;
+import Backend.SGTS.Entity.Dto.ItemChecklistDto;
 
 @Repository
 public class DtoRepositoryItemChecklist {

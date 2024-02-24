@@ -1,4 +1,4 @@
-package Backend.SGTS.Dto;
+package Backend.SGTS.Entity.Dto;
 
 public class RecursoGgDto {
 

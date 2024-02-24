@@ -6,7 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import Backend.SGTS.Constants.SqlQueriesServicios;
-import Backend.SGTS.Dto.ServicioDto;
+import Backend.SGTS.Entity.Dto.ServicioDto;
 
 @Repository
 public class DtoRepositoryServicio {

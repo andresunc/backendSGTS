@@ -7,9 +7,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import Backend.SGTS.Dto.NuevoServicioDto;
 import Backend.SGTS.Entity.ItemChecklistEntity;
 import Backend.SGTS.Entity.ServicioEntity;
+import Backend.SGTS.Entity.Dto.NuevoServicioDto;
 import Backend.SGTS.Repository.HistoricoEstadoRepository;
 import Backend.SGTS.Repository.ItemChecklistRepository;
 import Backend.SGTS.Repository.ServicioEmpresaRepository;

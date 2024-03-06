@@ -7,6 +7,7 @@ public class ServicioDto {
 
 	private Integer idServicio;
 	private Integer idTipoServicio;
+	private LocalDateTime fecha_alta;
 	private String tipo;
 	private Integer idCliente;
 	private String cliente;
@@ -38,6 +39,14 @@ public class ServicioDto {
 
 	public void setIdTipoServicio(Integer idTipoServicio) {
 		this.idTipoServicio = idTipoServicio;
+	}
+	
+	public LocalDateTime getFecha_alta() {
+		return fecha_alta;
+	}
+
+	public void setFecha_alta(LocalDateTime localDateTime) {
+		this.fecha_alta = localDateTime;
 	}
 
 	public String getTipo() {

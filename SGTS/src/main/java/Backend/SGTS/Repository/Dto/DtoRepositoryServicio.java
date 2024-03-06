@@ -26,6 +26,7 @@ public class DtoRepositoryServicio {
             ServicioDto servicioDto = new ServicioDto();
             servicioDto.setIdServicio(resultSet.getInt("idServicio"));
             servicioDto.setIdTipoServicio(resultSet.getInt("idTipoServicio"));
+            servicioDto.setFecha_alta(resultSet.getObject("fecha_alta", LocalDateTime.class));
             servicioDto.setTipo(resultSet.getString("tipo"));
             servicioDto.setIdCliente(resultSet.getInt("idCliente"));
             servicioDto.setCliente(resultSet.getString("cliente"));

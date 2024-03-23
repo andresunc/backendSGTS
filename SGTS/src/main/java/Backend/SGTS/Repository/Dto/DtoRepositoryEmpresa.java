@@ -23,6 +23,7 @@ public class DtoRepositoryEmpresa {
 
 		return jdbcTemplate.query(sql, (resultSet, rowNum) -> {
 			EmpresaDto empresaDto = new EmpresaDto();
+			empresaDto.setIdEmpresa(resultSet.getInt("idEmpresa"));
 			empresaDto.setIdRubro(resultSet.getInt("idRubro"));
 			empresaDto.setRubro(resultSet.getString("rubro"));
 			empresaDto.setIdRiesgo(resultSet.getInt("idRiesgo"));

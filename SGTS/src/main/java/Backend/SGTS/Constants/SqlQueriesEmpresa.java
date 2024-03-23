@@ -3,6 +3,7 @@ package Backend.SGTS.Constants;
 public class SqlQueriesEmpresa {
 
 	private String empresaDto = "SELECT "
+			+ "em.id_Empresa as 'idEmpresa',"
             + "ru.id_Rubro as 'idRubro',"
             + "ru.rubro as 'rubro',"
             + "ri.id_Riesgo as 'idRiesgo',"

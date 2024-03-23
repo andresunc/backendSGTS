@@ -2,6 +2,7 @@ package Backend.SGTS.Entity.Dto;
 
 public class EmpresaDto {
 
+	private Integer idEmpresa;
 	private Integer idRubro;
     private String rubro;
     private Integer idRiesgo;
@@ -11,6 +12,18 @@ public class EmpresaDto {
     private String direccion;
     
     public EmpresaDto() {}
+    
+    
+
+	public Integer getIdEmpresa() {
+		return idEmpresa;
+	}
+
+	public void setIdEmpresa(Integer idEmpresa) {
+		this.idEmpresa = idEmpresa;
+	}
+
+
 
 	public Integer getIdRubro() {
 		return idRubro;

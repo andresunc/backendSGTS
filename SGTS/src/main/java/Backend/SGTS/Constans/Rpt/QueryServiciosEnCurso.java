@@ -40,10 +40,11 @@ public class QueryServiciosEnCurso {
             + "        SELECT * FROM UltimoEstado WHERE rn = 1"
             + "    ) hse ON sv.id_Servicio = hse.Servicio_id_Servicio"
             + "    LEFT JOIN estado est ON est.id_Estado = hse.Estado_id_Estado"
+            + "    LEFT JOIN categoria_estado cae ON cae.id_Categoria = est.categoria_estado_id_Categoria"
             + "    LEFT JOIN item_checklist itch ON sv.id_Servicio = itch.Servicio_id_Servicio"
             + "    LEFT JOIN item item ON item.id_Item = itch.Item_id_Item"
             + "    LEFT JOIN dependencia dep ON dep.id_Dependencia = item.Dependencia_id_Dependencia"
-            + "    WHERE se.Eliminado = 0"
+            + "    WHERE se.Eliminado = 0 and est.categoria_estado_id_Categoria = 2"
             + "    GROUP BY 1, 2, 3, 4, 5, 6";
 
     public QueryServiciosEnCurso() {

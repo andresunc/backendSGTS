@@ -40,7 +40,8 @@ public class SqlQueriesServicios {
             + "    LEFT JOIN tipo_servicio tsv ON tsv.id_Tipo_Servicio = sv.Tipo_Servicio_id_Tipo_Servicio"
             + "    LEFT JOIN (SELECT * FROM UltimoEstado WHERE rn = 1) hse ON sv.id_Servicio = hse.Servicio_id_Servicio"
             + "    LEFT JOIN estado est ON est.id_Estado = hse.Estado_id_Estado"
-    		+ "    WHERE se.Eliminado = 0";
+    		+ "    WHERE se.Eliminado = 0"
+			+ "    ORDER BY se.Alta DESC";
 	
 	public SqlQueriesServicios() {
 		super();

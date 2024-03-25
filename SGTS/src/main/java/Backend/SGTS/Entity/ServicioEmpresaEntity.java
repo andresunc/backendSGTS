@@ -1,7 +1,7 @@
 package Backend.SGTS.Entity;
 
 import jakarta.persistence.*;
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
@@ -16,7 +16,7 @@ public class ServicioEmpresaEntity {
     private double costoServicio;
     @Basic
     @Column(name = "Alta", nullable = false)
-    private Date alta;
+    private Timestamp alta;
     @Basic
     @Column(name = "Servicio_id_Servicio", nullable = false)
     private int servicioIdServicio;
@@ -40,11 +40,11 @@ public class ServicioEmpresaEntity {
 		this.idServicioEmpresa = idServicioEmpresa;
 	}
 
-	public Date getAlta() {
+	public Timestamp getAlta() {
 		return alta;
 	}
 
-	public void setAlta(Date alta) {
+	public void setAlta(Timestamp alta) {
 		this.alta = alta;
 	}
 

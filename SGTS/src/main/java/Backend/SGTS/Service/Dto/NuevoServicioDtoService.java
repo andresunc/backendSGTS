@@ -41,7 +41,7 @@ public class NuevoServicioDtoService {
         historicoEstadoRepository.save(nuevoServicioDTO.getHistoricoEstado());
 
 		// Paso 3: Guardar el servicio de la empresa;
-        nuevoServicioDTO.getServicioEmpresa().setAlta(new Date(System.currentTimeMillis()));
+        nuevoServicioDTO.getServicioEmpresa().setAlta(new Timestamp(System.currentTimeMillis()));
         nuevoServicioDTO.getServicioEmpresa().setServicioIdServicio(idServicio);
         nuevoServicioDTO.getServicioEmpresa().setEliminado((byte) 0);
         servicioEmpresaRepository.save(nuevoServicioDTO.getServicioEmpresa());

@@ -1,5 +1,7 @@
 package Backend.SGTS.Controller;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +40,9 @@ public class HistoricoEstadoController {
 	// Creo un historicoestado
 	@PostMapping("/create")
 	public HistoricoEstadoEntity create(@RequestBody HistoricoEstadoEntity historicoestado) {
+		
+		// Establecer la fecha y hora actual
+		historicoestado.setFecha(Timestamp.from(Instant.now()));
 		return historicoestadoService.create(historicoestado);
 	}
 	

@@ -14,30 +14,35 @@ public class ServicioEmpresaService {
 	// Inyecto Repositorio de ServicioEmpresa
 	@Autowired
 	ServicioEmpresaRepository servicioEmpresaRepository;
-	
+
 	// Obtengo todos los servicioEmpresa
 	public List<ServicioEmpresaEntity> getAll() {
 		return servicioEmpresaRepository.findAll();
 	}
-	
+
 	// Obtengo un servicioEmpresa por id
 	public ServicioEmpresaEntity getById(Integer id) {
 		return servicioEmpresaRepository.findById(id).orElse(null);
 	}
-	
+
+	// Obtengo un servicioEmpresa por ServicioIdServicio
+	public ServicioEmpresaEntity getByServicioIdServicio(Integer id) {
+		return servicioEmpresaRepository.findByServicioIdServicio(id);
+	}
+
 	// Creo un servicioEmpresa
 	public ServicioEmpresaEntity create(ServicioEmpresaEntity servicioEmpresa) {
 		return servicioEmpresaRepository.save(servicioEmpresa);
 	}
-	
+
 	// Actualizo un servicioEmpresa
 	public ServicioEmpresaEntity update(ServicioEmpresaEntity servicioEmpresa) {
 		return servicioEmpresaRepository.save(servicioEmpresa);
 	}
-	
+
 	// Elimino un servicioEmpresa
 	public void delete(Integer id) {
 		servicioEmpresaRepository.deleteById(id);
 	}
-	
+
 }

@@ -93,8 +93,7 @@ public class ServicioEmpresaController {
 
 	// Elimino un servicioEmpresa buscando por ServicioIdServicio
 	@PutMapping("/delete/{id}")
-	public ResponseEntity<ServicioEmpresaEntity> deleteLogicoServicioEmpresa(@PathVariable("id") Integer servicioId,
-			@RequestBody ServicioEmpresaEntity servicioEmpresa) {
+	public ResponseEntity<ServicioEmpresaEntity> deleteLogicoServicioEmpresa(@PathVariable("id") Integer servicioId) {
 
 		// Busca el objeto ServicioEmpresaEntity por su ID
 		ServicioEmpresaEntity upDateServicioEmpresa = servicioEmpresaService.getByServicioIdServicio(servicioId);
@@ -103,7 +102,7 @@ public class ServicioEmpresaController {
 			return ResponseEntity.notFound().build();
 		}
 
-		if (servicioEmpresa.getEliminado() == 0) {
+		if (upDateServicioEmpresa.getEliminado() == 0) {
 			upDateServicioEmpresa.setEliminado(Byte.valueOf((byte) 1));
 		}
 

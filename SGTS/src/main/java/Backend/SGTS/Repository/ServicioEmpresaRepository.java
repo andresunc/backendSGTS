@@ -8,4 +8,6 @@ import Backend.SGTS.Entity.ServicioEmpresaEntity;
 @Repository
 public interface ServicioEmpresaRepository extends JpaRepository<ServicioEmpresaEntity, Integer>{
 
+	// Método para buscar por servicioIdServicio
+    ServicioEmpresaEntity findByServicioIdServicio(Integer servicioIdServicio);
 }

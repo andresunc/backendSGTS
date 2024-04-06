@@ -1,6 +1,7 @@
 package Backend.SGTS.Controller;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,14 +46,33 @@ public class ServicioController {
 	public ServicioEntity update(@PathVariable("id") Integer id, @RequestBody ServicioEntity servicio) {
 
 		ServicioEntity upDateServicio = servicioService.getById(id);
-		upDateServicio.setFechaVencExpediente(servicio.getFechaVencExpediente());
-		upDateServicio.setFechaHoraAlertaVenc(servicio.getFechaHoraAlertaVenc());
-		upDateServicio.setRecurrencia(servicio.getRecurrencia());
-		upDateServicio.setTipoServicioIdTipoServicio(servicio.getTipoServicioIdTipoServicio());
-		upDateServicio.setReferenciaIdServicio(servicio.getReferenciaIdServicio());
-		upDateServicio.setComentario(servicio.getComentario());
-		upDateServicio.setExpediente(servicio.getExpediente());
-		servicioService.update(upDateServicio);
+		
+		// Verificar y actualizar los atributos solo si han cambiado
+	    if (Objects.nonNull(servicio.getFechaVencExpediente())) {
+	        upDateServicio.setFechaVencExpediente(servicio.getFechaVencExpediente());
+	    }
+	    if (Objects.nonNull(servicio.getFechaHoraAlertaVenc())) {
+	        upDateServicio.setFechaHoraAlertaVenc(servicio.getFechaHoraAlertaVenc());
+	    }
+	    if (Objects.nonNull(servicio.getRecurrencia())) {
+	        upDateServicio.setRecurrencia(servicio.getRecurrencia());
+	    }
+	    /*
+	    if (Objects.nonNull(servicio.getTipoServicioIdTipoServicio())) {
+	        upDateServicio.setTipoServicioIdTipoServicio(servicio.getTipoServicioIdTipoServicio());
+	    }
+	    */
+	    if (Objects.nonNull(servicio.getReferenciaIdServicio())) {
+	        upDateServicio.setReferenciaIdServicio(servicio.getReferenciaIdServicio());
+	    }
+	    if (Objects.nonNull(servicio.getComentario())) {
+	        upDateServicio.setComentario(servicio.getComentario());
+	    }
+	    if (Objects.nonNull(servicio.getExpediente())) {
+	        upDateServicio.setExpediente(servicio.getExpediente());
+	    }
+
+	    servicioService.update(upDateServicio);
 
 		return upDateServicio;
 	}

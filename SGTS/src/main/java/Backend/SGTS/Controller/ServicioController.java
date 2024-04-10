@@ -57,7 +57,7 @@ public class ServicioController {
 	    if (Objects.nonNull(servicio.getRecurrencia())) {
 	        upDateServicio.setRecurrencia(servicio.getRecurrencia());
 	    }
-	    /*
+	    /* Se supone que el Tipo de servicio no es editable
 	    if (Objects.nonNull(servicio.getTipoServicioIdTipoServicio())) {
 	        upDateServicio.setTipoServicioIdTipoServicio(servicio.getTipoServicioIdTipoServicio());
 	    }

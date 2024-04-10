@@ -59,6 +59,5 @@ public class EstadoEntity {
 		return Objects.equals(eliminado, other.eliminado) && Objects.equals(idEstado, other.idEstado)
 				&& Objects.equals(tipoEstado, other.tipoEstado);
 	}
-
     
 }

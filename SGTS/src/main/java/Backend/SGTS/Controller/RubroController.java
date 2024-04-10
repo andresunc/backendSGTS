@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import Backend.SGTS.Entity.EstadoEntity;
 import Backend.SGTS.Entity.RubroEntity;
 import Backend.SGTS.Service.RubroService;
 
@@ -22,6 +23,18 @@ public class RubroController {
 	// Inyecto Servicio de Rubro
 	@Autowired
 	RubroService rubroService;
+	
+	// Obtengo todos los rubros no eliminados
+		@GetMapping("/getAllNotDeleted")
+		public List<RubroEntity> getAllNotDeleted() {
+			return rubroService.getAllNotDeleted();
+		}
+		
+		// Obtengo todos los rubros eliminados
+		@GetMapping("/getAllDeleted")
+		public List<RubroEntity> getAllDeleted() {
+			return rubroService.getAllDeleted();
+		}
 	
 	// Obtengo todos los rubros
 	@GetMapping("/getAll")
@@ -47,6 +60,7 @@ public class RubroController {
 		
 		RubroEntity upDateRubro = rubroService.getById(id);
 		upDateRubro.setRubro(rubro.getRubro());
+		upDateRubro.setEliminado(rubro.getEliminado());
  		rubroService.update(upDateRubro);
  		
  		return upDateRubro;

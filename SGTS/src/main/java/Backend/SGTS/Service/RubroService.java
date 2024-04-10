@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import Backend.SGTS.Entity.EstadoEntity;
 import Backend.SGTS.Entity.RubroEntity;
 import Backend.SGTS.Repository.RubroRepository;
 
@@ -39,5 +40,15 @@ public class RubroService {
 	public void delete(Integer id) {
 		rubroRepository.deleteById(id);
 	}
+	
+	// Obtengo todos los rubros no eliminados
+		public List<RubroEntity> getAllNotDeleted() {
+			return rubroRepository.findByEliminadoFalse();
+		}
+
+		// Obtengo todos los rubros no eliminados
+		public List<RubroEntity> getAllDeleted() {
+			return rubroRepository.findByEliminadoTrue();
+		}
 	
 }

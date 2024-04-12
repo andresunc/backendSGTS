@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -90,23 +91,23 @@ public class ServicioEmpresaController {
 		return ResponseEntity.ok(upDateServicioEmpresa);
 	}
 
-	// Elimino un servicioEmpresa buscando por ServicioIdServicio
-	@PutMapping("/delete/{id}")
-	public ResponseEntity<ServicioEmpresaEntity> deleteLogicoServicioEmpresa(@PathVariable("id") Integer servicioId) {
+	// Eliminar un servicioEmpresa buscando por ServicioIdServicio
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<Void> deleteLogicoServicioEmpresa(@PathVariable("id") Integer servicioId) {
 
 		// Busca el objeto ServicioEmpresaEntity por su ID
-		ServicioEmpresaEntity upDateServicioEmpresa = servicioEmpresaService.getByServicioIdServicio(servicioId);
+		ServicioEmpresaEntity servicioEmpresa = servicioEmpresaService.getByServicioIdServicio(servicioId);
 
-		if (upDateServicioEmpresa == null) {
+		if (servicioEmpresa == null) {
 			return ResponseEntity.notFound().build();
 		}
 
-		if (upDateServicioEmpresa.getEliminado() == 0) {
-			upDateServicioEmpresa.setEliminado(Byte.valueOf((byte) 1));
+		if (servicioEmpresa.getEliminado() == 0) {
+			servicioEmpresa.setEliminado(Byte.valueOf((byte) 1));
+			servicioEmpresaService.update(servicioEmpresa);
 		}
 
-		servicioEmpresaService.update(upDateServicioEmpresa);
-		return ResponseEntity.ok(upDateServicioEmpresa);
+		return ResponseEntity.noContent().build();
 	}
 
 	/* Función anulada, no se puede borrar directamente un servicio-empresa */

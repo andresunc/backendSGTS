@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import Backend.SGTS.Entity.ContactoEmpresaEntity;
 import Backend.SGTS.Repository.ContactoEmpresaRepository;
+import jakarta.transaction.Transactional;
 
 @Service
 public class ContactoEmpresaService {
@@ -44,4 +45,10 @@ public class ContactoEmpresaService {
 	public List<ContactoEmpresaEntity> getByIdEmpresa(Integer empresaIdEmpresa) {
 		return contactoEmpresaRepository.findByEmpresaIdEmpresa(empresaIdEmpresa);
 	}
+	
+	// Elimino todos los contactos por empresaIdEmpresa
+	@Transactional
+    public void deleteByEmpresaIdEmpresa(Integer empresaIdEmpresa) {
+        contactoEmpresaRepository.deleteByEmpresaIdEmpresa(empresaIdEmpresa);
+    }
 }

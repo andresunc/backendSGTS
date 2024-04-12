@@ -1,5 +1,6 @@
 package Backend.SGTS.Controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,17 @@ public class ContactoEmpresaController {
 	public ContactoEmpresaEntity create(@RequestBody ContactoEmpresaEntity contactoEmpresa) {
 		return contactoEmpresaService.create(contactoEmpresa);
 	}
+	
+	// Crear múltiples contactos
+    @PostMapping("/create-multiple")
+    public List<ContactoEmpresaEntity> createMultiple(@RequestBody List<ContactoEmpresaEntity> contactos) {
+        List<ContactoEmpresaEntity> contactosCreados = new ArrayList<>();
+        for(ContactoEmpresaEntity contacto : contactos) {
+            ContactoEmpresaEntity creado = contactoEmpresaService.create(contacto);
+            contactosCreados.add(creado);
+        }
+        return contactosCreados;
+    }
 	
 	// Actualizo un contacto
 	@PutMapping("/update/{id}")

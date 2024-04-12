@@ -11,4 +11,6 @@ import Backend.SGTS.Entity.ContactoEmpresaEntity;
 public interface ContactoEmpresaRepository extends JpaRepository<ContactoEmpresaEntity, Integer>{
 
 	List<ContactoEmpresaEntity> findByEmpresaIdEmpresa(Integer empresaIdEmpresa);
+	
+	void deleteByEmpresaIdEmpresa(Integer empresaIdEmpresa);
 }

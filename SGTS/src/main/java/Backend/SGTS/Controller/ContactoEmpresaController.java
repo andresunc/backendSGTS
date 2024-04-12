@@ -79,4 +79,10 @@ public class ContactoEmpresaController {
 	public List<ContactoEmpresaEntity> getByIdEmpresa(@PathVariable Integer empresaIdEmpresa) {
 		return contactoEmpresaService.getByIdEmpresa(empresaIdEmpresa);
 	}
+	
+	// Elimino todos los contactos por empresaIdEmpresa
+    @DeleteMapping("/deleteByEmpresaIdEmpresa/{empresaIdEmpresa}")
+    public void deleteByEmpresaIdEmpresa(@PathVariable Integer empresaIdEmpresa) {
+        contactoEmpresaService.deleteByEmpresaIdEmpresa(empresaIdEmpresa);
+    }
 }

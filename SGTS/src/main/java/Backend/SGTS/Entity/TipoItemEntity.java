@@ -14,6 +14,8 @@ public class TipoItemEntity {
     @Basic
     @Column(name = "Tipo_Item", nullable = false, length = 45)
     private String tipoItem;
+    
+    public TipoItemEntity() {}
 
     public Integer getIdTipoItem() {
         return idTipoItem;

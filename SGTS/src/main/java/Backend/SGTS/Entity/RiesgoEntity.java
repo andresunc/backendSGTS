@@ -14,6 +14,8 @@ public class RiesgoEntity {
     @Basic
     @Column(name = "Riesgo", nullable = false, length = 45)
     private String riesgo;
+    
+    public RiesgoEntity() {}
 
     public Integer getIdRiesgo() {
         return idRiesgo;

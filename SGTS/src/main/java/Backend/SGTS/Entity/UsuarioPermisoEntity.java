@@ -17,6 +17,8 @@ public class UsuarioPermisoEntity {
     @Basic
     @Column(name = "permiso_id_permiso", nullable = false)
     private int permisoIdPermiso;
+    
+    public UsuarioPermisoEntity() {}
 
     public Integer getIdUsuarioPermiso() {
         return idUsuarioPermiso;

@@ -17,6 +17,8 @@ public class EstadoEntity {
     @Basic
     @Column(name = "Eliminado", nullable = true)
     private Byte eliminado;
+    
+    public EstadoEntity() {}
 
     public Byte getEliminado() {
 		return eliminado;

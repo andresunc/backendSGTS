@@ -14,6 +14,8 @@ public class RolEntity {
     @Basic
     @Column(name = "Rol", nullable = false, length = 45)
     private String rol;
+    
+    public RolEntity() {}
 
     public Integer getIdRol() {
         return idRol;

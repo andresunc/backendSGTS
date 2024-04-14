@@ -17,6 +17,8 @@ public class PermisoEntity {
     @Basic
     @Column(name = "Descripcion", length = 45)
     private String descripcion;
+    
+    public PermisoEntity() {}
 
     public Integer getIdPermiso() {
         return idPermiso;

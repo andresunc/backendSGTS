@@ -14,6 +14,8 @@ public class RequisitoEntity {
     @Column(name = "Descripcion", nullable = false, length = 60)
     private String descripcion;
     
+    public RequisitoEntity() {}
+    
 	public Integer getIdRequisito() {
 		return idRequisito;
 	}

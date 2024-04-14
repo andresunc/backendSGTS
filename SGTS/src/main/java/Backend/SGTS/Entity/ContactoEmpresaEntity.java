@@ -26,6 +26,8 @@ public class ContactoEmpresaEntity {
     @Basic
     @Column(name = "Empresa_id_Empresa", nullable = false)
     private int empresaIdEmpresa;
+    
+    public ContactoEmpresaEntity() {}
 
     public Integer getIdContactoEmpresa() {
         return idContactoEmpresa;

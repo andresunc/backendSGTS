@@ -26,6 +26,8 @@ public class ItemEntity {
     @Basic
     @Column(name = "Requisito_id_Requisito", nullable = false)
     private int requisitoIdRequisito;
+    
+    public ItemEntity() {}
 
     public Integer getIdItem() {
         return idItem;

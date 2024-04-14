@@ -23,6 +23,8 @@ public class UsuarioEntity {
     @Basic
     @Column(name = "Recurso_GG_id_Recurso_GG", nullable = false)
     private int recursoGgIdRecursoGg;
+    
+    public UsuarioEntity() {}
 
     public Integer getIdUsuario() {
         return idUsuario;

@@ -17,6 +17,8 @@ public class RubroEntity {
     @Basic
     @Column(name = "Eliminado", nullable = true)
     private Byte eliminado;
+    
+    public RubroEntity() {}
 
     public Integer getIdRubro() {
         return idRubro;

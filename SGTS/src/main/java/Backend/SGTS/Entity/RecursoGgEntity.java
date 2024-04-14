@@ -20,6 +20,8 @@ public class RecursoGgEntity {
     @Basic
     @Column(name = "Eliminado", nullable = true)
     private Byte eliminado;
+    
+    public RecursoGgEntity() {}
 
     public Integer getIdRecursoGg() {
         return idRecursoGg;

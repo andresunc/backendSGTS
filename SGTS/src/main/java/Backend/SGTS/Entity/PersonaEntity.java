@@ -26,6 +26,8 @@ public class PersonaEntity {
     @Basic
     @Column(name = "Email", nullable = true, length = 100)
     private String email;
+    
+    public PersonaEntity() {}
 
     public Integer getIdPersona() {
         return idPersona;

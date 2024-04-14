@@ -14,6 +14,8 @@ public class DependenciaEntity {
     @Basic
     @Column(name = "Dependencia", nullable = false, length = 45)
     private String dependencia;
+    
+    public DependenciaEntity() {}
 
     public Integer getIdDependencia() {
         return idDependencia;

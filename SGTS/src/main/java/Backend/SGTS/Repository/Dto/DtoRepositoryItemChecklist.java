@@ -1,5 +1,6 @@
 package Backend.SGTS.Repository.Dto;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +25,10 @@ public class DtoRepositoryItemChecklist {
             ItemChecklistDto itemChecklistDto = new ItemChecklistDto();
             itemChecklistDto.setIdItemChecklist(resultSet.getInt("idItemChecklist"));
             itemChecklistDto.setNombreItem(resultSet.getString("nombre_item"));
-            itemChecklistDto.setInicioEstimado(resultSet.getTimestamp("inicio_estimado").toLocalDateTime());
-            itemChecklistDto.setFinEstimado(resultSet.getTimestamp("fin_estimado").toLocalDateTime());
-            itemChecklistDto.setEjecucionReal(resultSet.getTimestamp("ejecucion_real").toLocalDateTime());
-            itemChecklistDto.setFinReal(resultSet.getTimestamp("fin_real").toLocalDateTime());
+            itemChecklistDto.setInicioEstimado(resultSet.getObject("inicio_estimado", LocalDateTime.class));
+            itemChecklistDto.setFinEstimado(resultSet.getObject("fin_estimado", LocalDateTime.class));
+            itemChecklistDto.setEjecucionReal(resultSet.getObject("ejecucion_real", LocalDateTime.class));
+            itemChecklistDto.setFinReal(resultSet.getObject("fin_real", LocalDateTime.class));
             itemChecklistDto.setNotificado(resultSet.getBoolean("notificado"));
             itemChecklistDto.setValorTasa(resultSet.getDouble("valor_tasa"));
             itemChecklistDto.setHojas(resultSet.getInt("hojas"));

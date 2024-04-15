@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import Backend.SGTS.Repository.Dto.DtoRepositoryItemChecklist;
 import Backend.SGTS.Repository.Dto.DtoRepositoryServicio;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -16,6 +17,8 @@ public class ServicioDtoController {
 	// Inyecto el repositorio de dto de servicios
 	@Autowired
 	DtoRepositoryServicio dtoRepositoryServicio;
+	@Autowired
+	DtoRepositoryItemChecklist dtoRepositoryItemChecklist;
 
 	/* @RequestParam para obtener los parámetros de la solicitud HTTP y trabajar con ellos en el método.
 	 * Puede contener un valor entero
@@ -25,4 +28,10 @@ public class ServicioDtoController {
 	public Object getAllServicios(@RequestParam Integer limit) {
 		return dtoRepositoryServicio.obtenerServiciosDto(limit);
 	}
+	
+	@RequestMapping("/getItemsChecklist")
+    public Object getItemsChecklist(@RequestParam Integer idServicio) {
+        return dtoRepositoryItemChecklist.obtenerItemChecklistDto(idServicio);
+    }
+	
 }

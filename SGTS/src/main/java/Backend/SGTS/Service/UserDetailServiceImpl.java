@@ -26,6 +26,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -68,6 +69,8 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
         String username = createRoleRequest.username();
         String password = createRoleRequest.password();
+        Integer id_recursogg = createRoleRequest.id_recurso();
+
         List<String> rolesRequest = createRoleRequest.roleRequest().roleListName();
 
         Set<RolEntity> roleEntityList = rolRepository.findByRoleEnumIn(rolesRequest).stream().collect(Collectors.toSet());
@@ -76,7 +79,15 @@ public class UserDetailServiceImpl implements UserDetailsService {
             throw new IllegalArgumentException("El rol especifico no existe.");
         }
 
-        UsuarioEntity userEntity = UsuarioEntity.builder().username(username).password(passwordEncoder.encode(password)).roles(roleEntityList).isEnabled(true).accountNoLocked(true).accountNoExpired(true).credentialNoExpired(true).build();
+        UsuarioEntity userEntity = UsuarioEntity.builder().username(username)
+                .password(passwordEncoder.encode(password))
+                .roles(roleEntityList)
+                .isEnabled(true)
+                .accountNoLocked(true)
+                .accountNoExpired(true)
+                .credentialNoExpired(true)
+                .recursoGgIdRecursoGg(id_recursogg)
+                .build();
 
         UsuarioEntity userSaved = userRepository.save(userEntity);
 
@@ -91,7 +102,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
         String accessToken = jwtUtils.createToken(authentication);
 
-        AuthResponse authResponse = new AuthResponse(username, "El usuario se creo com exito",accessToken, true);
+        AuthResponse authResponse = new AuthResponse(username, userEntity.getIdUsuario(), "usuario creado con exito", accessToken, true);
         return authResponse;
     }
 
@@ -100,11 +111,16 @@ public class UserDetailServiceImpl implements UserDetailsService {
         String username = authLoginRequest.username();
         String password = authLoginRequest.password();
 
+        Optional<UsuarioEntity> userOptional = userRepository.findUsuarioEntityByUsername(username);
+        if (!userOptional.isPresent()) {
+            throw new UsernameNotFoundException("El usuario " + username + " no existe.");
+        }
+        UsuarioEntity usuario = userOptional.get();
         Authentication authentication = this.authenticate(username, password);
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String accessToken = jwtUtils.createToken(authentication);
-        AuthResponse authResponse = new AuthResponse(username,  "User loged succesfully", accessToken, true);
+        AuthResponse authResponse = new AuthResponse(username, usuario.getIdUsuario(),  "User loged succesfully", accessToken, true);
         return authResponse;
     }
 

@@ -1,9 +1,16 @@
 package Backend.SGTS.Entity;
 
 import jakarta.persistence.*;
+import lombok.*;
 
+import java.util.HashSet;
 import java.util.Objects;
-
+import java.util.Set;
+@Setter
+@Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "usuario", schema = "sgts_db", catalog = "")
 public class UsuarioEntity {
@@ -12,19 +19,40 @@ public class UsuarioEntity {
     @Column(name = "id_Usuario", nullable = false)
     private Integer idUsuario;
     @Basic
-    @Column(name = "Usuario", nullable = false, length = 45)
-    private String usuario;
+    @Column(name = "Username", nullable = false, length = 45)
+    private String username;
     @Basic
-    @Column(name = "Password", nullable = false, length = 45)
+    @Column(name = "Password", nullable = false)
     private String password;
-    @Basic
-    @Column(name = "Activo", nullable = false)
-    private byte activo;
     @Basic
     @Column(name = "Recurso_GG_id_Recurso_GG", nullable = false)
     private int recursoGgIdRecursoGg;
     
     public UsuarioEntity() {}
+
+    @Column(name = "is_enabled")
+    private boolean isEnabled;
+
+    @Column(name = "account_No_Expired")
+    private boolean accountNoExpired;
+
+    @Column(name = "account_No_Locked")
+    private boolean accountNoLocked;
+
+    @Column(name = "credential_No_Expired")
+    private boolean credentialNoExpired;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "id_Usuario"), inverseJoinColumns = @JoinColumn(name = "id_rol"))
+    private Set<RolEntity> roles = new HashSet<>();
+
+    public int getRecursoGgIdRecursoGg() {
+        return recursoGgIdRecursoGg;
+    }
+
+    public void setRecursoGgIdRecursoGg(int recursoGgIdRecursoGg) {
+        this.recursoGgIdRecursoGg = recursoGgIdRecursoGg;
+    }
 
     public Integer getIdUsuario() {
         return idUsuario;
@@ -34,12 +62,12 @@ public class UsuarioEntity {
         this.idUsuario = idUsuario;
     }
 
-    public String getUsuario() {
-        return usuario;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -50,32 +78,43 @@ public class UsuarioEntity {
         this.password = password;
     }
 
-    public byte getActivo() {
-        return activo;
+    public boolean isEnabled() {
+        return isEnabled;
     }
 
-    public void setActivo(byte activo) {
-        this.activo = activo;
+    public void setEnabled(boolean enabled) {
+        isEnabled = enabled;
     }
 
-    public int getRecursoGgIdRecursoGg() {
-        return recursoGgIdRecursoGg;
+    public boolean isAccountNoExpired() {
+        return accountNoExpired;
     }
 
-    public void setRecursoGgIdRecursoGg(int recursoGgIdRecursoGg) {
-        this.recursoGgIdRecursoGg = recursoGgIdRecursoGg;
+    public void setAccountNoExpired(boolean accountNoExpired) {
+        this.accountNoExpired = accountNoExpired;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        UsuarioEntity that = (UsuarioEntity) o;
-        return idUsuario == that.idUsuario && activo == that.activo && recursoGgIdRecursoGg == that.recursoGgIdRecursoGg && Objects.equals(usuario, that.usuario) && Objects.equals(password, that.password);
+    public boolean isAccountNoLocked() {
+        return accountNoLocked;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(idUsuario, usuario, password, activo, recursoGgIdRecursoGg);
+    public void setAccountNoLocked(boolean accountNoLocked) {
+        this.accountNoLocked = accountNoLocked;
+    }
+
+    public boolean isCredentialNoExpired() {
+        return credentialNoExpired;
+    }
+
+    public void setCredentialNoExpired(boolean credentialNoExpired) {
+        this.credentialNoExpired = credentialNoExpired;
+    }
+
+    public Set<RolEntity> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<RolEntity> roles) {
+        this.roles = roles;
     }
 }

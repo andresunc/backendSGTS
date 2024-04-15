@@ -46,9 +46,9 @@ public class UsuarioController {
 
 		// Solo puede actualizar el password y el estado del usuario
 		UsuarioEntity upDateUsuario = usuarioService.getById(id);
-		upDateUsuario.setUsuario(usuario.getUsuario());
+		upDateUsuario.setUsername(usuario.getUsername());
 		upDateUsuario.setPassword(usuario.getPassword());
-		upDateUsuario.setActivo(usuario.getActivo());
+		upDateUsuario.setEnabled(usuario.isEnabled());
 		upDateUsuario.setRecursoGgIdRecursoGg(usuario.getRecursoGgIdRecursoGg());
 		usuarioService.update(upDateUsuario);
 

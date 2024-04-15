@@ -5,7 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import Backend.SGTS.Entity.RolEntity;
 
+import java.util.List;
+
 @Repository
 public interface RolRepository extends JpaRepository<RolEntity, Integer>{
-
+    List<RolEntity> findByRoleEnumIn(List<String> roleNames);
 }

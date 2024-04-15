@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Proyecto_SGTS.iml" filepath="$PROJECT_DIR$/.idea/Proyecto_SGTS.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SGTS/SGTS.iml" filepath="$PROJECT_DIR$/SGTS/SGTS.iml" />
     </modules>
   </component>
 </project>

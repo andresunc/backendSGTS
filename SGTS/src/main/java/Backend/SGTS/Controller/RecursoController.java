@@ -59,7 +59,6 @@ public class RecursoController {
 	public RecursoGgEntity update(@PathVariable("id") Integer id, @RequestBody RecursoGgEntity recurso) {
 
 		RecursoGgEntity upDateRecurso = recursoService.getById(id);
-		upDateRecurso.setRolIdRol(recurso.getRolIdRol());
 		upDateRecurso.setPersonaIdPersona(recurso.getPersonaIdPersona());
 		upDateRecurso.setEliminado(recurso.getEliminado());
 		recursoService.update(upDateRecurso);

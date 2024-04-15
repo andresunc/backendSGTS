@@ -1,65 +1,39 @@
 package Backend.SGTS.Entity;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.Objects;
 
+@Setter
+@Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table(name = "permiso", schema = "sgts_db", catalog = "")
+@Table(name = "permiso")
 public class PermisoEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Id
-    @Column(name = "id_permiso", nullable = false)
-    private Integer idPermiso;
-    @Basic
-    @Column(name = "Permiso", nullable = false)
-    private int permiso;
-    @Basic
-    @Column(name = "Descripcion", length = 45)
-    private String descripcion;
-    
-    public PermisoEntity() {}
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id_permiso;
 
-    public Integer getIdPermiso() {
-        return idPermiso;
+    @Column(unique = true, nullable = false, updatable = false)
+    private String nombre;
+
+    public Long getId_permiso() {
+        return id_permiso;
     }
 
-    public void setIdPermiso(Integer idPermiso) {
-        this.idPermiso = idPermiso;
+    public void setId_permiso(Long id_permiso) {
+        this.id_permiso = id_permiso;
     }
 
-    public int getPermiso() {
-        return permiso;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setPermiso(int permiso) {
-        this.permiso = permiso;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(descripcion, idPermiso, permiso);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		PermisoEntity other = (PermisoEntity) obj;
-		return Objects.equals(descripcion, other.descripcion) && Objects.equals(idPermiso, other.idPermiso)
-				&& permiso == other.permiso;
-	}
-
 }

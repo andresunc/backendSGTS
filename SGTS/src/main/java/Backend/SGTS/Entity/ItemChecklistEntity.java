@@ -26,7 +26,7 @@ public class ItemChecklistEntity {
     private Date finConDesvio;
     @Basic
     @Column(name = "Notificado", nullable = true)
-    private Byte notificado;
+    private Boolean notificado;
     @Basic
     @Column(name = "Tasa_Valor", nullable = true, precision = 0)
     private Double tasaValor;
@@ -47,7 +47,7 @@ public class ItemChecklistEntity {
     private int itemIdItem;
     @Basic
     @Column(name = "Completo", nullable = true)
-    private Byte completo;
+    private Boolean completo;
     
     public ItemChecklistEntity() {}
 
@@ -91,11 +91,11 @@ public class ItemChecklistEntity {
         this.finConDesvio = finConDesvio;
     }
 
-    public Byte getNotificado() {
+    public Boolean getNotificado() {
         return notificado;
     }
 
-    public void setNotificado(Byte notificado) {
+    public void setNotificado(Boolean notificado) {
         this.notificado = notificado;
     }
 
@@ -147,11 +147,11 @@ public class ItemChecklistEntity {
         this.itemIdItem = itemIdItem;
     }
 
-    public Byte getCompleto() {
+    public Boolean getCompleto() {
         return completo;
     }
 
-    public void setCompleto(Byte completo) {
+    public void setCompleto(Boolean completo) {
         this.completo = completo;
     }
 

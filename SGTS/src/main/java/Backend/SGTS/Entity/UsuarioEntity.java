@@ -1,10 +1,10 @@
 package Backend.SGTS.Entity;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.*;
 
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 @Setter
 @Getter
@@ -44,6 +44,84 @@ public class UsuarioEntity {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "id_Usuario"), inverseJoinColumns = @JoinColumn(name = "id_rol"))
     private Set<RolEntity> roles = new HashSet<>();
+    
+
+    // Método builder manual ***
+    public static UsuarioEntityBuilder builder() {
+        return new UsuarioEntityBuilder();
+    }
+
+    public static class UsuarioEntityBuilder {
+        private Integer idUsuario;
+        private String username;
+        private String password;
+        private int recursoGgIdRecursoGg;
+        private boolean isEnabled;
+        private boolean accountNoExpired;
+        private boolean accountNoLocked;
+        private boolean credentialNoExpired;
+        private Set<RolEntity> roles;
+
+        public UsuarioEntityBuilder idUsuario(Integer idUsuario) {
+            this.idUsuario = idUsuario;
+            return this;
+        }
+
+        public UsuarioEntityBuilder username(String username) {
+            this.username = username;
+            return this;
+        }
+
+        public UsuarioEntityBuilder password(String password) {
+            this.password = password;
+            return this;
+        }
+
+        public UsuarioEntityBuilder recursoGgIdRecursoGg(int recursoGgIdRecursoGg) {
+            this.recursoGgIdRecursoGg = recursoGgIdRecursoGg;
+            return this;
+        }
+
+        public UsuarioEntityBuilder isEnabled(boolean isEnabled) {
+            this.isEnabled = isEnabled;
+            return this;
+        }
+
+        public UsuarioEntityBuilder accountNoExpired(boolean accountNoExpired) {
+            this.accountNoExpired = accountNoExpired;
+            return this;
+        }
+
+        public UsuarioEntityBuilder accountNoLocked(boolean accountNoLocked) {
+            this.accountNoLocked = accountNoLocked;
+            return this;
+        }
+
+        public UsuarioEntityBuilder credentialNoExpired(boolean credentialNoExpired) {
+            this.credentialNoExpired = credentialNoExpired;
+            return this;
+        }
+
+        public UsuarioEntityBuilder roles(Set<RolEntity> roles) {
+            this.roles = roles;
+            return this;
+        }
+
+        public UsuarioEntity build() {
+            UsuarioEntity usuario = new UsuarioEntity();
+            usuario.setIdUsuario(this.idUsuario);
+            usuario.setUsername(this.username);
+            usuario.setPassword(this.password);
+            usuario.setRecursoGgIdRecursoGg(this.recursoGgIdRecursoGg);
+            usuario.setEnabled(this.isEnabled);
+            usuario.setAccountNoExpired(this.accountNoExpired);
+            usuario.setAccountNoLocked(this.accountNoLocked);
+            usuario.setCredentialNoExpired(this.credentialNoExpired);
+            usuario.setRoles(this.roles);
+            return usuario;
+        }
+    }
+    // *** Fin Método builder manual ***
 
     public int getRecursoGgIdRecursoGg() {
         return recursoGgIdRecursoGg;

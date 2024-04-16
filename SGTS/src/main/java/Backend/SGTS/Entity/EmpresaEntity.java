@@ -28,7 +28,7 @@ public class EmpresaEntity {
     private String razonSocial;
     @Basic
     @Column(name = "Eliminado", nullable = true)
-    private Byte eliminado;
+    private Boolean eliminado;
     
 	public EmpresaEntity() {
 		super();
@@ -83,11 +83,11 @@ public class EmpresaEntity {
 		this.razonSocial = razonSocial;
 	}
 
-	public Byte getEliminado() {
+	public Boolean getEliminado() {
 		return eliminado;
 	}
 
-	public void setEliminado(Byte eliminado) {
+	public void setEliminado(Boolean eliminado) {
 		this.eliminado = eliminado;
 	}
 

@@ -102,7 +102,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
         String accessToken = jwtUtils.createToken(authentication);
 
-        AuthResponse authResponse = new AuthResponse(username, userEntity.getIdUsuario(), "usuario creado con exito", accessToken, true);
+        AuthResponse authResponse = new AuthResponse(username, userEntity.getIdUsuario(), userEntity.getRecursoGgIdRecursoGg(), "usuario creado con exito", accessToken, true);
         return authResponse;
     }
 
@@ -120,7 +120,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String accessToken = jwtUtils.createToken(authentication);
-        AuthResponse authResponse = new AuthResponse(username, usuario.getIdUsuario(),  "User loged succesfully", accessToken, true);
+        AuthResponse authResponse = new AuthResponse(username, usuario.getIdUsuario(), usuario.getRecursoGgIdRecursoGg(),  "User loged succesfully", accessToken, true);
         return authResponse;
     }
 

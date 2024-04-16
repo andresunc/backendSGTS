@@ -20,6 +20,7 @@ public class ServicioDto {
 	private String rubro;
 	private Integer idServicioEmpresa;
 	private Double total_presupuestado;
+	private String fullname_responsable;
 	private String comentario;
 	private List<ItemChecklistDto> itemChecklistDto;
 	
@@ -143,6 +144,14 @@ public class ServicioDto {
 
 	public void setTotal_presupuestado(Double total_presupuestado) {
 		this.total_presupuestado = total_presupuestado;
+	}
+
+	public String getFullname_responsable() {
+		return fullname_responsable;
+	}
+
+	public void setFullname_responsable(String fullname_responsable) {
+		this.fullname_responsable = fullname_responsable;
 	}
 
 	public String getComentario() {

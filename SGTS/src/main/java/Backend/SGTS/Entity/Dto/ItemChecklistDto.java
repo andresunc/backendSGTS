@@ -13,6 +13,7 @@ public class ItemChecklistDto {
 	private boolean notificado;
 	private double valorTasa;
 	private Integer hojas;
+	private Integer idRecurso;
 	private String responsable;
 	private String urlComprobante;
 	private boolean completo;
@@ -90,6 +91,14 @@ public class ItemChecklistDto {
 
 	public void setHojas(Integer hojas) {
 		this.hojas = hojas;
+	}
+
+	public Integer getIdRecurso() {
+		return idRecurso;
+	}
+
+	public void setIdRecurso(Integer idRecurso) {
+		this.idRecurso = idRecurso;
 	}
 
 	public String getResponsable() {

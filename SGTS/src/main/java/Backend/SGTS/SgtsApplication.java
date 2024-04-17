@@ -1,17 +1,7 @@
 package Backend.SGTS;
 
-import Backend.SGTS.Entity.PermisoEntity;
-import Backend.SGTS.Entity.RolEntity;
-import Backend.SGTS.Entity.RoleEnum;
-import Backend.SGTS.Entity.UsuarioEntity;
-import Backend.SGTS.Repository.UsuarioRepository;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-
-import java.util.List;
-import java.util.Set;
 
 @SpringBootApplication
 public class SgtsApplication {
@@ -110,5 +100,8 @@ public class SgtsApplication {
 //			userRepository.saveAll(List.of(userSantiago, userDaniel, userAndrea, userAnyi));
 //		};
 //	}
+//
+// superplayer
+// grupogreen.2024!!
 }
 

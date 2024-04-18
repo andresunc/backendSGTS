@@ -1,48 +1,54 @@
 package Backend.SGTS.Entity;
 
 import jakarta.persistence.*;
+import lombok.*;
 
-import java.util.Objects;
+import java.util.HashSet;
+import java.util.Set;
 
+@Setter
+@Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table(name = "rol", schema = "sgts_db", catalog = "")
+@Table(name = "rol")
 public class RolEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Id
-    @Column(name = "id_Rol", nullable = false)
-    private Integer idRol;
-    @Basic
-    @Column(name = "Rol", nullable = false, length = 45)
-    private String rol;
-    
-    public RolEntity() {}
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id_rol;
 
-    public Integer getIdRol() {
-        return idRol;
+    @Column(name = "rol")
+    @Enumerated(EnumType.STRING)
+    private RoleEnum roleEnum;
+
+  @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+  @JoinTable(name = "rol_permiso", joinColumns = @JoinColumn(name = "id_role"), inverseJoinColumns = @JoinColumn(name = "id_permiso"))
+    private Set<PermisoEntity> permisoList = new HashSet<>();
+
+
+    public Long getId_rol() {
+        return id_rol;
     }
 
-    public void setIdRol(Integer idRol) {
-        this.idRol = idRol;
+    public void setId_rol(Long id_rol) {
+        this.id_rol = id_rol;
     }
 
-    public String getRol() {
-        return rol;
+    public RoleEnum getRoleEmun() {
+        return roleEnum;
     }
 
-    public void setRol(String rol) {
-        this.rol = rol;
+    public void setRoleEmun(RoleEnum roleEmun) {
+        this.roleEnum = roleEmun;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        RolEntity rolEntity = (RolEntity) o;
-        return idRol == rolEntity.idRol && Objects.equals(rol, rolEntity.rol);
+    public Set<PermisoEntity> getPermisoList() {
+        return permisoList;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(idRol, rol);
+    public void setPermisoList(Set<PermisoEntity> permisoList) {
+        this.permisoList = permisoList;
     }
 }

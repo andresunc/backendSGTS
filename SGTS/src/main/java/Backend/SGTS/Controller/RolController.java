@@ -46,7 +46,7 @@ public class RolController {
 	public RolEntity update(@PathVariable("id") Integer id, @RequestBody RolEntity rol) {
 
 		RolEntity upDateRol = rolService.getById(id);
-		upDateRol.setRol(rol.getRol());
+		upDateRol.setRoleEmun(rol.getRoleEmun());
 		rolService.update(upDateRol);
 
 		return upDateRol;

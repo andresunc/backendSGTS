@@ -12,6 +12,7 @@ public class SqlQueriesItemChecklist {
             + "itch.Notificado as 'notificado',"
             + "itch.Tasa_Valor as 'valor_tasa',"
             + "itch.Tasa_Cantidad_Hojas as 'hojas',"
+            + "rgg.id_recurso_gg as 'idRecurso',"
             + "concat(per.Nombre, ' ' , per.Apellido) as 'responsable',"
             + "itch.Url_comprobante_tasa as 'url_comprobante',"
             + "itch.completo as 'completo'"
@@ -20,8 +21,10 @@ public class SqlQueriesItemChecklist {
             + "LEFT JOIN item it ON it.id_Item = itch.Item_id_Item "
             + "LEFT JOIN requisito req ON req.id_requisito = it.requisito_id_requisito "
             + "LEFT JOIN recurso_gg rgg ON rgg.id_Recurso_GG = itch.Recurso_GG_id_Recurso_GG "
-            + "LEFT JOIN persona per ON per.id_Persona = rgg.Persona_id_Persona "
-            + "LEFT JOIN rol ON rol.id_Rol = rgg.Rol_id_Rol "
+            + "LEFT JOIN persona per on per.id_Persona = rgg.Persona_id_Persona "
+            + "LEFT JOIN usuario us ON rgg.id_recurso_gg = us.Recurso_GG_id_Recurso_GG "
+            + "LEFT JOIN usuario_rol ur ON us.id_usuario = ur.id_usuario "
+            + "LEFT JOIN rol r ON ur.id_rol = r.id_rol "
             + "WHERE sv.id_Servicio = ?";
 	
 	public SqlQueriesItemChecklist() {

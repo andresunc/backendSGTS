@@ -1,6 +1,8 @@
 package Backend.SGTS.Entity;
 
 import jakarta.persistence.*;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 
@@ -11,9 +13,6 @@ public class RecursoGgEntity {
     @Id
     @Column(name = "id_Recurso_GG", nullable = false)
     private Integer idRecursoGg;
-    @Basic
-    @Column(name = "Rol_id_Rol", nullable = false)
-    private int rolIdRol;
     @Basic
     @Column(name = "Persona_id_Persona", nullable = false)
     private int personaIdPersona;
@@ -29,14 +28,6 @@ public class RecursoGgEntity {
 
     public void setIdRecursoGg(Integer idRecursoGg) {
         this.idRecursoGg = idRecursoGg;
-    }
-
-    public int getRolIdRol() {
-        return rolIdRol;
-    }
-
-    public void setRolIdRol(int rolIdRol) {
-        this.rolIdRol = rolIdRol;
     }
 
     public int getPersonaIdPersona() {
@@ -57,7 +48,7 @@ public class RecursoGgEntity {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(eliminado, idRecursoGg, personaIdPersona, rolIdRol);
+		return Objects.hash(eliminado, idRecursoGg, personaIdPersona);
 	}
 
 	@Override
@@ -70,7 +61,7 @@ public class RecursoGgEntity {
 			return false;
 		RecursoGgEntity other = (RecursoGgEntity) obj;
 		return Objects.equals(eliminado, other.eliminado) && Objects.equals(idRecursoGg, other.idRecursoGg)
-				&& personaIdPersona == other.personaIdPersona && rolIdRol == other.rolIdRol;
+				&& personaIdPersona == other.personaIdPersona;
 	}
 
 }

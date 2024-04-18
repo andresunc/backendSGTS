@@ -1,4 +1,4 @@
-package Backend.SGTS.Controller.Dto;
+package Backend.SGTS.Entity.Dto;
 
 import java.util.List;
 

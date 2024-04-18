@@ -32,6 +32,7 @@ public class DtoRepositoryItemChecklist {
             itemChecklistDto.setNotificado(resultSet.getBoolean("notificado"));
             itemChecklistDto.setValorTasa(resultSet.getDouble("valor_tasa"));
             itemChecklistDto.setHojas(resultSet.getInt("hojas"));
+            itemChecklistDto.setIdRecurso(resultSet.getInt("idRecurso"));
             itemChecklistDto.setResponsable(resultSet.getString("responsable"));
             itemChecklistDto.setUrlComprobante(resultSet.getString("url_comprobante"));
             itemChecklistDto.setCompleto(resultSet.getBoolean("completo"));

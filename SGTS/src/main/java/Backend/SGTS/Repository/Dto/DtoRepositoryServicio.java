@@ -39,6 +39,7 @@ public class DtoRepositoryServicio {
             servicioDto.setRubro(resultSet.getString("rubro"));
             servicioDto.setIdServicioEmpresa(resultSet.getInt("idServicioEmpresa"));
             servicioDto.setTotal_presupuestado(resultSet.getDouble("total_presupuestado"));
+            servicioDto.setFullname_responsable(resultSet.getString("fullname_responsable"));
             servicioDto.setComentario(resultSet.getString("comentario"));
             servicioDto.setItemChecklistDto(dtoRepositoryItemChecklist.obtenerItemChecklistDto(servicioDto.getIdServicio()));
             return servicioDto;

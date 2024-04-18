@@ -8,11 +8,13 @@ public class SqlQueriesRecursoGG {
             + "per.Nombre as 'nombre',"
             + "per.Apellido as 'apellido',"
             + "per.Dni as 'dni',"
-            + "rol.id_Rol as 'idRol',"
-            + "rol.Rol as 'rol'"
+            + "r.id_Rol as 'idRol',"
+            + "r.Rol as 'rol'"
             + "FROM recurso_gg rgg "
-            + "LEFT JOIN persona per ON per.id_Persona = rgg.Persona_id_Persona "
-            + "LEFT JOIN rol ON rol.id_Rol = rgg.Rol_id_Rol "
+            + "LEFT JOIN persona per on per.id_Persona = rgg.Persona_id_Persona "
+            + "LEFT JOIN usuario us ON rgg.id_recurso_gg = us.Recurso_GG_id_Recurso_GG "
+            + "LEFT JOIN usuario_rol ur ON us.id_usuario = ur.id_usuario "
+            + "LEFT JOIN rol r ON ur.id_rol = r.id_rol "
             + "WHERE rgg.eliminado = 0";
 
     public SqlQueriesRecursoGG() {

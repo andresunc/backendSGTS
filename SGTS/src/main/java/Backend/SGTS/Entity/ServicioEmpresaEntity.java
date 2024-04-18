@@ -2,7 +2,6 @@ package Backend.SGTS.Entity;
 
 import jakarta.persistence.*;
 import java.sql.Timestamp;
-import java.util.Objects;
 
 @Entity
 @Table(name = "servicio_empresa", schema = "sgts_db", catalog = "")
@@ -28,7 +27,7 @@ public class ServicioEmpresaEntity {
     private int recursoGgIdRecursoGg;
     @Basic
     @Column(name = "Eliminado", nullable = true)
-    private Byte eliminado;
+    private Boolean eliminado;
     
 	public ServicioEmpresaEntity() {}
 
@@ -84,32 +83,12 @@ public class ServicioEmpresaEntity {
         this.recursoGgIdRecursoGg = recursoGgIdRecursoGg;
     }
 
-    public Byte getEliminado() {
+    public Boolean getEliminado() {
         return eliminado;
     }
 
-    public void setEliminado(Byte eliminado) {
+    public void setEliminado(Boolean eliminado) {
         this.eliminado = eliminado;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ServicioEmpresaEntity that = (ServicioEmpresaEntity) o;
-        return idServicioEmpresa == that.idServicioEmpresa && Double.compare(costoServicio, that.costoServicio) == 0 && servicioIdServicio == that.servicioIdServicio && empresaIdEmpresa == that.empresaIdEmpresa && recursoGgIdRecursoGg == that.recursoGgIdRecursoGg && Objects.equals(eliminado, that.eliminado);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(idServicioEmpresa, costoServicio, servicioIdServicio, empresaIdEmpresa, recursoGgIdRecursoGg, eliminado);
-    }
-    
-    @Override
-	public String toString() {
-		return "ServicioEmpresaEntity [idServicioEmpresa=" + idServicioEmpresa + ", costoServicio=" + costoServicio
-				+ ", alta=" + alta + ", servicioIdServicio=" + servicioIdServicio + ", empresaIdEmpresa="
-				+ empresaIdEmpresa + ", recursoGgIdRecursoGg=" + recursoGgIdRecursoGg + ", eliminado=" + eliminado
-				+ "]";
-	}
 }

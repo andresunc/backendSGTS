@@ -38,7 +38,7 @@ public class SecurityConfig {
 //                    EndPoints Privados
                     http.requestMatchers(HttpMethod.GET).hasAnyRole("ADMIN");
                     http.requestMatchers(HttpMethod.POST).hasAuthority("CREATE");
-                    http.requestMatchers(HttpMethod.DELETE).hasAuthority("DELETE");
+                    http.requestMatchers(HttpMethod.DELETE).hasAnyAuthority("ADMIN");
                     http.requestMatchers(HttpMethod.PUT).hasAuthority("UPDATE");
                     http.requestMatchers("/persona/**").hasAnyRole("RRHH");
 

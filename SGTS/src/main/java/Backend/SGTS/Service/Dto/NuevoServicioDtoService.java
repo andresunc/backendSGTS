@@ -1,6 +1,5 @@
 package Backend.SGTS.Service.Dto;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -43,7 +42,7 @@ public class NuevoServicioDtoService {
 		// Paso 3: Guardar el servicio de la empresa;
         nuevoServicioDTO.getServicioEmpresa().setAlta(new Timestamp(System.currentTimeMillis()));
         nuevoServicioDTO.getServicioEmpresa().setServicioIdServicio(idServicio);
-        nuevoServicioDTO.getServicioEmpresa().setEliminado((byte) 0);
+        nuevoServicioDTO.getServicioEmpresa().setEliminado(false);
         servicioEmpresaRepository.save(nuevoServicioDTO.getServicioEmpresa());
         
         // Paso 4: Guardar la lista de ItemChecklistEntity si existe

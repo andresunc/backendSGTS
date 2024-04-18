@@ -91,7 +91,7 @@ public class ServicioEmpresaController {
 		return ResponseEntity.ok(upDateServicioEmpresa);
 	}
 
-	// Eliminar un servicioEmpresa buscando por ServicioIdServicio
+	// Eliminado lógico de un servicioEmpresa buscando por ServicioIdServicio
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<Void> deleteLogicoServicioEmpresa(@PathVariable("id") Integer servicioId) {
 
@@ -102,8 +102,8 @@ public class ServicioEmpresaController {
 			return ResponseEntity.notFound().build();
 		}
 
-		if (servicioEmpresa.getEliminado() == 0) {
-			servicioEmpresa.setEliminado(Byte.valueOf((byte) 1));
+		if (servicioEmpresa.getEliminado() == false) {
+			servicioEmpresa.setEliminado(true);
 			servicioEmpresaService.update(servicioEmpresa);
 		}
 

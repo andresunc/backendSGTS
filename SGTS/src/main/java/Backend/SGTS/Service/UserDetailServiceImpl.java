@@ -3,8 +3,10 @@ package Backend.SGTS.Service;
 import Backend.SGTS.Entity.RecursoGgEntity;
 import Backend.SGTS.Entity.RolEntity;
 import Backend.SGTS.Entity.UsuarioEntity;
+import Backend.SGTS.Entity.Dto.RolDto;
 import Backend.SGTS.Repository.RolRepository;
 import Backend.SGTS.Repository.UsuarioRepository;
+import Backend.SGTS.Repository.Dto.DtoRepositoryRol;
 import Backend.SGTS.Utils.JwtUtils;
 import Backend.SGTS.security.AuthCreateUserRequest;
 import Backend.SGTS.security.AuthLoginRequest;
@@ -43,11 +45,9 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
     @Autowired
     private RolRepository rolRepository;
-
-
-    private RecursoGgEntity recursoGgEntity;
-
-    private UsuarioEntity usuarioEntity;
+    
+    @Autowired
+    private DtoRepositoryRol dtoRepositoryRol;
 
     @Override
     public UserDetails loadUserByUsername(String username) {
@@ -101,7 +101,8 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
         String accessToken = jwtUtils.createToken(authentication);
 
-        AuthResponse authResponse = new AuthResponse(username, userEntity.getIdUsuario(), userEntity.getRecursoGgIdRecursoGg(), "usuario creado con exito", accessToken, true);
+        List<RolDto> roles = dtoRepositoryRol.obtenerRolesPorUsuario(userEntity.getIdUsuario());
+        AuthResponse authResponse = new AuthResponse(username, userEntity.getIdUsuario(), userEntity.getRecursoGgIdRecursoGg(), roles, "usuario creado con exito", accessToken, true);
         return authResponse;
     }
 
@@ -119,7 +120,9 @@ public class UserDetailServiceImpl implements UserDetailsService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String accessToken = jwtUtils.createToken(authentication);
-        AuthResponse authResponse = new AuthResponse(username, usuario.getIdUsuario(), usuario.getRecursoGgIdRecursoGg(),  "User loged succesfully", accessToken, true);
+        
+        List<RolDto> roles = dtoRepositoryRol.obtenerRolesPorUsuario(usuario.getIdUsuario());
+        AuthResponse authResponse = new AuthResponse(username, usuario.getIdUsuario(), usuario.getRecursoGgIdRecursoGg(),  roles, "User loged succesfully", accessToken, true);
         return authResponse;
     }
 

@@ -7,9 +7,7 @@ public class RecursoGgDto {
     private String nombre;
     private String apellido;
     private String dni;
-    private Integer idRol;
-    private String rol;
-    
+
     public RecursoGgDto() {}
 
 	public Integer getIdRecurso() {
@@ -50,22 +48,6 @@ public class RecursoGgDto {
 
 	public void setDni(String dni) {
 		this.dni = dni;
-	}
-
-	public Integer getIdRol() {
-		return idRol;
-	}
-
-	public void setIdRol(Integer idRol) {
-		this.idRol = idRol;
-	}
-
-	public String getRol() {
-		return rol;
-	}
-
-	public void setRol(String rol) {
-		this.rol = rol;
 	}
     
 }

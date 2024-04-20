@@ -28,8 +28,7 @@ public class DtoRepositoryRecursoGG {
             recursoGgDto.setNombre(resultSet.getString("nombre"));
             recursoGgDto.setApellido(resultSet.getString("apellido"));
 			recursoGgDto.setDni(resultSet.getString("dni"));
-			recursoGgDto.setIdRol(resultSet.getInt("idRol"));
-			recursoGgDto.setRol(resultSet.getString("rol"));
+
 			return recursoGgDto;
 		});
 	}

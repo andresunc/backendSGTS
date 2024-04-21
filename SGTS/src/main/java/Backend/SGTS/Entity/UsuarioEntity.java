@@ -25,7 +25,7 @@ public class UsuarioEntity {
     private String password;
     @Basic
     @Column(name = "Recurso_GG_id_Recurso_GG", nullable = false)
-    private int recursoGgIdRecursoGg;
+    private Integer recursoGgIdRecursoGg;
     
     public UsuarioEntity() {}
 
@@ -55,7 +55,7 @@ public class UsuarioEntity {
         private Integer idUsuario;
         private String username;
         private String password;
-        private int recursoGgIdRecursoGg;
+        private Integer recursoGgIdRecursoGg;
         private boolean isEnabled;
         private boolean accountNoExpired;
         private boolean accountNoLocked;
@@ -77,7 +77,7 @@ public class UsuarioEntity {
             return this;
         }
 
-        public UsuarioEntityBuilder recursoGgIdRecursoGg(int recursoGgIdRecursoGg) {
+        public UsuarioEntityBuilder recursoGgIdRecursoGg(Integer recursoGgIdRecursoGg) {
             this.recursoGgIdRecursoGg = recursoGgIdRecursoGg;
             return this;
         }
@@ -123,11 +123,11 @@ public class UsuarioEntity {
     }
     // *** Fin Método builder manual ***
 
-    public int getRecursoGgIdRecursoGg() {
+    public Integer getRecursoGgIdRecursoGg() {
         return recursoGgIdRecursoGg;
     }
 
-    public void setRecursoGgIdRecursoGg(int recursoGgIdRecursoGg) {
+    public void setRecursoGgIdRecursoGg(Integer recursoGgIdRecursoGg) {
         this.recursoGgIdRecursoGg = recursoGgIdRecursoGg;
     }
 

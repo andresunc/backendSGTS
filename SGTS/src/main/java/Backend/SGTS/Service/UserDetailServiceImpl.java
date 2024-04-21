@@ -136,6 +136,11 @@ public class UserDetailServiceImpl implements UserDetailsService {
         if (!passwordEncoder.matches(password, userDetails.getPassword())) {
             throw new BadCredentialsException("Incorrect Password");
         }
+        if (!userDetails.isEnabled()) {
+            System.out.println("Usuario Deshabilitado");
+            throw new BadCredentialsException("Usuario Deshabilitado");
+        }
+
 
         return new UsernamePasswordAuthenticationToken(username, password, userDetails.getAuthorities());
     }

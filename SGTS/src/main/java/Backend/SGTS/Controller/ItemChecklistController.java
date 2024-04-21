@@ -15,14 +15,14 @@ import Backend.SGTS.Entity.ItemChecklistEntity;
 import Backend.SGTS.Service.ItemChecklistService;
 
 @RestController
-@RequestMapping("/itemChecklist")
+@RequestMapping()
 public class ItemChecklistController {
 
 	// Inyecto Servicio de ItemChecklist
 	@Autowired
 	ItemChecklistService itemChecklistService;
 	
-	
+
 	// Obtengo todos los items de checklist
 	@GetMapping("/getAll")
 	public List<ItemChecklistEntity> getAll() {

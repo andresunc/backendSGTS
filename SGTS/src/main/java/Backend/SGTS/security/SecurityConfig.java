@@ -35,12 +35,22 @@ public class SecurityConfig {
                 .authorizeHttpRequests(http -> {
                     // EndPoints publicos
                     http.requestMatchers(HttpMethod.POST, "/auth/**").permitAll();
+                    http.requestMatchers(HttpMethod.GET).authenticated();
 //                    EndPoints Privados
-                    http.requestMatchers(HttpMethod.GET).hasAnyRole("ADMIN");
-                    http.requestMatchers(HttpMethod.POST).hasAuthority("CREATE");
-                    http.requestMatchers(HttpMethod.DELETE).hasAnyAuthority("ADMIN");
-                    http.requestMatchers(HttpMethod.PUT).hasAuthority("UPDATE");
-                    http.requestMatchers("/persona/**").hasAnyRole("RRHH");
+//                    http.requestMatchers(HttpMethod.GET).hasAnyRole("ADMIN", "OPE_INT", "OPE_EXT");
+                    http.requestMatchers(HttpMethod.POST).hasAnyRole("ADMIN");
+                    http.requestMatchers(HttpMethod.DELETE).hasAnyRole("ADMIN");
+                    http.requestMatchers(HttpMethod.PUT).hasAnyRole("ADMIN", "OPE_INT");
+                    http.requestMatchers(HttpMethod.PUT, "/itemChecklist/**").hasAnyRole("OPE_INT", "OPE_EXT");
+//                    http.requestMatchers(HttpMethod.GET).hasAnyRole("OPE_INT");
+//                    http.requestMatchers(HttpMethod.PUT).hasAnyRole("OPE_INT");
+//                    http.requestMatchers(HttpMethod.GET).hasAnyRole("OPE_EXT");
+//                    http.requestMatchers(HttpMethod.PUT).hasAnyRole("OPE_EXT");
+
+//                    http.requestMatchers(HttpMethod.POST).hasAuthority("CREATE");
+
+
+//                    http.requestMatchers("/persona/**").hasAnyRole("RRHH");
 
 
                     http.anyRequest().denyAll();

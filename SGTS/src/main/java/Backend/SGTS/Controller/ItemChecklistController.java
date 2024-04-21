@@ -47,16 +47,17 @@ public class ItemChecklistController {
 
 		ItemChecklistEntity upDateItemChecklist = itemChecklistService.getById(id);
 		
-		upDateItemChecklist.setInicioEstandar(itemChecklist.getInicioEstandar());
-		upDateItemChecklist.setFinEstandar(itemChecklist.getFinEstandar());
-		upDateItemChecklist.setInicioConDesvio(itemChecklist.getInicioConDesvio());
+		// Se comentan los atributos que no se deberían editar
+		//upDateItemChecklist.setInicioEstandar(itemChecklist.getInicioEstandar());
+		//upDateItemChecklist.setFinEstandar(itemChecklist.getFinEstandar());
+		//upDateItemChecklist.setInicioConDesvio(itemChecklist.getInicioConDesvio());
 		upDateItemChecklist.setFinConDesvio(itemChecklist.getFinConDesvio());
 		upDateItemChecklist.setNotificado(itemChecklist.getNotificado());
 		upDateItemChecklist.setTasaValor(itemChecklist.getTasaValor());
 		upDateItemChecklist.setTasaCantidadHojas(itemChecklist.getTasaCantidadHojas());
 		upDateItemChecklist.setUrlComprobanteTasa(itemChecklist.getUrlComprobanteTasa());
-		upDateItemChecklist.setServicioIdServicio(itemChecklist.getServicioIdServicio());
-		upDateItemChecklist.setRecursoGgIdRecursoGg(itemChecklist.getRecursoGgIdRecursoGg());
+		//upDateItemChecklist.setServicioIdServicio(itemChecklist.getServicioIdServicio());
+		//upDateItemChecklist.setRecursoGgIdRecursoGg(itemChecklist.getRecursoGgIdRecursoGg());
 		upDateItemChecklist.setItemIdItem(itemChecklist.getItemIdItem());
 		upDateItemChecklist.setCompleto(itemChecklist.getCompleto());
 

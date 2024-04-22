@@ -35,13 +35,14 @@ public class SecurityConfig {
                 .authorizeHttpRequests(http -> {
                     // EndPoints publicos
                     http.requestMatchers(HttpMethod.POST, "/auth/**").permitAll();
-//                    EndPoints Privados
-                    http.requestMatchers(HttpMethod.GET).hasAnyRole("ADMIN");
-                    http.requestMatchers(HttpMethod.POST).hasAuthority("CREATE");
-                    http.requestMatchers(HttpMethod.DELETE).hasAuthority("DELETE");
-                    http.requestMatchers(HttpMethod.PUT).hasAuthority("UPDATE");
-                    http.requestMatchers("/persona/**").hasAnyRole("RRHH");
-
+//                  // EndPoints accesible solo para usuarios autenticados
+                    http.requestMatchers(HttpMethod.GET).authenticated();
+                    
+                    http.requestMatchers(HttpMethod.POST).hasAnyRole("ADMIN");
+                    http.requestMatchers(HttpMethod.DELETE).hasAnyRole("ADMIN");
+                    http.requestMatchers(HttpMethod.PUT).hasAnyRole("ADMIN");
+                    
+                    http.requestMatchers(HttpMethod.PUT, "/itemChecklist").hasAnyAuthority("OPE_INT", "OPE_EXT");
 
                     http.anyRequest().denyAll();
                 })

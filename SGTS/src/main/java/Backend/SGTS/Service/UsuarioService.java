@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import Backend.SGTS.Entity.UsuarioEntity;
 import Backend.SGTS.Repository.UsuarioRepository;
+import jakarta.transaction.Transactional;
 
 @Service
 public class UsuarioService {
@@ -36,7 +37,12 @@ public class UsuarioService {
 	}
 	
 	// Elimino un usuario
-	public void delete(Integer id) {
-		usuarioRepository.deleteById(id);
+	@Transactional
+	public void deleteUsuarioLogica(Integer idUsuario) {
+		UsuarioEntity usuario = usuarioRepository.findById(idUsuario).orElse(null);
+		if (usuario != null && usuario.isEnabled()) {
+			usuario.setEnabled(false);
+			usuarioRepository.save(usuario);
+		}
 	}
 }

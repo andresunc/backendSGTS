@@ -38,11 +38,12 @@ public class SecurityConfig {
 //                  // EndPoints accesible solo para usuarios autenticados
                     http.requestMatchers(HttpMethod.GET).authenticated();
                     
+                 // EndPoints accesible solo para roles especificos
                     http.requestMatchers(HttpMethod.POST).hasAnyRole("ADMIN");
                     http.requestMatchers(HttpMethod.DELETE).hasAnyRole("ADMIN");
                     http.requestMatchers(HttpMethod.PUT).hasAnyRole("ADMIN");
                     
-                    http.requestMatchers(HttpMethod.PUT, "/itemChecklist").hasAnyAuthority("OPE_INT", "OPE_EXT");
+                    http.requestMatchers(HttpMethod.PUT, "/itemChecklist/**").hasAnyRole("OPE_INT", "OPE_EXT");
 
                     http.anyRequest().denyAll();
                 })

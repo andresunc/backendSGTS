@@ -16,7 +16,7 @@ public class RubroEntity {
     private String rubro;
     @Basic
     @Column(name = "Eliminado", nullable = true)
-    private Byte eliminado;
+    private Boolean eliminado;
     
     public RubroEntity() {}
 
@@ -32,34 +32,16 @@ public class RubroEntity {
 		this.rubro = rubro;
 	}
 
-	public Byte getEliminado() {
+	public Boolean getEliminado() {
 		return eliminado;
 	}
 
-	public void setEliminado(Byte eliminado) {
+	public void setEliminado(Boolean eliminado) {
 		this.eliminado = eliminado;
 	}
 
 	public void setIdRubro(Integer idRubro) {
 		this.idRubro = idRubro;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(eliminado, idRubro, rubro);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		RubroEntity other = (RubroEntity) obj;
-		return Objects.equals(eliminado, other.eliminado) && Objects.equals(idRubro, other.idRubro)
-				&& Objects.equals(rubro, other.rubro);
 	}
 
 }

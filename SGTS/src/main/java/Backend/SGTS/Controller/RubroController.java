@@ -60,13 +60,13 @@ public class RubroController {
 		
 		RubroEntity upDateRubro = rubroService.getById(id);
 		upDateRubro.setRubro(rubro.getRubro());
-		upDateRubro.setEliminado(rubro.getEliminado());
+
  		rubroService.update(upDateRubro);
  		
  		return upDateRubro;
 	}
 	
-	// Elimino un rubro
+	// Elimino un rubro de manera lógica
 	@DeleteMapping("/delete/{id}")
 	public void delete(@PathVariable Integer id) {
 		rubroService.delete(id);

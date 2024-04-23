@@ -1,9 +1,6 @@
 package Backend.SGTS.Entity;
-
 import jakarta.persistence.*;
-
 import java.sql.Date;
-import java.util.Objects;
 
 @Entity
 @Table(name = "item_checklist", schema = "sgts_db", catalog = "")
@@ -38,13 +35,13 @@ public class ItemChecklistEntity {
     private String urlComprobanteTasa;
     @Basic
     @Column(name = "Servicio_id_Servicio", nullable = false)
-    private int servicioIdServicio;
+    private Integer servicioIdServicio;
     @Basic
     @Column(name = "Recurso_GG_id_Recurso_GG", nullable = false)
-    private int recursoGgIdRecursoGg;
+    private Integer recursoGgIdRecursoGg;
     @Basic
     @Column(name = "Item_id_Item", nullable = false)
-    private int itemIdItem;
+    private Integer itemIdItem;
     @Basic
     @Column(name = "Completo", nullable = true)
     private Boolean completo;
@@ -127,7 +124,7 @@ public class ItemChecklistEntity {
         return servicioIdServicio;
     }
 
-    public void setServicioIdServicio(int servicioIdServicio) {
+    public void setServicioIdServicio(Integer servicioIdServicio) {
         this.servicioIdServicio = servicioIdServicio;
     }
 
@@ -135,15 +132,15 @@ public class ItemChecklistEntity {
         return recursoGgIdRecursoGg;
     }
 
-    public void setRecursoGgIdRecursoGg(int recursoGgIdRecursoGg) {
+    public void setRecursoGgIdRecursoGg(Integer recursoGgIdRecursoGg) {
         this.recursoGgIdRecursoGg = recursoGgIdRecursoGg;
     }
 
-    public int getItemIdItem() {
+    public Integer getItemIdItem() {
         return itemIdItem;
     }
 
-    public void setItemIdItem(int itemIdItem) {
+    public void setItemIdItem(Integer itemIdItem) {
         this.itemIdItem = itemIdItem;
     }
 
@@ -155,16 +152,4 @@ public class ItemChecklistEntity {
         this.completo = completo;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ItemChecklistEntity that = (ItemChecklistEntity) o;
-        return idItemChecklist == that.idItemChecklist && servicioIdServicio == that.servicioIdServicio && recursoGgIdRecursoGg == that.recursoGgIdRecursoGg && itemIdItem == that.itemIdItem && Objects.equals(inicioEstandar, that.inicioEstandar) && Objects.equals(finEstandar, that.finEstandar) && Objects.equals(inicioConDesvio, that.inicioConDesvio) && Objects.equals(finConDesvio, that.finConDesvio) && Objects.equals(notificado, that.notificado) && Objects.equals(tasaValor, that.tasaValor) && Objects.equals(tasaCantidadHojas, that.tasaCantidadHojas) && Objects.equals(urlComprobanteTasa, that.urlComprobanteTasa) && Objects.equals(completo, that.completo);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(idItemChecklist, inicioEstandar, finEstandar, inicioConDesvio, finConDesvio, notificado, tasaValor, tasaCantidadHojas, urlComprobanteTasa, servicioIdServicio, recursoGgIdRecursoGg, itemIdItem, completo);
-    }
 }

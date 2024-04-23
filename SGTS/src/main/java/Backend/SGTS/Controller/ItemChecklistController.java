@@ -3,6 +3,7 @@ package Backend.SGTS.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,29 +44,44 @@ public class ItemChecklistController {
 	
 	// Actualizo un item de checklist
 	@PutMapping("/update/{id}")
-	public ItemChecklistEntity update(@PathVariable("id") Integer id, @RequestBody ItemChecklistEntity itemChecklist) {
+	public ResponseEntity<ItemChecklistEntity> update(@PathVariable("id") Integer id, @RequestBody ItemChecklistEntity itemChecklist) {
+	    
+		if (id == null || itemChecklist == null) {
+	        return ResponseEntity.badRequest().build(); // Retorna una respuesta de error si el ID o el item son nulos
+	    }
 
-		ItemChecklistEntity upDateItemChecklist = itemChecklistService.getById(id);
-		if (itemChecklist != null) {
-			
-			// Se comentan los atributos que no se deberían editar
-			//upDateItemChecklist.setInicioEstandar(itemChecklist.getInicioEstandar());
-			//upDateItemChecklist.setFinEstandar(itemChecklist.getFinEstandar());
-			//upDateItemChecklist.setInicioConDesvio(itemChecklist.getInicioConDesvio());
-			upDateItemChecklist.setFinConDesvio(itemChecklist.getFinConDesvio());
-			upDateItemChecklist.setNotificado(itemChecklist.getNotificado());
-			upDateItemChecklist.setTasaValor(itemChecklist.getTasaValor());
-			upDateItemChecklist.setTasaCantidadHojas(itemChecklist.getTasaCantidadHojas());
-			upDateItemChecklist.setUrlComprobanteTasa(itemChecklist.getUrlComprobanteTasa());
-			//upDateItemChecklist.setServicioIdServicio(itemChecklist.getServicioIdServicio());
-			//upDateItemChecklist.setRecursoGgIdRecursoGg(itemChecklist.getRecursoGgIdRecursoGg());
-			upDateItemChecklist.setItemIdItem(itemChecklist.getItemIdItem());
-			upDateItemChecklist.setCompleto(itemChecklist.getCompleto());
+	    ItemChecklistEntity existingItem = itemChecklistService.getById(id);
+	    if (existingItem == null) {
+	        return ResponseEntity.notFound().build(); // Retorna una respuesta de error si el item no existe
+	    }
 
-			itemChecklistService.update(upDateItemChecklist);
-		}
-		return upDateItemChecklist;
+	    // Verifica cada campo para evitar la actualización con valores nulos
+	    if (itemChecklist.getFinConDesvio() != null) {
+	        existingItem.setFinConDesvio(itemChecklist.getFinConDesvio());
+	    }
+	    if (itemChecklist.getNotificado() != null) {
+	        existingItem.setNotificado(itemChecklist.getNotificado());
+	    }
+	    if (itemChecklist.getTasaValor() != null) {
+	        existingItem.setTasaValor(itemChecklist.getTasaValor());
+	    }
+	    if (itemChecklist.getTasaCantidadHojas() != null) {
+	        existingItem.setTasaCantidadHojas(itemChecklist.getTasaCantidadHojas());
+	    }
+	    if (itemChecklist.getUrlComprobanteTasa() != null) {
+	        existingItem.setUrlComprobanteTasa(itemChecklist.getUrlComprobanteTasa());
+	    }
+	    if (itemChecklist.getItemIdItem() != null) {
+	        existingItem.setItemIdItem(itemChecklist.getItemIdItem());
+	    }
+	    if (itemChecklist.getCompleto() != null) {
+	        existingItem.setCompleto(itemChecklist.getCompleto());
+	    }
+
+	    itemChecklistService.update(existingItem);
+	    return ResponseEntity.ok(existingItem);
 	}
+
 	/* Función deshabilitada, no borramos un ítem del checklist
 	 * 
 	@DeleteMapping("/delete/{id}")

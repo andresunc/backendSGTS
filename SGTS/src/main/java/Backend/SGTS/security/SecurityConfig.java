@@ -33,18 +33,19 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(http -> {
+                	
                     // EndPoints publicos
                     http.requestMatchers(HttpMethod.POST, "/auth/**").permitAll();
-//                  // EndPoints accesible solo para usuarios autenticados
-                    http.requestMatchers(HttpMethod.GET).authenticated();
-                    
-                 // EndPoints accesible solo para roles especificos
-                    http.requestMatchers(HttpMethod.POST).hasAnyRole("ADMIN");
-                    http.requestMatchers(HttpMethod.DELETE).hasAnyRole("ADMIN");
-                    http.requestMatchers(HttpMethod.PUT).hasAnyRole("ADMIN");
-                    
-                    http.requestMatchers(HttpMethod.PUT, "/itemChecklist/**").hasAnyRole("OPE_INT", "OPE_EXT");
 
+                    // EndPoints accesible solo para usuarios autenticados
+                    http.requestMatchers(HttpMethod.GET).authenticated();
+
+                    // PUT de /itemChecklist/** accesible para OPE_INT y OPE_EXT
+                    http.requestMatchers(HttpMethod.PUT, "/itemChecklist/**").hasAnyRole("OPE_INT", "OPE_EXT", "ADMIN");
+
+                	// EndPoints accesibles solo para el rol ADMIN
+                    http.requestMatchers("/**").hasRole("ADMIN");
+                    
                     http.anyRequest().denyAll();
                 })
                 .addFilterBefore(new JwtTokenValidator(jwtUtils), BasicAuthenticationFilter.class)

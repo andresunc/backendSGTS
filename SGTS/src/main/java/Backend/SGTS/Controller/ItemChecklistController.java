@@ -1,5 +1,8 @@
 package Backend.SGTS.Controller;
 
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import Backend.SGTS.Entity.ItemChecklistEntity;
 import Backend.SGTS.Service.ItemChecklistService;
+import Backend.SGTS.Service.ItemService;
 
 @RestController
 @RequestMapping("/itemChecklist")
@@ -22,6 +26,8 @@ public class ItemChecklistController {
 	// Inyecto Servicio de ItemChecklist
 	@Autowired
 	ItemChecklistService itemChecklistService;
+	@Autowired
+	ItemService itemService;
 	
 	
 	// Obtengo todos los items de checklist
@@ -50,15 +56,24 @@ public class ItemChecklistController {
 	        return ResponseEntity.badRequest().build(); // Retorna una respuesta de error si el ID o el item son nulos
 	    }
 
-	    ItemChecklistEntity existingItem = itemChecklistService.getById(id);
+	    ItemChecklistEntity existingItem = itemChecklistService.getById(id); // Buscar el itemChecklist en la bd
 	    if (existingItem == null) {
 	        return ResponseEntity.notFound().build(); // Retorna una respuesta de error si el item no existe
 	    }
-
-	    // Verifica cada campo para evitar la actualización con valores nulos
-	    if (itemChecklist.getFinConDesvio() != null) {
-	        existingItem.setFinConDesvio(itemChecklist.getFinConDesvio());
+	    
+	    // Actualizo la finalización siempre y cuando no se haya finalizado antes * Actualizar lógica *
+	    if (itemChecklist.getCompleto() != null || existingItem.getCompleto() != true) {
+	    	existingItem.setFinConDesvio(Timestamp.from(Instant.now()));
+	        existingItem.setCompleto(itemChecklist.getCompleto());
+	        
+	        // Calcular el desvío cuando se finaliza el ítem
+	        itemService.setDeviation(
+	        		existingItem.getFinEstandar(),
+	        		existingItem.getFinConDesvio(),
+	        		existingItem.getIdItemChecklist()
+	        		);
 	    }
+
 	    if (itemChecklist.getNotificado() != null) {
 	        existingItem.setNotificado(itemChecklist.getNotificado());
 	    }
@@ -70,12 +85,6 @@ public class ItemChecklistController {
 	    }
 	    if (itemChecklist.getUrlComprobanteTasa() != null) {
 	        existingItem.setUrlComprobanteTasa(itemChecklist.getUrlComprobanteTasa());
-	    }
-	    if (itemChecklist.getItemIdItem() != null) {
-	        existingItem.setItemIdItem(itemChecklist.getItemIdItem());
-	    }
-	    if (itemChecklist.getCompleto() != null) {
-	        existingItem.setCompleto(itemChecklist.getCompleto());
 	    }
 
 	    itemChecklistService.update(existingItem);

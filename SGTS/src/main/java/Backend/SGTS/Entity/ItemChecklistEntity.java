@@ -1,6 +1,6 @@
 package Backend.SGTS.Entity;
 import jakarta.persistence.*;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "item_checklist", schema = "sgts_db", catalog = "")
@@ -11,16 +11,16 @@ public class ItemChecklistEntity {
     private Integer idItemChecklist;
     @Basic
     @Column(name = "Inicio_Estandar", nullable = true)
-    private Date inicioEstandar;
+    private Timestamp inicioEstandar;
     @Basic
     @Column(name = "Fin_Estandar", nullable = true)
-    private Date finEstandar;
+    private Timestamp finEstandar;
     @Basic
     @Column(name = "Inicio_Con_Desvio", nullable = true)
-    private Date inicioConDesvio;
+    private Timestamp inicioConDesvio;
     @Basic
     @Column(name = "Fin_Con_Desvio", nullable = true)
-    private Date finConDesvio;
+    private Timestamp finConDesvio;
     @Basic
     @Column(name = "Notificado", nullable = true)
     private Boolean notificado;
@@ -56,35 +56,35 @@ public class ItemChecklistEntity {
         this.idItemChecklist = idItemChecklist;
     }
 
-    public Date getInicioEstandar() {
+    public Timestamp getInicioEstandar() {
         return inicioEstandar;
     }
 
-    public void setInicioEstandar(Date inicioEstandar) {
+    public void setInicioEstandar(Timestamp inicioEstandar) {
         this.inicioEstandar = inicioEstandar;
     }
 
-    public Date getFinEstandar() {
+    public Timestamp getFinEstandar() {
         return finEstandar;
     }
 
-    public void setFinEstandar(Date finEstandar) {
+    public void setFinEstandar(Timestamp finEstandar) {
         this.finEstandar = finEstandar;
     }
 
-    public Date getInicioConDesvio() {
+    public Timestamp getInicioConDesvio() {
         return inicioConDesvio;
     }
 
-    public void setInicioConDesvio(Date inicioConDesvio) {
+    public void setInicioConDesvio(Timestamp inicioConDesvio) {
         this.inicioConDesvio = inicioConDesvio;
     }
 
-    public Date getFinConDesvio() {
+    public Timestamp getFinConDesvio() {
         return finConDesvio;
     }
 
-    public void setFinConDesvio(Date finConDesvio) {
+    public void setFinConDesvio(Timestamp finConDesvio) {
         this.finConDesvio = finConDesvio;
     }
 

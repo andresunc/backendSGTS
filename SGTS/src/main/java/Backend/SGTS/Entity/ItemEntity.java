@@ -26,6 +26,9 @@ public class ItemEntity {
     @Basic
     @Column(name = "Requisito_id_Requisito", nullable = false)
     private int requisitoIdRequisito;
+    @Basic
+    @Column(name = "Duracion_estandar", nullable = false)
+    private double duracionEstandar;
     
     public ItemEntity() {}
 
@@ -78,16 +81,12 @@ public class ItemEntity {
 		this.requisitoIdRequisito = requisitoIdRequisito;
 	}
 
-	@Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ItemEntity that = (ItemEntity) o;
-        return idItem == that.idItem && tipoItemIdTipoItem == that.tipoItemIdTipoItem && tipoServicioIdTipoServicio == that.tipoServicioIdTipoServicio && Objects.equals(rubroIdRubro, that.rubroIdRubro) && Objects.equals(dependenciaIdDependencia, that.dependenciaIdDependencia) && Objects.equals(requisitoIdRequisito, that.requisitoIdRequisito);
-    }
+	public double getDuracionEstandar() {
+		return duracionEstandar;
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(idItem, tipoItemIdTipoItem, rubroIdRubro, dependenciaIdDependencia, tipoServicioIdTipoServicio, requisitoIdRequisito);
-    }
+	public void setDuracionEstandar(double duracionEstandar) {
+		this.duracionEstandar = duracionEstandar;
+	}
+
 }

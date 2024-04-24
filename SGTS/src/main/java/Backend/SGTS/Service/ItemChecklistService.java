@@ -1,7 +1,7 @@
 package Backend.SGTS.Service;
 
-import java.sql.Date;
-import java.time.LocalDate;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +41,7 @@ public class ItemChecklistService {
 		}
 		
 		// Establecer inicioEstandar e inicioConDesvio como la fecha actual
-		Date fechaActual = Date.valueOf(LocalDate.now());
+		Timestamp fechaActual = Timestamp.from(Instant.now());
 		itemChecklist.setInicioEstandar(fechaActual);
 		itemChecklist.setInicioConDesvio(fechaActual);
 		

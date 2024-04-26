@@ -11,11 +11,11 @@ public class ItemChecklistDto {
 	private LocalDateTime ejecucionReal;
 	private LocalDateTime finReal;
 	private boolean notificado;
-	private double valorTasa;
-	private Integer hojas;
+	private double tasaValor;
+	private Integer tasaCantidadHojas;
 	private Integer idRecurso;
 	private String responsable;
-	private String urlComprobante;
+	private String urlComprobanteTasa;
 	private boolean completo;
 
 	public ItemChecklistDto() {
@@ -77,20 +77,20 @@ public class ItemChecklistDto {
 		this.notificado = notificado;
 	}
 
-	public double getValorTasa() {
-		return valorTasa;
+	public double getTasaValor() {
+		return tasaValor;
 	}
 
-	public void setValorTasa(double valorTasa) {
-		this.valorTasa = valorTasa;
+	public void setTasaValor(double tasaValor) {
+		this.tasaValor = tasaValor;
 	}
 
-	public Integer getHojas() {
-		return hojas;
+	public Integer getTasaCantidadHojas() {
+		return tasaCantidadHojas;
 	}
 
-	public void setHojas(Integer hojas) {
-		this.hojas = hojas;
+	public void setTasaCantidadHojas(Integer tasaCantidadHojas) {
+		this.tasaCantidadHojas = tasaCantidadHojas;
 	}
 
 	public Integer getIdRecurso() {
@@ -109,15 +109,15 @@ public class ItemChecklistDto {
 		this.responsable = responsable;
 	}
 
-	public String getUrlComprobante() {
-		return urlComprobante;
+	public String getUrlComprobanteTasa() {
+		return urlComprobanteTasa;
 	}
 
-	public void setUrlComprobante(String urlComprobante) {
-		this.urlComprobante = urlComprobante;
+	public void setUrlComprobanteTasa(String urlComprobanteTasa) {
+		this.urlComprobanteTasa = urlComprobanteTasa;
 	}
 
-	public boolean getCompleto() {
+	public boolean isCompleto() {
 		return completo;
 	}
 

@@ -66,8 +66,8 @@ public class ItemChecklistController {
 	                return ResponseEntity.notFound().build(); // Retorna una respuesta de error si el item no existe
 	            }
 
-	            // Actualizar lógica *
-	            if (!existingItem.getCompleto()) {
+	            // Sí se completó desde el cliente y en la bd esta incompleto: hacer
+	            if (itemChecklist.getCompleto() && !existingItem.getCompleto()) {
 	                existingItem.setFinConDesvio(Timestamp.from(Instant.now()));
 	                existingItem.setCompleto(itemChecklist.getCompleto());
 

@@ -48,108 +48,108 @@ public class ItemChecklistEntity {
     
     public ItemChecklistEntity() {}
 
-    public Integer getIdItemChecklist() {
-        return idItemChecklist;
-    }
+	public Integer getIdItemChecklist() {
+		return idItemChecklist;
+	}
 
-    public void setIdItemChecklist(Integer idItemChecklist) {
-        this.idItemChecklist = idItemChecklist;
-    }
+	public void setIdItemChecklist(Integer idItemChecklist) {
+		this.idItemChecklist = idItemChecklist;
+	}
 
-    public Timestamp getInicioEstandar() {
-        return inicioEstandar;
-    }
+	public Timestamp getInicioEstandar() {
+		return inicioEstandar;
+	}
 
-    public void setInicioEstandar(Timestamp inicioEstandar) {
-        this.inicioEstandar = inicioEstandar;
-    }
+	public void setInicioEstandar(Timestamp inicioEstandar) {
+		this.inicioEstandar = inicioEstandar;
+	}
 
-    public Timestamp getFinEstandar() {
-        return finEstandar;
-    }
+	public Timestamp getFinEstandar() {
+		return finEstandar;
+	}
 
-    public void setFinEstandar(Timestamp finEstandar) {
-        this.finEstandar = finEstandar;
-    }
+	public void setFinEstandar(Timestamp finEstandar) {
+		this.finEstandar = finEstandar;
+	}
 
-    public Timestamp getInicioConDesvio() {
-        return inicioConDesvio;
-    }
+	public Timestamp getInicioConDesvio() {
+		return inicioConDesvio;
+	}
 
-    public void setInicioConDesvio(Timestamp inicioConDesvio) {
-        this.inicioConDesvio = inicioConDesvio;
-    }
+	public void setInicioConDesvio(Timestamp inicioConDesvio) {
+		this.inicioConDesvio = inicioConDesvio;
+	}
 
-    public Timestamp getFinConDesvio() {
-        return finConDesvio;
-    }
+	public Timestamp getFinConDesvio() {
+		return finConDesvio;
+	}
 
-    public void setFinConDesvio(Timestamp finConDesvio) {
-        this.finConDesvio = finConDesvio;
-    }
+	public void setFinConDesvio(Timestamp finConDesvio) {
+		this.finConDesvio = finConDesvio;
+	}
 
-    public Boolean getNotificado() {
-        return notificado;
-    }
+	public Boolean getNotificado() {
+		return notificado;
+	}
 
-    public void setNotificado(Boolean notificado) {
-        this.notificado = notificado;
-    }
+	public void setNotificado(Boolean notificado) {
+		this.notificado = notificado;
+	}
 
-    public Double getTasaValor() {
-        return tasaValor;
-    }
+	public Double getTasaValor() {
+		return tasaValor;
+	}
 
-    public void setTasaValor(Double tasaValor) {
-        this.tasaValor = tasaValor;
-    }
+	public void setTasaValor(Double tasaValor) {
+		this.tasaValor = tasaValor;
+	}
 
-    public Integer getTasaCantidadHojas() {
-        return tasaCantidadHojas;
-    }
+	public Integer getTasaCantidadHojas() {
+		return tasaCantidadHojas;
+	}
 
-    public void setTasaCantidadHojas(Integer tasaCantidadHojas) {
-        this.tasaCantidadHojas = tasaCantidadHojas;
-    }
+	public void setTasaCantidadHojas(Integer tasaCantidadHojas) {
+		this.tasaCantidadHojas = tasaCantidadHojas;
+	}
 
-    public String getUrlComprobanteTasa() {
-        return urlComprobanteTasa;
-    }
+	public String getUrlComprobanteTasa() {
+		return urlComprobanteTasa;
+	}
 
-    public void setUrlComprobanteTasa(String urlComprobanteTasa) {
-        this.urlComprobanteTasa = urlComprobanteTasa;
-    }
+	public void setUrlComprobanteTasa(String urlComprobanteTasa) {
+		this.urlComprobanteTasa = urlComprobanteTasa;
+	}
 
-    public int getServicioIdServicio() {
-        return servicioIdServicio;
-    }
+	public Integer getServicioIdServicio() {
+		return servicioIdServicio;
+	}
 
-    public void setServicioIdServicio(Integer servicioIdServicio) {
-        this.servicioIdServicio = servicioIdServicio;
-    }
+	public void setServicioIdServicio(Integer servicioIdServicio) {
+		this.servicioIdServicio = servicioIdServicio;
+	}
 
-    public int getRecursoGgIdRecursoGg() {
-        return recursoGgIdRecursoGg;
-    }
+	public Integer getRecursoGgIdRecursoGg() {
+		return recursoGgIdRecursoGg;
+	}
 
-    public void setRecursoGgIdRecursoGg(Integer recursoGgIdRecursoGg) {
-        this.recursoGgIdRecursoGg = recursoGgIdRecursoGg;
-    }
+	public void setRecursoGgIdRecursoGg(Integer recursoGgIdRecursoGg) {
+		this.recursoGgIdRecursoGg = recursoGgIdRecursoGg;
+	}
 
-    public Integer getItemIdItem() {
-        return itemIdItem;
-    }
+	public Integer getItemIdItem() {
+		return itemIdItem;
+	}
 
-    public void setItemIdItem(Integer itemIdItem) {
-        this.itemIdItem = itemIdItem;
-    }
+	public void setItemIdItem(Integer itemIdItem) {
+		this.itemIdItem = itemIdItem;
+	}
 
-    public Boolean getCompleto() {
-        return completo;
-    }
+	public Boolean getCompleto() {
+		return completo;
+	}
 
-    public void setCompleto(Boolean completo) {
-        this.completo = completo;
-    }
+	public void setCompleto(Boolean completo) {
+		this.completo = completo;
+	}
 
 }

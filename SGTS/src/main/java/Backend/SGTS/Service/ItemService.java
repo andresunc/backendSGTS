@@ -1,6 +1,9 @@
 package Backend.SGTS.Service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +44,7 @@ public class ItemService {
 		itemRepository.deleteById(id);
 	}
 
+	// Establecer Desviación estándar
 	public void setDeviation(Timestamp finA, Timestamp finB, Integer idItem) {
 		ItemEntity upDateItem = this.getById(idItem);
 
@@ -49,12 +53,14 @@ public class ItemService {
 		double difInHours = difInMillis / (1000.0 * 3600);
 
 		// Obtener el tiempo almacenado en la clase
-		double duracionEstandar = upDateItem.getDuracionEstandar();
+		BigDecimal duracionEstandarBigDecimal = new BigDecimal(upDateItem.getDuracionEstandar());
+		BigDecimal difInHoursBigDecimal = new BigDecimal(difInHours);
 
-		// Calcular la media entre el tiempo almacenado y el tiempo de desviación
-		double media = (duracionEstandar + difInHours) / 2;
+		BigDecimal mediaBigDecimal = duracionEstandarBigDecimal.add(difInHoursBigDecimal).divide(new BigDecimal(2));
 
-		upDateItem.setDuracionEstandar(media);
+		double mediaRedondeada = mediaBigDecimal.setScale(2, RoundingMode.HALF_UP).doubleValue();
+
+		upDateItem.setDuracionEstandar(mediaRedondeada);
 		itemRepository.save(upDateItem);
 	}
 }

@@ -2,8 +2,6 @@ package Backend.SGTS.Entity;
 
 import jakarta.persistence.*;
 
-import java.util.Objects;
-
 @Entity
 @Table(name = "item", schema = "sgts_db", catalog = "")
 public class ItemEntity {
@@ -27,7 +25,7 @@ public class ItemEntity {
     @Column(name = "Requisito_id_Requisito", nullable = false)
     private int requisitoIdRequisito;
     @Basic
-    @Column(name = "Duracion_estandar", nullable = true)
+    @Column(name = "duracion_estandar", nullable = true)
     private double duracionEstandar;
     
     public ItemEntity() {}

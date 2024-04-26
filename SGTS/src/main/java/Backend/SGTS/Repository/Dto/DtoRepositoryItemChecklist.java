@@ -30,11 +30,11 @@ public class DtoRepositoryItemChecklist {
             itemChecklistDto.setEjecucionReal(resultSet.getObject("ejecucion_real", LocalDateTime.class));
             itemChecklistDto.setFinReal(resultSet.getObject("fin_real", LocalDateTime.class));
             itemChecklistDto.setNotificado(resultSet.getBoolean("notificado"));
-            itemChecklistDto.setValorTasa(resultSet.getDouble("valor_tasa"));
-            itemChecklistDto.setHojas(resultSet.getInt("hojas"));
+            itemChecklistDto.setTasaValor(resultSet.getDouble("valor_tasa"));
+            itemChecklistDto.setTasaCantidadHojas(resultSet.getInt("hojas"));
             itemChecklistDto.setIdRecurso(resultSet.getInt("idRecurso"));
             itemChecklistDto.setResponsable(resultSet.getString("responsable"));
-            itemChecklistDto.setUrlComprobante(resultSet.getString("url_comprobante"));
+            itemChecklistDto.setUrlComprobanteTasa(resultSet.getString("url_comprobante"));
             itemChecklistDto.setCompleto(resultSet.getBoolean("completo"));
             
             return itemChecklistDto;

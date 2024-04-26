@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import Backend.SGTS.Entity.ItemChecklistEntity;
+import Backend.SGTS.Entity.ItemEntity;
 import Backend.SGTS.Service.ItemChecklistService;
 import Backend.SGTS.Service.ItemService;
 
@@ -57,25 +58,32 @@ public class ItemChecklistController {
 	    for (ItemChecklistEntity itemChecklist : itemChecklistList) {
 	        
 	    	try {
-	            Integer id = itemChecklist.getIdItemChecklist(); // Obtener el ID del elemento actual
+	    		// obtener el ID del elemento actual y buscarlo en la bd
+	            Integer id = itemChecklist.getIdItemChecklist();
+	            ItemChecklistEntity existingItem = itemChecklistService.getById(id);
 
-	            ItemChecklistEntity existingItem = itemChecklistService.getById(id); // Buscar el itemChecklist en la bd
-
-	            // Agregar validación para detener el método si el ítem está completo
-	            if (existingItem == null) {
-	                return ResponseEntity.notFound().build(); // Retorna una respuesta de error si el item no existe
-	            }
-
-	            // Sí se completó desde el cliente y en la bd esta incompleto: hacer
+	            // Sí se completó desde el cliente y en la bd esta incompleto: calcular desvío
 	            if (itemChecklist.getCompleto() && !existingItem.getCompleto()) {
 	                existingItem.setFinConDesvio(Timestamp.from(Instant.now()));
 	                existingItem.setCompleto(itemChecklist.getCompleto());
 
 	                // Calcular el desvío cuando se finaliza el ítem
-	                itemService.setDeviation(
-	                        existingItem.getFinEstandar(),
-	                        existingItem.getFinConDesvio(),
-	                        existingItem.getItemIdItem());
+	                double horasDesvio = itemService.setDeviation(existingItem.getFinEstandar(),existingItem.getFinConDesvio(),existingItem.getItemIdItem());
+	                existingItem.setHorasDesvio(horasDesvio);
+	            }
+	            
+	            // Si se desmarca la opción completo, revertir duracion estandar calculada cuando se tildo como completa inicialmente
+	            if (!itemChecklist.getCompleto() && existingItem.getCompleto()) {
+	            	
+	            	// Buscar el elemento "ítem"
+	            	ItemEntity upDateItem = itemService.getById(existingItem.getItemIdItem());
+	            	// Tomar el valor de la Duración estándar y multiplicar por 2. Factor inverso a la división original cuando se calcula la media
+	            	double duracionEstandarAcumulada = (upDateItem.getDuracionEstandar() * 2);
+	            	// Tomo el valor del atributo "horasDesvio" que contiene el elemento del checklist
+	            	double horasDesvio = existingItem.getHorasDesvio();
+	            	// Y resto duracionEstandarAcumulada - horasDesvio para obtener la duracion estandar anterior y la almaceno en el elemento item
+	            	upDateItem.setDuracionEstandar(itemService.redondearADosDecimales(horasDesvio - horasDesvio));
+	            	existingItem.setCompleto(itemChecklist.getCompleto());
 	            }
 
 	            if (itemChecklist.getNotificado() != null) {

@@ -45,22 +45,32 @@ public class ItemService {
 	}
 
 	// Establecer Desviación estándar
-	public void setDeviation(Timestamp finA, Timestamp finB, Integer idItem) {
+	public double setDeviation(Timestamp finA, Timestamp finB, Integer idItem) {
 		ItemEntity upDateItem = this.getById(idItem);
 
 		// Calcular la diferencia en horas entre las dos fechas
-		long difInMillis = finA.getTime() - finB.getTime();
-		double difInHours = difInMillis / (1000.0 * 3600);
+		long difInMillis = finB.getTime() - finA.getTime();
+		double desvioHoras = difInMillis / (1000.0 * 3600);
 
 		// Obtener el tiempo almacenado en la clase
-		BigDecimal duracionEstandarBigDecimal = new BigDecimal(upDateItem.getDuracionEstandar());
-		BigDecimal difInHoursBigDecimal = new BigDecimal(difInHours);
+		double DuracionEstandar = upDateItem.getDuracionEstandar();
+		double nuevaDuracionEstandar = (DuracionEstandar + (DuracionEstandar + (desvioHoras)))/2;
 
-		BigDecimal mediaBigDecimal = duracionEstandarBigDecimal.add(difInHoursBigDecimal).divide(new BigDecimal(2));
+		
 
-		double mediaRedondeada = mediaBigDecimal.setScale(2, RoundingMode.HALF_UP).doubleValue();
+		//double mediaRedondeada = mediaBigDecimal.setScale(2, RoundingMode.HALF_UP).doubleValue();
+		double mediaRedondeada = redondearADosDecimales(nuevaDuracionEstandar);
 
 		upDateItem.setDuracionEstandar(mediaRedondeada);
 		itemRepository.save(upDateItem);
+		
+		// retorno el desvío expresado en horas.
+		return redondearADosDecimales(desvioHoras);
 	}
+	
+	public double redondearADosDecimales(double valor) {
+        BigDecimal decimal = new BigDecimal(valor);
+        decimal = decimal.setScale(2, RoundingMode.HALF_UP);
+        return decimal.doubleValue();
+    }
 }

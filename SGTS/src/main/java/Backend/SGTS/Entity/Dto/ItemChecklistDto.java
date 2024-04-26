@@ -8,7 +8,7 @@ public class ItemChecklistDto {
 	private String nombreItem;
 	private LocalDateTime inicioEstimado;
 	private LocalDateTime finEstimado;
-	private LocalDateTime ejecucionReal;
+	private double horasDesvio;
 	private LocalDateTime finReal;
 	private boolean notificado;
 	private double tasaValor;
@@ -53,12 +53,12 @@ public class ItemChecklistDto {
 		this.finEstimado = finEstimado;
 	}
 
-	public LocalDateTime getEjecucionReal() {
-		return ejecucionReal;
+	public double getHorasDesvio() {
+		return horasDesvio;
 	}
 
-	public void setEjecucionReal(LocalDateTime ejecucionReal) {
-		this.ejecucionReal = ejecucionReal;
+	public void setHorasDesvio(double horasDesvio) {
+		this.horasDesvio = horasDesvio;
 	}
 
 	public LocalDateTime getFinReal() {

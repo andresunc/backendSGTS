@@ -51,72 +51,63 @@ public class ItemChecklistController {
 
 	// Actualizo un item de checklist
 	@PutMapping("/update")
-	public ResponseEntity<List<ItemChecklistEntity>> updateAll(@RequestBody List<ItemChecklistEntity> itemChecklistList) {
+	public ResponseEntity<List<ItemChecklistEntity>> updateAll(
+			@RequestBody List<ItemChecklistEntity> itemChecklistList) {
 
-	    List<ItemChecklistEntity> updatedItems = new ArrayList<>();
+		List<ItemChecklistEntity> updatedItems = new ArrayList<>();
 
-	    for (ItemChecklistEntity itemChecklist : itemChecklistList) {
-	        
-	    	try {
-	    		// obtener el ID del elemento actual y buscarlo en la bd
-	            Integer id = itemChecklist.getIdItemChecklist();
-	            ItemChecklistEntity existingItem = itemChecklistService.getById(id);
+		for (ItemChecklistEntity itemChecklist : itemChecklistList) {
 
-	            // Sí se completó desde el cliente y en la bd esta incompleto: calcular desvío
-	            if (itemChecklist.getCompleto() && !existingItem.getCompleto()) {
-	                existingItem.setFinConDesvio(Timestamp.from(Instant.now()));
-	                existingItem.setCompleto(itemChecklist.getCompleto());
+			try {
+				// obtener el ID del elemento actual y buscarlo en la bd
+				Integer id = itemChecklist.getIdItemChecklist();
+				ItemChecklistEntity existingItem = itemChecklistService.getById(id);
 
-	                // Calcular el desvío cuando se finaliza el ítem
-	                double horasDesvio = itemService.setDeviation(existingItem.getFinEstandar(),existingItem.getFinConDesvio(),existingItem.getItemIdItem());
-	                existingItem.setHorasDesvio(horasDesvio);
-	            }
-	            
-	            // Si se desmarca la opción completo, revertir duracion estandar calculada cuando se tildo como completa inicialmente
-	            if (!itemChecklist.getCompleto() && existingItem.getCompleto()) {
-	            	
-	            	// Buscar el elemento "ítem"
-	            	ItemEntity upDateItem = itemService.getById(existingItem.getItemIdItem());
-	            	// Tomar el valor de la Duración estándar y multiplicar por 2. Factor inverso a la división original cuando se calcula la media
-	            	double duracionEstandarAcumulada = (upDateItem.getDuracionEstandar() * 2);
-	            	
-	            	// Tomo el valor del atributo "horasDesvio" que contiene el elemento del checklist
-	            	double horasDesvio = existingItem.getHorasDesvio();
-	            	double backDuracionEstandar = 0;
-	            	
-	            	if (horasDesvio > 0) {
-	            		backDuracionEstandar = (duracionEstandarAcumulada - horasDesvio);
-	            	} else {
-	            		backDuracionEstandar = (duracionEstandarAcumulada + Math.abs(horasDesvio));
-	            	}
-	            	
-	            	upDateItem.setDuracionEstandar(itemService.redondearADosDecimales(backDuracionEstandar));
-	            	existingItem.setCompleto(itemChecklist.getCompleto());
-	            }
+				// Sí se completó desde el cliente y en la bd esta incompleto: calcular desvío
+				if (itemChecklist.getCompleto() && !existingItem.getCompleto()) {
+					existingItem.setFinConDesvio(Timestamp.from(Instant.now()));
+					existingItem.setCompleto(itemChecklist.getCompleto());
 
-	            if (itemChecklist.getNotificado() != null) {
-	                existingItem.setNotificado(itemChecklist.getNotificado());
-	            }
-	            if (itemChecklist.getTasaValor() != null) {
-	                existingItem.setTasaValor(itemChecklist.getTasaValor());
-	            }
-	            if (itemChecklist.getTasaCantidadHojas() != null) {
-	                existingItem.setTasaCantidadHojas(itemChecklist.getTasaCantidadHojas());
-	            }
-	            if (itemChecklist.getUrlComprobanteTasa() != null) {
-	                existingItem.setUrlComprobanteTasa(itemChecklist.getUrlComprobanteTasa());
-	            }
+					// Calcular el desvío cuando se finaliza el ítem
+					double horasDesvio = itemService.setDeviation(existingItem.getFinEstandar(),
+							existingItem.getFinConDesvio(), existingItem.getItemIdItem());
+					existingItem.setHorasDesvio(horasDesvio);
+				}
 
-	            itemChecklistService.update(existingItem);
-	            updatedItems.add(existingItem);
-	        } catch (Exception e) {
-	            // Manejar la excepción adecuadamente, por ejemplo, registrándola o devolviendo una respuesta de error
-	            e.printStackTrace(); // Registro de la excepción
-	            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // Devolver una respuesta de error
-	        }
-	    }
+				/**
+				 * Si se desmarca la opción completo revertir duracion estandar calculada cuando
+				 * se tildo como completa inicialmente
+				 */
+				if (!itemChecklist.getCompleto() && existingItem.getCompleto()) {
+					itemService.unSetDeviation(existingItem.getHorasDesvio(), existingItem.getItemIdItem());
+					existingItem.setCompleto(itemChecklist.getCompleto());
+				}
 
-	    return ResponseEntity.ok(updatedItems);
+				if (itemChecklist.getNotificado() != null) {
+					existingItem.setNotificado(itemChecklist.getNotificado());
+				}
+				if (itemChecklist.getTasaValor() != null) {
+					existingItem.setTasaValor(itemChecklist.getTasaValor());
+				}
+				if (itemChecklist.getTasaCantidadHojas() != null) {
+					existingItem.setTasaCantidadHojas(itemChecklist.getTasaCantidadHojas());
+				}
+				if (itemChecklist.getUrlComprobanteTasa() != null) {
+					existingItem.setUrlComprobanteTasa(itemChecklist.getUrlComprobanteTasa());
+				}
+
+				itemChecklistService.update(existingItem);
+				updatedItems.add(existingItem);
+			} catch (Exception e) {
+				// Manejar la excepción adecuadamente, por ejemplo, registrándola o devolviendo
+				// una respuesta de error
+				e.printStackTrace(); // Registro de la excepción
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // Devolver una respuesta de
+																						// error
+			}
+		}
+
+		return ResponseEntity.ok(updatedItems);
 	}
 
 	/*

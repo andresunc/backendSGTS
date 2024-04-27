@@ -5,21 +5,22 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "estado", schema = "sgts_db", catalog = "")
 public class EstadoEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "id_Estado", nullable = false)
-    private Integer idEstado;
-    @Basic
-    @Column(name = "Tipo_Estado", nullable = false, length = 45)
-    private String tipoEstado;
-    @Basic
-    @Column(name = "Eliminado", nullable = true)
-    private Boolean eliminado;
-    @Basic
-    @Column(name = "categoria_estado_id_Categoria", nullable = false)
-    private Integer idCategoria;
-    
-    public EstadoEntity() {}
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@Column(name = "id_Estado", nullable = false)
+	private Integer idEstado;
+	@Basic
+	@Column(name = "Tipo_Estado", nullable = false, length = 45)
+	private String tipoEstado;
+	@Basic
+	@Column(name = "Categoria_estado_id_Categoria", nullable = false)
+	private Integer idCategoria;
+	@Basic
+	@Column(name = "eliminado", nullable = true)
+	private Boolean eliminado;
+
+	public EstadoEntity() {
+	}
 
 	public Integer getIdEstado() {
 		return idEstado;
@@ -37,14 +38,6 @@ public class EstadoEntity {
 		this.tipoEstado = tipoEstado;
 	}
 
-	public Boolean getEliminado() {
-		return eliminado;
-	}
-
-	public void setEliminado(Boolean eliminado) {
-		this.eliminado = eliminado;
-	}
-
 	public Integer getIdCategoria() {
 		return idCategoria;
 	}
@@ -52,5 +45,12 @@ public class EstadoEntity {
 	public void setIdCategoria(Integer idCategoria) {
 		this.idCategoria = idCategoria;
 	}
-    
+
+	public Boolean getEliminado() {
+		return eliminado;
+	}
+
+	public void setEliminado(Boolean eliminado) {
+		this.eliminado = eliminado;
+	}
 }

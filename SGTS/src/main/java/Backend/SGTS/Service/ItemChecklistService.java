@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import Backend.SGTS.Entity.ItemChecklistEntity;
 import Backend.SGTS.Repository.ItemChecklistRepository;
+import jakarta.transaction.Transactional;
 
 @Service
 public class ItemChecklistService {
@@ -43,12 +44,12 @@ public class ItemChecklistService {
 		// Establecer inicioEstandar e inicioConDesvio como la fecha actual
 		Timestamp fechaActual = Timestamp.from(Instant.now());
 		itemChecklist.setInicioEstandar(fechaActual);
-		itemChecklist.setInicioConDesvio(fechaActual);
 		
 		return itemChecklistRepository.save(itemChecklist);
 	}
 
 	// Actualizo un item de checklist
+	@Transactional
 	public ItemChecklistEntity update(ItemChecklistEntity itemChecklist) {
 		return itemChecklistRepository.save(itemChecklist);
 	}

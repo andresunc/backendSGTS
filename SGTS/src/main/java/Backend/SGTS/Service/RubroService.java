@@ -53,7 +53,7 @@ public class RubroService {
 		return rubroRepository.findByEliminadoFalse();
 	}
 
-	// Obtengo todos los rubros no eliminados
+	// Obtengo todos los rubros eliminados
 	public List<RubroEntity> getAllDeleted() {
 		return rubroRepository.findByEliminadoTrue();
 	}

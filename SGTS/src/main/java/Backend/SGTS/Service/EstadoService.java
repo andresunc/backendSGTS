@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import Backend.SGTS.Entity.EstadoEntity;
+import Backend.SGTS.Entity.RubroEntity;
 import Backend.SGTS.Repository.EstadoRepository;
+import jakarta.transaction.Transactional;
 
 @Service
 public class EstadoService {
@@ -36,8 +38,13 @@ public class EstadoService {
 	}
 
 	// Elimino un estado de manera lógica
+	@Transactional
 	public void delete(Integer id) {
-		// Agregar lógica para eliminar de manera lógica
+		EstadoEntity estado = estadoRepository.findById(id).orElse(null);
+		if (estado != null && estado.getEliminado() == false) {
+			estado.setEliminado(true);
+			estadoRepository.save(estado);
+        }
 	}
 
 	// Obtengo todos los estados no eliminados

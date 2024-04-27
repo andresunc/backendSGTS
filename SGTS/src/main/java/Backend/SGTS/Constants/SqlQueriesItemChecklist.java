@@ -7,7 +7,7 @@ public class SqlQueriesItemChecklist {
             + "req.descripcion as 'nombre_item',"
             + "itch.Inicio_Estandar as 'inicio_estimado',"
             + "itch.Fin_Estandar as 'fin_estimado',"
-            + "itch.Inicio_Con_Desvio as 'ejecucion_real',"
+            + "itch.horas_desvio as 'horasDesvio',"
             + "itch.Fin_Con_Desvio as 'fin_real',"
             + "itch.Notificado as 'notificado',"
             + "itch.Tasa_Valor as 'valor_tasa',"

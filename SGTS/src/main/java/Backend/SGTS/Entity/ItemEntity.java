@@ -25,53 +25,61 @@ public class ItemEntity {
     @Column(name = "Requisito_id_Requisito", nullable = false)
     private int requisitoIdRequisito;
     @Basic
-    @Column(name = "duracion_estandar", nullable = true)
+    @Column(name = "duracion_estandar", nullable = false)
     private double duracionEstandar;
+    @Basic
+    @Column(name = "desvio_acumulado", nullable = false)
+    private double desvioAcumulado;
+    @Basic
+    @Column(name = "cont_cambios", nullable = true)
+    private Integer contCambios;
+    @Basic
+    @Column(name = "eliminado", nullable = true)
+    private Boolean eliminado;
     
     public ItemEntity() {}
 
-    public Integer getIdItem() {
-        return idItem;
-    }
+	public Integer getIdItem() {
+		return idItem;
+	}
 
-    public void setIdItem(Integer idItem) {
-        this.idItem = idItem;
-    }
+	public void setIdItem(Integer idItem) {
+		this.idItem = idItem;
+	}
 
+	public int getTipoItemIdTipoItem() {
+		return tipoItemIdTipoItem;
+	}
 
-    public int getTipoItemIdTipoItem() {
-        return tipoItemIdTipoItem;
-    }
+	public void setTipoItemIdTipoItem(int tipoItemIdTipoItem) {
+		this.tipoItemIdTipoItem = tipoItemIdTipoItem;
+	}
 
-    public void setTipoItemIdTipoItem(int tipoItemIdTipoItem) {
-        this.tipoItemIdTipoItem = tipoItemIdTipoItem;
-    }
+	public Integer getRubroIdRubro() {
+		return rubroIdRubro;
+	}
 
-    public Integer getRubroIdRubro() {
-        return rubroIdRubro;
-    }
+	public void setRubroIdRubro(Integer rubroIdRubro) {
+		this.rubroIdRubro = rubroIdRubro;
+	}
 
-    public void setRubroIdRubro(Integer rubroIdRubro) {
-        this.rubroIdRubro = rubroIdRubro;
-    }
+	public Integer getDependenciaIdDependencia() {
+		return dependenciaIdDependencia;
+	}
 
-    public Integer getDependenciaIdDependencia() {
-        return dependenciaIdDependencia;
-    }
+	public void setDependenciaIdDependencia(Integer dependenciaIdDependencia) {
+		this.dependenciaIdDependencia = dependenciaIdDependencia;
+	}
 
-    public void setDependenciaIdDependencia(Integer dependenciaIdDependencia) {
-        this.dependenciaIdDependencia = dependenciaIdDependencia;
-    }
+	public int getTipoServicioIdTipoServicio() {
+		return tipoServicioIdTipoServicio;
+	}
 
-    public int getTipoServicioIdTipoServicio() {
-        return tipoServicioIdTipoServicio;
-    }
+	public void setTipoServicioIdTipoServicio(int tipoServicioIdTipoServicio) {
+		this.tipoServicioIdTipoServicio = tipoServicioIdTipoServicio;
+	}
 
-    public void setTipoServicioIdTipoServicio(int tipoServicioIdTipoServicio) {
-        this.tipoServicioIdTipoServicio = tipoServicioIdTipoServicio;
-    }
-    
-    public int getRequisitoIdRequisito() {
+	public int getRequisitoIdRequisito() {
 		return requisitoIdRequisito;
 	}
 
@@ -85,6 +93,30 @@ public class ItemEntity {
 
 	public void setDuracionEstandar(double duracionEstandar) {
 		this.duracionEstandar = duracionEstandar;
+	}
+
+	public double getDesvioAcumulado() {
+		return desvioAcumulado;
+	}
+
+	public void setDesvioAcumulado(double desvioAcumulado) {
+		this.desvioAcumulado = desvioAcumulado;
+	}
+
+	public Integer getContCambios() {
+		return contCambios;
+	}
+
+	public void setContCambios(Integer contCambios) {
+		this.contCambios = contCambios;
+	}
+
+	public Boolean getEliminado() {
+		return eliminado;
+	}
+
+	public void setEliminado(Boolean eliminado) {
+		this.eliminado = eliminado;
 	}
 
 }

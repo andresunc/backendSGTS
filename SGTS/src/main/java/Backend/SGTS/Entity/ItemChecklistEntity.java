@@ -16,8 +16,8 @@ public class ItemChecklistEntity {
     @Column(name = "Fin_Estandar", nullable = true)
     private Timestamp finEstandar;
     @Basic
-    @Column(name = "Inicio_Con_Desvio", nullable = true)
-    private Timestamp inicioConDesvio;
+    @Column(name = "horas_desvio", nullable = false)
+    private double horasDesvio;
     @Basic
     @Column(name = "Fin_Con_Desvio", nullable = true)
     private Timestamp finConDesvio;
@@ -72,12 +72,12 @@ public class ItemChecklistEntity {
 		this.finEstandar = finEstandar;
 	}
 
-	public Timestamp getInicioConDesvio() {
-		return inicioConDesvio;
+	public double getHorasDesvio() {
+		return horasDesvio;
 	}
 
-	public void setInicioConDesvio(Timestamp inicioConDesvio) {
-		this.inicioConDesvio = inicioConDesvio;
+	public void setHorasDesvio(double horasDesvio) {
+		this.horasDesvio = horasDesvio;
 	}
 
 	public Timestamp getFinConDesvio() {

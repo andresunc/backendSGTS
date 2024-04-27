@@ -3,6 +3,7 @@ package Backend.SGTS.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -66,7 +67,7 @@ public class EstadoController {
 	}
 	
 	// Método para eliminar un estado de manera lógica
-	@PostMapping("/delete/{id}")
+	@DeleteMapping("/delete/{id}")
 	public void delete(@PathVariable Integer id) {
 		estadoService.delete(id);
 	}

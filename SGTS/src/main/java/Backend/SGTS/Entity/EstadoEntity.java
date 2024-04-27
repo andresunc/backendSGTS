@@ -2,8 +2,6 @@ package Backend.SGTS.Entity;
 
 import jakarta.persistence.*;
 
-import java.util.Objects;
-
 @Entity
 @Table(name = "estado", schema = "sgts_db", catalog = "")
 public class EstadoEntity {
@@ -16,50 +14,43 @@ public class EstadoEntity {
     private String tipoEstado;
     @Basic
     @Column(name = "Eliminado", nullable = true)
-    private Byte eliminado;
+    private Boolean eliminado;
+    @Basic
+    @Column(name = "categoria_estado_id_Categoria", nullable = false)
+    private Integer idCategoria;
     
     public EstadoEntity() {}
 
-    public Byte getEliminado() {
+	public Integer getIdEstado() {
+		return idEstado;
+	}
+
+	public void setIdEstado(Integer idEstado) {
+		this.idEstado = idEstado;
+	}
+
+	public String getTipoEstado() {
+		return tipoEstado;
+	}
+
+	public void setTipoEstado(String tipoEstado) {
+		this.tipoEstado = tipoEstado;
+	}
+
+	public Boolean getEliminado() {
 		return eliminado;
 	}
 
-	public void setEliminado(Byte eliminado) {
+	public void setEliminado(Boolean eliminado) {
 		this.eliminado = eliminado;
 	}
 
-	public Integer getIdEstado() {
-        return idEstado;
-    }
-
-    public void setIdEstado(Integer idEstado) {
-        this.idEstado = idEstado;
-    }
-
-    public String getTipoEstado() {
-        return tipoEstado;
-    }
-
-    public void setTipoEstado(String tipoEstado) {
-        this.tipoEstado = tipoEstado;
-    }
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(eliminado, idEstado, tipoEstado);
+	public Integer getIdCategoria() {
+		return idCategoria;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		EstadoEntity other = (EstadoEntity) obj;
-		return Objects.equals(eliminado, other.eliminado) && Objects.equals(idEstado, other.idEstado)
-				&& Objects.equals(tipoEstado, other.tipoEstado);
+	public void setIdCategoria(Integer idCategoria) {
+		this.idCategoria = idCategoria;
 	}
     
 }

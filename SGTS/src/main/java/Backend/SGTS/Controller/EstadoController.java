@@ -59,6 +59,7 @@ public class EstadoController {
 		EstadoEntity upDateEstado = estadoService.getById(id);
 		upDateEstado.setTipoEstado(estado.getTipoEstado());
 		upDateEstado.setEliminado(estado.getEliminado());
+		upDateEstado.setIdCategoria(estado.getIdCategoria());
 		estadoService.update(upDateEstado);
 
 		return upDateEstado;

@@ -79,10 +79,18 @@ public class ItemChecklistController {
 	            	ItemEntity upDateItem = itemService.getById(existingItem.getItemIdItem());
 	            	// Tomar el valor de la Duración estándar y multiplicar por 2. Factor inverso a la división original cuando se calcula la media
 	            	double duracionEstandarAcumulada = (upDateItem.getDuracionEstandar() * 2);
+	            	
 	            	// Tomo el valor del atributo "horasDesvio" que contiene el elemento del checklist
 	            	double horasDesvio = existingItem.getHorasDesvio();
-	            	// Y resto duracionEstandarAcumulada - horasDesvio para obtener la duracion estandar anterior y la almaceno en el elemento item
-	            	upDateItem.setDuracionEstandar(itemService.redondearADosDecimales(horasDesvio - horasDesvio));
+	            	double backDuracionEstandar = 0;
+	            	
+	            	if (horasDesvio > 0) {
+	            		backDuracionEstandar = (duracionEstandarAcumulada - horasDesvio);
+	            	} else {
+	            		backDuracionEstandar = (duracionEstandarAcumulada + Math.abs(horasDesvio));
+	            	}
+	            	
+	            	upDateItem.setDuracionEstandar(itemService.redondearADosDecimales(backDuracionEstandar));
 	            	existingItem.setCompleto(itemChecklist.getCompleto());
 	            }
 

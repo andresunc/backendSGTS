@@ -49,14 +49,11 @@ public class ItemService {
 		ItemEntity upDateItem = this.getById(idItem);
 
 		// Calcular la diferencia en horas entre las dos fechas
-		long difInMillis = finB.getTime() - finA.getTime();
-		double desvioHoras = difInMillis / (1000.0 * 3600);
+		double desvioHoras = (finB.getTime() - finA.getTime()) / (1000.0 * 3600);
 
 		// Obtener el tiempo almacenado en la clase
 		double DuracionEstandar = upDateItem.getDuracionEstandar();
-		double nuevaDuracionEstandar = (DuracionEstandar + (DuracionEstandar + (desvioHoras)))/2;
-
-		
+		double nuevaDuracionEstandar = (desvioHoras + DuracionEstandar) / 2;
 
 		//double mediaRedondeada = mediaBigDecimal.setScale(2, RoundingMode.HALF_UP).doubleValue();
 		double mediaRedondeada = redondearADosDecimales(nuevaDuracionEstandar);

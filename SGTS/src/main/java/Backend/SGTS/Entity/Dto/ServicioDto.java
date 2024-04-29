@@ -13,6 +13,8 @@ public class ServicioDto {
 	private String cliente;
 	private Integer idEstado;
 	private String estado;
+	private Integer idCategoria;
+	private String categoria;
 	private Integer recurrencia;
 	private Integer referencia;
 	private LocalDateTime fecha_notificacion;
@@ -88,6 +90,22 @@ public class ServicioDto {
 
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+
+	public Integer getIdCategoria() {
+		return idCategoria;
+	}
+
+	public void setIdCategoria(Integer idCategoria) {
+		this.idCategoria = idCategoria;
+	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
 	}
 
 	public Integer getRecurrencia() {

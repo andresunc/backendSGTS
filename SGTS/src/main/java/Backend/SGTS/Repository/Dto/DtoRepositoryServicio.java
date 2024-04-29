@@ -32,6 +32,8 @@ public class DtoRepositoryServicio {
             servicioDto.setCliente(resultSet.getString("cliente"));
             servicioDto.setIdEstado(resultSet.getInt("idEstado"));
             servicioDto.setEstado(resultSet.getString("estado"));
+            servicioDto.setIdCategoria(resultSet.getInt("idCategoria"));
+            servicioDto.setCategoria(resultSet.getString("categoria"));
             servicioDto.setRecurrencia(resultSet.getInt("recurrencia"));
             servicioDto.setReferencia(resultSet.getInt("referencia"));
             servicioDto.setFecha_notificacion(resultSet.getObject("fecha_notificacion", LocalDateTime.class));

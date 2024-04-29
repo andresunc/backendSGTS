@@ -20,6 +20,8 @@ public class SqlQueriesServicios {
             + "    em.Razon_Social as 'cliente',"
             + "    est.id_Estado as 'idEstado',"
             + "    est.Tipo_Estado as 'estado',"
+            + "    ca.id_Categoria as 'idCategoria',"
+            + "    ca.Categoria as 'categoria',"
             + "    sv.Recurrencia as 'recurrencia',"
             + "    sv.Referencia_Id_Servicio as 'referencia',"
             + "    sv.Fecha_Hora_Alerta_Venc as 'fecha_notificacion',"
@@ -43,6 +45,7 @@ public class SqlQueriesServicios {
             + "    LEFT JOIN tipo_servicio tsv ON tsv.id_Tipo_Servicio = sv.Tipo_Servicio_id_Tipo_Servicio"
             + "    LEFT JOIN (SELECT * FROM UltimoEstado WHERE rn = 1) hse ON sv.id_Servicio = hse.Servicio_id_Servicio"
             + "    LEFT JOIN estado est ON est.id_Estado = hse.Estado_id_Estado"
+            + "    LEFT JOIN categoria_estado ca on ca.id_Categoria = est.Categoria_estado_id_Categoria"
     		+ "    WHERE se.Eliminado = 0"
 			+ "    ORDER BY se.Alta DESC";
 	

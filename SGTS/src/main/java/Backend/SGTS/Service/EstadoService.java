@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import Backend.SGTS.Entity.EstadoEntity;
-import Backend.SGTS.Entity.RubroEntity;
 import Backend.SGTS.Repository.EstadoRepository;
 import jakarta.transaction.Transactional;
 
@@ -29,6 +28,7 @@ public class EstadoService {
 
 	// Creo un estado
 	public EstadoEntity create(EstadoEntity estado) {
+		estado.setEliminado(false);
 		return estadoRepository.save(estado);
 	}
 

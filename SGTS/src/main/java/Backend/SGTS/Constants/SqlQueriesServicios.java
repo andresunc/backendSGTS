@@ -46,8 +46,7 @@ public class SqlQueriesServicios {
             + "    LEFT JOIN (SELECT * FROM UltimoEstado WHERE rn = 1) hse ON sv.id_Servicio = hse.Servicio_id_Servicio"
             + "    LEFT JOIN estado est ON est.id_Estado = hse.Estado_id_Estado"
             + "    LEFT JOIN categoria_estado ca on ca.id_Categoria = est.Categoria_estado_id_Categoria"
-    		+ "    WHERE se.Eliminado = 0"
-			+ "    ORDER BY se.Alta DESC";
+    		+ "    WHERE se.Eliminado = 0";
 	
 	public SqlQueriesServicios() {
 		super();
@@ -55,10 +54,24 @@ public class SqlQueriesServicios {
 	
 	public String getServices(Integer limit) {
 	    try {
-	        return (limit <= 0) ? serviceNotDeleted : serviceNotDeleted + "    LIMIT " + limit;
+	        return (limit <= 0) ? serviceNotDeleted : serviceNotDeleted + "    ORDER BY se.Alta DESC" + "    LIMIT " + limit;
 	    } catch (Exception e) {
 	        e.printStackTrace();
-	        return "Error al obtener servicios";
+	        return "Error al obtener servicios en la clase SqlQueriesServicios";
 	    }
 	}
+	
+	public String getServices(Integer limit, Integer servicioId) {
+	    try {
+	        String query = serviceNotDeleted;
+	        if (servicioId != null && servicioId > 0) {
+	            query += " AND sv.id_Servicio = " + servicioId + "    ORDER BY se.Alta DESC";
+	        }
+	        return (limit <= 0) ? query : query + " LIMIT " + limit;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return "Error al obtener servicios en la clase SqlQueriesServicios";
+	    }
+	}
+
 }

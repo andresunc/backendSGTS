@@ -2,10 +2,13 @@ package Backend.SGTS.Controller.Dto;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import Backend.SGTS.Entity.Dto.ServicioDto;
 import Backend.SGTS.Repository.Dto.DtoRepositoryItemChecklist;
 import Backend.SGTS.Repository.Dto.DtoRepositoryServicio;
 
@@ -28,6 +31,11 @@ public class ServicioDtoController {
 	public Object getAllServicios(@RequestParam Integer limit) {
 		return dtoRepositoryServicio.obtenerServiciosDto(limit);
 	}
+	
+	@GetMapping("/{servicioId}")
+    public Object getServicioById(@PathVariable Integer servicioId) {
+        return dtoRepositoryServicio.getServiciosDtoById(servicioId);
+    }
 	
 	@RequestMapping("/getItemsChecklist")
     public Object getItemsChecklist(@RequestParam Integer idServicio) {

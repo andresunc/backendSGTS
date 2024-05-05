@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,9 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import Backend.SGTS.Entity.ItemChecklistEntity;
-import Backend.SGTS.Entity.ItemEntity;
 import Backend.SGTS.Service.ItemChecklistService;
 import Backend.SGTS.Service.ItemService;
+import jakarta.transaction.Transactional;
 
 @RestController
 @RequestMapping("/itemChecklist")
@@ -110,10 +111,35 @@ public class ItemChecklistController {
 		return ResponseEntity.ok(updatedItems);
 	}
 
-	/*
-	 * Función deshabilitada, no borramos un ítem del checklist
-	 * 
-	 * @DeleteMapping("/delete/{id}") public void delete(@PathVariable Integer id) {
-	 * itemChecklistService.delete(id); }
-	 */
+	/* Esta función elimina un listado de items del checklist revirtiendo el calculo del desvío*/
+	@DeleteMapping("/delete")
+	@Transactional
+	public ResponseEntity<Integer> delete(@RequestBody List<ItemChecklistEntity> itemChecklistList) {
+
+		List<ItemChecklistEntity> deleteItems = new ArrayList<>();
+
+		try {
+			for (ItemChecklistEntity itemChecklist : itemChecklistList) {
+				// obtener el ID del elemento actual y buscarlo en la bd
+				Integer id = itemChecklist.getIdItemChecklist();
+				ItemChecklistEntity existingItemChecklist = itemChecklistService.getById(id);
+
+				// Revertir el calculo del desvío y eliminar el item
+				itemService.unSetDeviation(existingItemChecklist.getHorasDesvio(),
+						existingItemChecklist.getItemIdItem());
+				itemChecklistService.delete(id);
+
+				// Agregar el item a la lista de registro de eliminados
+				deleteItems.add(existingItemChecklist);
+			}
+
+			return ResponseEntity.ok(deleteItems.size());
+
+		} catch (Exception e) {
+			// Si ocurre una excepción, se hace rollback de la transacción
+			// Esto asegura que todas las operaciones realizadas dentro del método se
+			// deshagan
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+	}
 }

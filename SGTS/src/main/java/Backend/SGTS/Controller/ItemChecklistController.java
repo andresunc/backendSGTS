@@ -112,31 +112,26 @@ public class ItemChecklistController {
 		return ResponseEntity.ok(updatedItems);
 	}
 
-	/* Esta función elimina un listado de items del checklist revirtiendo el calculo del desvío*/
+	/*
+	 * Esta función elimina un listado de items del checklist revirtiendo el calculo
+	 * del desvío
+	 */
 	@DeleteMapping("/delete")
 	@Transactional
-	public ResponseEntity<Integer> delete(@RequestBody List<ItemChecklistDto> itemChecklistListDto) {
-
-		int countDelete = 0;
+	public ResponseEntity<Integer> delete(@RequestBody ItemChecklistDto itemChecklistListDto) {
 
 		try {
-			for (ItemChecklistDto itemChecklist : itemChecklistListDto) {
-				// obtener el ID del elemento actual y buscarlo en la bd
-				Integer id = itemChecklist.getIdItemChecklist();
-				ItemChecklistEntity existingItemChecklist = itemChecklistService.getById(id);
+			Integer id = itemChecklistListDto.getIdItemChecklist();
+			ItemChecklistEntity existingItemChecklist = itemChecklistService.getById(id);
 
-				// Revertir el calculo del desvío solo si presenta horas de desvio
-				if (existingItemChecklist.getHorasDesvio() > 0) {
-					itemService.unSetDeviation(existingItemChecklist.getHorasDesvio(),
-							existingItemChecklist.getItemIdItem());
-				}
-				
-				itemChecklistService.delete(id);
-				countDelete++;
+			// Revertir el calculo del desvío solo si presenta horas de desvio
+			if (existingItemChecklist.getHorasDesvio() > 0) {
+				itemService.unSetDeviation(existingItemChecklist.getHorasDesvio(),
+						existingItemChecklist.getItemIdItem());
 			}
 
-			return ResponseEntity.ok(countDelete);
-
+			itemChecklistService.delete(id);
+			return ResponseEntity.ok(id); // Retorna 200 OK
 		} catch (Exception e) {
 			// Si ocurre una excepción, se hace rollback de la transacción
 			// Esto asegura que todas las operaciones realizadas dentro del método se

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import Backend.SGTS.Entity.ItemChecklistEntity;
+import Backend.SGTS.Entity.Dto.ItemChecklistDto;
 import Backend.SGTS.Service.ItemChecklistService;
 import Backend.SGTS.Service.ItemService;
 import jakarta.transaction.Transactional;
@@ -114,26 +115,27 @@ public class ItemChecklistController {
 	/* Esta función elimina un listado de items del checklist revirtiendo el calculo del desvío*/
 	@DeleteMapping("/delete")
 	@Transactional
-	public ResponseEntity<Integer> delete(@RequestBody List<ItemChecklistEntity> itemChecklistList) {
+	public ResponseEntity<Integer> delete(@RequestBody List<ItemChecklistDto> itemChecklistListDto) {
 
-		List<ItemChecklistEntity> deleteItems = new ArrayList<>();
+		int countDelete = 0;
 
 		try {
-			for (ItemChecklistEntity itemChecklist : itemChecklistList) {
+			for (ItemChecklistDto itemChecklist : itemChecklistListDto) {
 				// obtener el ID del elemento actual y buscarlo en la bd
 				Integer id = itemChecklist.getIdItemChecklist();
 				ItemChecklistEntity existingItemChecklist = itemChecklistService.getById(id);
 
-				// Revertir el calculo del desvío y eliminar el item
-				itemService.unSetDeviation(existingItemChecklist.getHorasDesvio(),
-						existingItemChecklist.getItemIdItem());
+				// Revertir el calculo del desvío solo si presenta horas de desvio
+				if (existingItemChecklist.getHorasDesvio() > 0) {
+					itemService.unSetDeviation(existingItemChecklist.getHorasDesvio(),
+							existingItemChecklist.getItemIdItem());
+				}
+				
 				itemChecklistService.delete(id);
-
-				// Agregar el item a la lista de registro de eliminados
-				deleteItems.add(existingItemChecklist);
+				countDelete++;
 			}
 
-			return ResponseEntity.ok(deleteItems.size());
+			return ResponseEntity.ok(countDelete);
 
 		} catch (Exception e) {
 			// Si ocurre una excepción, se hace rollback de la transacción

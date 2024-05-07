@@ -35,8 +35,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(http -> {
                 	
                     // EndPoints publicos
-                    http.requestMatchers(HttpMethod.POST, "/auth/login").permitAll();
-
+                   http.requestMatchers(HttpMethod.POST, "/auth/login").permitAll();
+                    http.requestMatchers(HttpMethod.POST, "/email/**").permitAll();
                     // EndPoints accesible solo para usuarios autenticados
                     http.requestMatchers(HttpMethod.GET).authenticated();
 

@@ -1,8 +1,12 @@
 package Backend.SGTS.Entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "item", schema = "sgts_db", catalog = "")
 public class ItemEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +40,8 @@ public class ItemEntity {
     @Basic
     @Column(name = "eliminado", nullable = true)
     private Boolean eliminado;
+    
+    private String descripcion;
     
     public ItemEntity() {}
 

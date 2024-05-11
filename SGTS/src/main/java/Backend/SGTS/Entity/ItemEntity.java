@@ -23,7 +23,7 @@ public class ItemEntity {
     @Column(name = "Dependencia_id_Dependencia", nullable = true)
     private Integer dependenciaIdDependencia;
     @Basic
-    @Column(name = "Tipo_Servicio_id_Tipo_Servicio", nullable = false)
+    @Column(name = "Tipo_Servicio_id_Tipo_Servicio", nullable = true)
     private int tipoServicioIdTipoServicio;
     @Basic
     @Column(name = "Requisito_id_Requisito", nullable = false)
@@ -40,7 +40,7 @@ public class ItemEntity {
     @Basic
     @Column(name = "eliminado", nullable = true)
     private Boolean eliminado;
-    
+    @Transient
     private String descripcion;
     
     public ItemEntity() {}

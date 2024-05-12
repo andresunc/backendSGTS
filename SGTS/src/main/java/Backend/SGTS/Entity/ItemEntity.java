@@ -15,7 +15,7 @@ public class ItemEntity {
     private Integer idItem;
     @Basic
     @Column(name = "Tipo_Item_id_Tipo_Item", nullable = false)
-    private int tipoItemIdTipoItem;
+    private Integer tipoItemIdTipoItem;
     @Basic
     @Column(name = "Rubro_id_Rubro", nullable = true)
     private Integer rubroIdRubro;
@@ -24,10 +24,10 @@ public class ItemEntity {
     private Integer dependenciaIdDependencia;
     @Basic
     @Column(name = "Tipo_Servicio_id_Tipo_Servicio", nullable = true)
-    private int tipoServicioIdTipoServicio;
+    private Integer tipoServicioIdTipoServicio;
     @Basic
     @Column(name = "Requisito_id_Requisito", nullable = false)
-    private int requisitoIdRequisito;
+    private Integer requisitoIdRequisito;
     @Basic
     @Column(name = "duracion_estandar", nullable = false)
     private double duracionEstandar;
@@ -53,11 +53,11 @@ public class ItemEntity {
 		this.idItem = idItem;
 	}
 
-	public int getTipoItemIdTipoItem() {
+	public Integer getTipoItemIdTipoItem() {
 		return tipoItemIdTipoItem;
 	}
 
-	public void setTipoItemIdTipoItem(int tipoItemIdTipoItem) {
+	public void setTipoItemIdTipoItem(Integer tipoItemIdTipoItem) {
 		this.tipoItemIdTipoItem = tipoItemIdTipoItem;
 	}
 
@@ -77,19 +77,19 @@ public class ItemEntity {
 		this.dependenciaIdDependencia = dependenciaIdDependencia;
 	}
 
-	public int getTipoServicioIdTipoServicio() {
+	public Integer getTipoServicioIdTipoServicio() {
 		return tipoServicioIdTipoServicio;
 	}
 
-	public void setTipoServicioIdTipoServicio(int tipoServicioIdTipoServicio) {
+	public void setTipoServicioIdTipoServicio(Integer tipoServicioIdTipoServicio) {
 		this.tipoServicioIdTipoServicio = tipoServicioIdTipoServicio;
 	}
 
-	public int getRequisitoIdRequisito() {
+	public Integer getRequisitoIdRequisito() {
 		return requisitoIdRequisito;
 	}
 
-	public void setRequisitoIdRequisito(int requisitoIdRequisito) {
+	public void setRequisitoIdRequisito(Integer requisitoIdRequisito) {
 		this.requisitoIdRequisito = requisitoIdRequisito;
 	}
 

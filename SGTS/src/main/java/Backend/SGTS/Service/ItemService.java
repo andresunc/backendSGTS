@@ -3,15 +3,14 @@ package Backend.SGTS.Service;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.Timestamp;
-import java.text.DecimalFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import Backend.SGTS.Entity.ItemEntity;
-import Backend.SGTS.Entity.RubroEntity;
 import Backend.SGTS.Repository.ItemRepository;
+import jakarta.transaction.Transactional;
 
 @Service
 public class ItemService {
@@ -50,8 +49,14 @@ public class ItemService {
 		return itemRepository.save(item);
 	}
 
-	// Elimino un item
+	// Elimino un item de manera lógica
+	@Transactional
 	public void delete(Integer id) {
+		ItemEntity upDateItem = this.getById(id);
+		if (upDateItem != null && upDateItem.getEliminado() == false) {
+			upDateItem.setEliminado(true);
+			this.update(upDateItem);
+        }
 		itemRepository.deleteById(id);
 	}
 

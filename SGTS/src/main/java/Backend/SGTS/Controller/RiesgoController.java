@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import Backend.SGTS.Entity.ItemEntity;
 import Backend.SGTS.Entity.RiesgoEntity;
 import Backend.SGTS.Service.RiesgoService;
 
@@ -22,25 +23,37 @@ public class RiesgoController {
 	// Inyecto Servicio de Riesgo
 	@Autowired
 	RiesgoService riesgoService;
-	
+
 	// Obtengo todos los riesgos
 	@GetMapping("/getAll")
 	public List<RiesgoEntity> getAll() {
 		return riesgoService.getAll();
 	}
-	
+
+	// Obtengo todos los items no eliminados
+	@GetMapping("/getAllNotDeleted")
+	public List<RiesgoEntity> getAllNotDeleted() {
+		return riesgoService.getAllNotDeleted();
+	}
+
+	// Obtengo todos los items eliminados
+	@GetMapping("/getAllDeleted")
+	public List<RiesgoEntity> getAllDeleted() {
+		return riesgoService.getAllDeleted();
+	}
+
 	// Obtengo un riesgo por id
 	@GetMapping("/{id}")
 	public RiesgoEntity getById(@PathVariable Integer id) {
 		return riesgoService.getById(id);
 	}
-	
+
 	// Creo un riesgo
 	@PostMapping("/create")
 	public RiesgoEntity create(@RequestBody RiesgoEntity riesgo) {
 		return riesgoService.create(riesgo);
 	}
-	
+
 	// Actualizo un riesgo
 	@PutMapping("/update/{id}")
 	public RiesgoEntity update(@PathVariable("id") Integer id, @RequestBody RiesgoEntity riesgo) {
@@ -51,10 +64,10 @@ public class RiesgoController {
 
 		return upDateRiesgo;
 	}
-	
-	// Elimino un riesgo
+
+	// Elimino un riesgo de manera lógica
 	@DeleteMapping("/delete/{id}")
-	public void delete(@PathVariable Integer id) {
+	public void delete(@PathVariable("id") Integer id) {
 		riesgoService.delete(id);
 	}
 }

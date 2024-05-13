@@ -12,8 +12,11 @@ public class RiesgoEntity {
     @Column(name = "id_Riesgo", nullable = false)
     private Integer idRiesgo;
     @Basic
-    @Column(name = "Riesgo", nullable = false, length = 45)
+    @Column(name = "riesgo", nullable = false, length = 45)
     private String riesgo;
+    @Basic
+    @Column(name = "eliminado", nullable = false, length = 45)
+    private Boolean eliminado;
     
     public RiesgoEntity() {}
 
@@ -33,16 +36,12 @@ public class RiesgoEntity {
         this.riesgo = riesgo;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        RiesgoEntity that = (RiesgoEntity) o;
-        return idRiesgo == that.idRiesgo && Objects.equals(riesgo, that.riesgo);
-    }
+	public Boolean getEliminado() {
+		return eliminado;
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(idRiesgo, riesgo);
-    }
+	public void setEliminado(Boolean eliminado) {
+		this.eliminado = eliminado;
+	}
+    
 }

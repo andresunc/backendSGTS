@@ -13,7 +13,7 @@ public class SqlQueriesEmpresa {
             + "em.Direccion as 'direccion' "
             + "FROM empresa em "
             + "LEFT JOIN rubro ru ON ru.id_Rubro = em.Rubro_id_Rubro "
-            + "LEFT JOIN riesgo ri ON ri.id_Riesgo = em.Riesgo_id_Riesgo "
+            + "LEFT JOIN riesgo ri ON ri.id_Riesgo = em.Riesgo_id_Riesgo AND ri.eliminado = 0 "
             + "WHERE em.Eliminado = 0";
 
     public SqlQueriesEmpresa() {

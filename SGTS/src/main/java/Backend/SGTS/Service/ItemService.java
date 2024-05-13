@@ -52,12 +52,11 @@ public class ItemService {
 	// Elimino un item de manera lógica
 	@Transactional
 	public void delete(Integer id) {
-		ItemEntity upDateItem = this.getById(id);
-		if (upDateItem != null && upDateItem.getEliminado() == false) {
-			upDateItem.setEliminado(true);
-			this.update(upDateItem);
+		ItemEntity itemToDelete = this.getById(id);
+		if (itemToDelete != null && itemToDelete.getEliminado() == false) {
+			itemToDelete.setEliminado(true);
+			this.update(itemToDelete);
         }
-		itemRepository.deleteById(id);
 	}
 
 	// Establecer Desviación estándar

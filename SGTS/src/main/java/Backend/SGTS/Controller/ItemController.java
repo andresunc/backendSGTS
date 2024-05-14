@@ -63,8 +63,8 @@ public class ItemController {
 			// Crear el requisito primero
 			RequisitoEntity requisito = new RequisitoEntity();
 			// Asignar la descripción del requisito
-			requisito.setDescripcion(item.getDescripcion()); // Puedes asignar una descripción desde el item o enviarla
-																// desde el cliente
+			requisito.setDescripcion(item.getDescripcion());
+			requisito.setEliminado(false);
 
 			// Guardar el requisito en la base de datos
 			requisito = requisitoService.create(requisito);
@@ -75,6 +75,7 @@ public class ItemController {
 			// Setear valores por defecto y crear el ítem
 			item.setDesvioAcumulado(item.getDuracionEstandar());
 			item.setContCambios(1);
+			item.setEliminado(false);
 			ItemEntity createdItem = itemService.create(item);
 
 			// Devuelve el ítem creado

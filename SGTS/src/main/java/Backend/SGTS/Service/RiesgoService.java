@@ -39,6 +39,7 @@ public class RiesgoService {
 
 	// Creo un riesgo
 	public RiesgoEntity create(RiesgoEntity riesgo) {
+		riesgo.setEliminado(false);
 		return riesgoRepository.save(riesgo);
 	}
 

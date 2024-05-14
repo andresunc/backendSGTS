@@ -22,37 +22,49 @@ public class RequisitoController {
 	// Inyecto Servicio de Requisito
 	@Autowired
 	RequisitoService requisitoService;
-	
+
 	// Obtengo todos los requisitos
 	@GetMapping("/getAll")
 	public List<RequisitoEntity> getAll() {
 		return requisitoService.getAll();
 	}
-	
+
+	// Obtengo todos los requisitos no eliminados
+	@GetMapping("/getAllNotDeleted")
+	public List<RequisitoEntity> getAllNotDeleted() {
+		return requisitoService.getAllNotDeleted();
+	}
+
+	// Obtengo todos los requisitos eliminados
+	@GetMapping("/getAllDeleted")
+	public List<RequisitoEntity> getAllDeleted() {
+		return requisitoService.getAllDeleted();
+	}
+
 	// Obtengo un requisito por id
 	@GetMapping("/{id}")
 	public RequisitoEntity getById(@PathVariable Integer id) {
 		return requisitoService.getById(id);
 	}
-	
+
 	// Creo un requisito
 	@PostMapping("/create")
 	public RequisitoEntity create(@RequestBody RequisitoEntity requisito) {
 		return requisitoService.create(requisito);
 	}
-	
+
 	// Actualizo un requisito
 	@PutMapping("/update/{id}")
 	public RequisitoEntity update(@PathVariable("id") Integer id, @RequestBody RequisitoEntity requisito) {
 
 		RequisitoEntity upDateRequisito = requisitoService.getById(id);
 		upDateRequisito.setDescripcion(requisito.getDescripcion());
-		
+
 		requisitoService.update(upDateRequisito);
 
 		return upDateRequisito;
 	}
-	
+
 	// Elimino un requisito
 	@DeleteMapping("/delete/{id}")
 	public void delete(@PathVariable Integer id) {

@@ -11,8 +11,10 @@ public class RequisitoEntity {
     @Column(name = "id_Requisito", nullable = false)
     private Integer idRequisito;
     @Basic
-    @Column(name = "Descripcion", nullable = false, length = 60)
+    @Column(name = "descripcion", nullable = false, length = 60)
     private String descripcion;
+    @Column(name = "eliminado", nullable = true)
+    private Boolean eliminado;
     
     public RequisitoEntity() {}
     
@@ -27,6 +29,14 @@ public class RequisitoEntity {
 	}
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+	public Boolean getEliminado() {
+		return eliminado;
+	}
+
+	public void setEliminado(Boolean eliminado) {
+		this.eliminado = eliminado;
 	}
 
 }

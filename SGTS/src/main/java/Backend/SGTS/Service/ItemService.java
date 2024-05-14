@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import Backend.SGTS.Entity.ItemEntity;
+import Backend.SGTS.Entity.RequisitoEntity;
 import Backend.SGTS.Repository.ItemRepository;
 import jakarta.transaction.Transactional;
 
@@ -18,6 +19,8 @@ public class ItemService {
 	// Inyecto repositorio
 	@Autowired
 	ItemRepository itemRepository;
+	@Autowired
+	RequisitoService requisitoService;
 
 	// Obtengo todos los items
 	public List<ItemEntity> getAll() {
@@ -53,10 +56,16 @@ public class ItemService {
 	@Transactional
 	public void delete(Integer id) {
 		ItemEntity itemToDelete = this.getById(id);
+		Integer idRequisito = itemToDelete.getRequisitoIdRequisito();
+		RequisitoEntity requisitoToDelete = requisitoService.getById(idRequisito);
 		if (itemToDelete != null && itemToDelete.getEliminado() == false) {
 			itemToDelete.setEliminado(true);
 			this.update(itemToDelete);
         }
+		if (requisitoToDelete != null && requisitoToDelete.getEliminado() == false) {
+			requisitoToDelete.setEliminado(true);
+			requisitoService.update(requisitoToDelete);
+		}
 	}
 
 	// Establecer Desviación estándar

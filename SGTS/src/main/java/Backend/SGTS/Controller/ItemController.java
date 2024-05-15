@@ -90,9 +90,9 @@ public class ItemController {
 	}
 
 	// Actualizo un item
-	@PutMapping("/update/{id}")
+	@PutMapping("/update")
 	@Transactional
-	public ResponseEntity<?> update(@PathVariable("id") Integer id, @RequestBody ItemEntity item) {
+	public ResponseEntity<?> update(@RequestBody ItemEntity item) {
 
 		try {
 
@@ -102,7 +102,7 @@ public class ItemController {
 				requisitoService.update(requisito);
 			}
 
-			ItemEntity upDateItem = itemService.getById(id);
+			ItemEntity upDateItem = itemService.getById(item.getIdItem());
 			upDateItem.setTipoServicioIdTipoServicio(item.getTipoServicioIdTipoServicio());
 			upDateItem.setDependenciaIdDependencia(item.getDependenciaIdDependencia());
 			upDateItem.setRubroIdRubro(item.getRubroIdRubro());

@@ -54,7 +54,7 @@ public class SqlQueriesServicios {
 	
 	public String getServices(Integer limit) {
 	    try {
-	        return (limit <= 0) ? serviceNotDeleted : serviceNotDeleted + "    ORDER BY se.Alta DESC" + "    LIMIT " + limit;
+	        return (limit <= 0) ? serviceNotDeleted + "    ORDER BY se.Alta DESC" : serviceNotDeleted + "    ORDER BY se.Alta DESC" + "    LIMIT " + limit;
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	        return "Error al obtener servicios en la clase SqlQueriesServicios";

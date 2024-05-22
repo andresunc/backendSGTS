@@ -7,6 +7,7 @@ public class RecursoGgDto {
     private String nombre;
     private String apellido;
     private String dni;
+    private String rol;
 
     public RecursoGgDto() {}
 
@@ -48,6 +49,14 @@ public class RecursoGgDto {
 
 	public void setDni(String dni) {
 		this.dni = dni;
+	}
+
+	public String getRol() {
+		return rol;
+	}
+
+	public void setRol(String rol) {
+		this.rol = rol;
 	}
     
 }

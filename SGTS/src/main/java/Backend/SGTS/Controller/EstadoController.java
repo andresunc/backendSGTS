@@ -22,37 +22,37 @@ public class EstadoController {
 	// Inyecto Servicio de Estado
 	@Autowired
 	EstadoService estadoService;
-	
+
 	// Obtengo todos los estados no eliminados
 	@GetMapping("/getAllNotDeleted")
 	public List<EstadoEntity> getAllNotDeleted() {
 		return estadoService.getAllNotDeleted();
 	}
-	
+
 	// Obtengo todos los estados eliminados
 	@GetMapping("/getAllDeleted")
 	public List<EstadoEntity> getAllDeleted() {
 		return estadoService.getAllDeleted();
 	}
-	
+
 	// Obtengo todos los estados
 	@GetMapping("/getAll")
 	public List<EstadoEntity> getAll() {
 		return estadoService.getAll();
 	}
-	
+
 	// Obtengo un estado por id
 	@GetMapping("/{id}")
 	public EstadoEntity getById(@PathVariable Integer id) {
 		return estadoService.getById(id);
 	}
-	
+
 	// Creo un estado
 	@PostMapping("/create")
 	public EstadoEntity create(@RequestBody EstadoEntity estado) {
 		return estadoService.create(estado);
 	}
-	
+
 	// Actualizo un estado
 	@PutMapping("/update/{id}")
 	public EstadoEntity update(@PathVariable("id") Integer id, @RequestBody EstadoEntity estado) {
@@ -65,11 +65,17 @@ public class EstadoController {
 
 		return upDateEstado;
 	}
-	
+
+	// Actualiza el orden de los estados
+	@PutMapping("/actualizarOrdenEstados")
+	public List<EstadoEntity> actualizarOrdenEstados(@RequestBody List<EstadoEntity> estados) {
+		return estadoService.actualizarOrden(estados);
+	}
+
 	// Método para eliminar un estado de manera lógica
 	@DeleteMapping("/delete/{id}")
 	public void delete(@PathVariable Integer id) {
 		estadoService.delete(id);
 	}
-	
+
 }

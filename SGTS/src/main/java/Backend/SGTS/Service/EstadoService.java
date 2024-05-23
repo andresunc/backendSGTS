@@ -37,6 +37,12 @@ public class EstadoService {
 		return estadoRepository.save(estado);
 	}
 
+	// Actualizo el orden de los estados
+	@Transactional
+	public List<EstadoEntity> actualizarOrden(List<EstadoEntity> estados) {
+		return  estadoRepository.saveAll(estados);
+	}
+
 	// Elimino un estado de manera lógica
 	@Transactional
 	public void delete(Integer id) {
@@ -44,7 +50,7 @@ public class EstadoService {
 		if (estado != null && estado.getEliminado() == false) {
 			estado.setEliminado(true);
 			estadoRepository.save(estado);
-        }
+		}
 	}
 
 	// Obtengo todos los estados no eliminados

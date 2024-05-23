@@ -16,6 +16,9 @@ public class EstadoEntity {
 	@Column(name = "Categoria_estado_id_Categoria", nullable = false)
 	private Integer idCategoria;
 	@Basic
+	@Column(name = "orden", nullable = true)
+	private Integer orden;
+	@Basic
 	@Column(name = "eliminado", nullable = true)
 	private Boolean eliminado;
 
@@ -53,4 +56,13 @@ public class EstadoEntity {
 	public void setEliminado(Boolean eliminado) {
 		this.eliminado = eliminado;
 	}
+
+	public Integer getOrden() {
+		return orden;
+	}
+
+	public void setOrden(Integer orden) {
+		this.orden = orden;
+	}
+	
 }

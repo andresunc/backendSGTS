@@ -53,9 +53,9 @@ public class EstadoService {
 		}
 	}
 
-	// Obtengo todos los estados no eliminados
+	// Obtengo todos los estados no eliminados de manera ordenada
 	public List<EstadoEntity> getAllNotDeleted() {
-		return estadoRepository.findByEliminadoFalse();
+		return estadoRepository.findByEliminadoFalseOrderByOrdenAsc();
 	}
 
 	// Obtengo todos los estados no eliminados

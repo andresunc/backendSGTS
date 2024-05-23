@@ -11,7 +11,7 @@ import Backend.SGTS.Entity.EstadoEntity;
 public interface EstadoRepository extends JpaRepository<EstadoEntity, Integer> {
 
 	// Obtener estados donde eliminado es false
-	List<EstadoEntity> findByEliminadoFalse();
+	 List<EstadoEntity> findByEliminadoFalseOrderByOrdenAsc();
 
 	// Obtener estados donde eliminado es true
 	List<EstadoEntity> findByEliminadoTrue();

@@ -24,28 +24,39 @@ public class HistoricoEstadoController {
 	// Inyecto Servicio de HistoricoEstado
 	@Autowired
 	HistoricoEstadoService historicoestadoService;
-	
+
 	// Obtengo todos los historicoestados
 	@GetMapping("/getAll")
 	public List<HistoricoEstadoEntity> getAll() {
 		return historicoestadoService.getAll();
 	}
-	
+
 	// Obtengo un historicoestado por id
 	@GetMapping("/{id}")
 	public HistoricoEstadoEntity getById(@PathVariable Integer id) {
 		return historicoestadoService.getById(id);
 	}
-	
+
 	// Creo un historicoestado
 	@PostMapping("/create")
 	public HistoricoEstadoEntity create(@RequestBody HistoricoEstadoEntity historicoestado) {
-		
+
 		// Establecer la fecha y hora actual
 		historicoestado.setFecha(Timestamp.from(Instant.now()));
 		return historicoestadoService.create(historicoestado);
 	}
-	
+
+	// Creo un historicoestado que elimina los estados cuyo orden son menores
+	@PostMapping("/revertir")
+	public void revertir(@RequestBody HistoricoEstadoEntity historicoestado) {
+
+		// Establecer la fecha y hora actual
+		historicoestado.setFecha(Timestamp.from(Instant.now()));
+		// llamar al SP que realiza el revertimiento
+		historicoestadoService.revertir(historicoestado.getFecha(), historicoestado.getServicioIdServicio(),
+				historicoestado.getEstadoIdEstado());
+	}
+
 	// Actualizo un historicoestado
 	@PutMapping("/update/{id}")
 	public HistoricoEstadoEntity update(@PathVariable("id") Integer id,
@@ -59,7 +70,7 @@ public class HistoricoEstadoController {
 
 		return upDateHistoricoEstado;
 	}
-	
+
 	// Elimino un historicoestado
 	@DeleteMapping("/delete/{id}")
 	public void delete(@PathVariable Integer id) {

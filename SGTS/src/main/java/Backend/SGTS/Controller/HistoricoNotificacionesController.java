@@ -48,7 +48,6 @@ public class HistoricoNotificacionesController {
 
 		HistoricoNotificacionesEntity upDateHistoricoNotificaciones = historiconotificacionesService.getById(id);
 		
-		upDateHistoricoNotificaciones.setObservacion(historiconotificaciones.getObservacion());
 		upDateHistoricoNotificaciones.setFecha(historiconotificaciones.getFecha());
 		upDateHistoricoNotificaciones.setResuelto(historiconotificaciones.getResuelto());
 		upDateHistoricoNotificaciones.setItemChecklistIdItemChecklist(historiconotificaciones.getItemChecklistIdItemChecklist());

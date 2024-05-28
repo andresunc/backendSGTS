@@ -57,16 +57,15 @@ public class TipoServicioController {
 	@PutMapping("/update/{id}")
 	public TipoServicioEntity update(@PathVariable("id") Integer id, @RequestBody TipoServicioEntity tipoServicio) {
 
-		TipoServicioEntity upDateTipoServicio = tipoServicioService.getById(id);
-		upDateTipoServicio.setTipoServicio(tipoServicio.getTipoServicio());
-		tipoServicioService.update(upDateTipoServicio);
+		TipoServicioEntity updateTipoServicio = tipoServicioService.getById(id);
+		updateTipoServicio.setTipoServicio(tipoServicio.getTipoServicio());
+		tipoServicioService.update(updateTipoServicio);
 
-		return upDateTipoServicio;
+		return updateTipoServicio;
 	}
 	
 	// Elimino un tipoServicio
 	@DeleteMapping("/delete/{id}")
-	public void delete(@PathVariable Integer id) {
-		// Agregar lógica para eliminar un tipoServicio de manera lógica
+	public void delete(@PathVariable Integer id) { tipoServicioService.delete(id);
+		}
 	}
-}

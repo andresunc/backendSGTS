@@ -27,7 +27,9 @@ public class TipoServicioService {
 	
 	// Creo un tipo de servicio
 	public TipoServicioEntity create(TipoServicioEntity tipoServicio) {
+		tipoServicio.setEliminado(false);
 		return tipoServicioRepository.save(tipoServicio);
+
 	}
 	
 	// Actualizo un tipo de servicio
@@ -37,7 +39,12 @@ public class TipoServicioService {
 	
 	// Elimino un tipo de servicio
 	public void delete(Integer id) {
-		// Agregar lógica para eliminar de manera lógica
+		TipoServicioEntity tipoServicio = tipoServicioRepository.findById(id).orElse(null);
+		if (tipoServicio != null && tipoServicio.getEliminado() == false) {
+			tipoServicio.setEliminado(true);
+			tipoServicioRepository.save(tipoServicio);
+		}
+
 	}
 	
 	// Obtengo todos los tipos de servicio no eliminados

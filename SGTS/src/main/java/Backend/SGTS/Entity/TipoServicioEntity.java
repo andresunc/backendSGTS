@@ -16,7 +16,7 @@ public class TipoServicioEntity {
     private String tipoServicio;
     @Basic
     @Column(name = "Eliminado", nullable = true)
-    private Byte eliminado;
+    private Boolean eliminado;
     
     public TipoServicioEntity() {}
 
@@ -36,24 +36,13 @@ public class TipoServicioEntity {
         this.tipoServicio = tipoServicio;
     }
 
-    public Byte getEliminado() {
+    public Boolean getEliminado() {
 		return eliminado;
 	}
 
-	public void setEliminado(Byte eliminado) {
+	public void setEliminado(Boolean eliminado) {
 		this.eliminado = eliminado;
 	}
 
-	@Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        TipoServicioEntity that = (TipoServicioEntity) o;
-        return idTipoServicio == that.idTipoServicio && Objects.equals(tipoServicio, that.tipoServicio);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(idTipoServicio, tipoServicio);
-    }
 }

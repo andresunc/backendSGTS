@@ -2,6 +2,7 @@ package Backend.SGTS.Service;
 
 import java.util.List;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,8 +37,9 @@ public class TipoServicioService {
 	public TipoServicioEntity update(TipoServicioEntity tipoServicio) {
 		return tipoServicioRepository.save(tipoServicio);
 	}
-	
+
 	// Elimino un tipo de servicio
+	@Transactional
 	public void delete(Integer id) {
 		TipoServicioEntity tipoServicio = tipoServicioRepository.findById(id).orElse(null);
 		if (tipoServicio != null && tipoServicio.getEliminado() == false) {

@@ -1,6 +1,5 @@
 package Backend.SGTS.Service;
 
-import Backend.SGTS.Entity.RecursoGgEntity;
 import Backend.SGTS.Entity.RolEntity;
 import Backend.SGTS.Entity.UsuarioEntity;
 import Backend.SGTS.Entity.Dto.RolDto;
@@ -120,7 +119,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String accessToken = jwtUtils.createToken(authentication);
-        
+
         List<RolDto> roles = dtoRepositoryRol.obtenerRolesPorUsuario(usuario.getIdUsuario());
         AuthResponse authResponse = new AuthResponse(username, usuario.getIdUsuario(), usuario.getRecursoGgIdRecursoGg(),  roles, "User loged succesfully", accessToken, true);
         return authResponse;
@@ -137,7 +136,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
         	System.out.println("Invalid username or password");
             throw new BadCredentialsException("Invalid username or password");
         }
-        
+
         if (!userDetails.isEnabled()) {
         	System.out.println("Usuario Deshabilitado");
             throw new BadCredentialsException("Usuario Deshabilitado");

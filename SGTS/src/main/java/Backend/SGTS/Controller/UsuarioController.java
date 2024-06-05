@@ -26,6 +26,8 @@ import Backend.SGTS.Service.UserDetailServiceImpl;
 import Backend.SGTS.Service.UsuarioService;
 import Backend.SGTS.security.AuthCreateRoleRequest;
 import Backend.SGTS.security.AuthCreateUserRequest;
+import Backend.SGTS.security.AuthResponse;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/usuario")
@@ -41,7 +43,7 @@ public class UsuarioController {
 	@Autowired
 	RecursoService recursoService;
 	@Autowired
-    private UserDetailServiceImpl userDetailService;
+	private UserDetailServiceImpl userDetailService;
 
 	// Obtengo todos los usuarios
 	@GetMapping("/getAll")
@@ -94,15 +96,56 @@ public class UsuarioController {
 
 		Integer idRecurso = recurso.getIdRecursoGg();
 
-		 // Crear la solicitud de usuario con el idRecurso y la lista de roles
-        AuthCreateRoleRequest roleRequest = new AuthCreateRoleRequest(roles);
-        AuthCreateUserRequest updatedUserRequest = new AuthCreateUserRequest(username, password, idRecurso, roleRequest);
-        
-        this.userDetailService.createUser(updatedUserRequest);
+		// Crear la solicitud de usuario con el idRecurso y la lista de roles
+		AuthCreateRoleRequest roleRequest = new AuthCreateRoleRequest(roles);
+		AuthCreateUserRequest updatedUserRequest = new AuthCreateUserRequest(username, password, idRecurso,
+				roleRequest);
+
+		this.userDetailService.createUser(updatedUserRequest);
+	}
+
+	@PutMapping("/update")
+	public ResponseEntity<AuthResponse> updateUser(@RequestBody Map<String, Object> requestMap) {
+
+		Integer idUsuario = Integer.valueOf(requestMap.get("idUsuario").toString());
+		Integer idPersona = Integer.valueOf(requestMap.get("idPersona").toString());
+		String nombre = (String) requestMap.get("nombre");
+		String apellido = (String) requestMap.get("apellido");
+		String dni = (String) requestMap.get("dni");
+		String telefono = (String) requestMap.get("telefono");
+		String email = (String) requestMap.get("email");
+		String rol = (String) requestMap.get("rol");
+		boolean isEnabled = (boolean) requestMap.get("isEnabled");
+		
+		PersonaEntity upDatePersona = personaService.getById(idPersona);
+		upDatePersona.setDni(dni);
+		upDatePersona.setNombre(nombre);
+		upDatePersona.setApellido(apellido);
+		upDatePersona.setTelefono(telefono);
+		upDatePersona.setEmail(email);
+		personaService.update(upDatePersona);
+		
+		List<String> roles = new ArrayList<>();
+		roles.add(rol);
+
+		AuthCreateRoleRequest roleRequest = new AuthCreateRoleRequest(roles);
+		AuthCreateUserRequest updatedUserRequest = new AuthCreateUserRequest(
+				""/* no se puede editar el usuario */,
+				"", /* no se edita desde acá, se resetea en resetPassword() */
+				000, /* no se puede editar el idRecurso */
+				roleRequest);
+		AuthResponse response = userDetailService.updateUser(idUsuario, updatedUserRequest, isEnabled);
+		return ResponseEntity.ok(response);
+	}
+
+	// Reseteo el password
+	@PutMapping("/resetpassword/{id}")
+		public void resetPassword(@PathVariable("id") Integer id, @RequestBody String newPassword) {
+		userDetailService.reset(id, newPassword);
 	}
 
 	// Actualizo un usuario
-	@PutMapping("/update/{id}")
+	@PutMapping("/updater/{id}")
 	public UsuarioEntity update(@PathVariable("id") Integer id, @RequestBody UsuarioEntity usuario) {
 
 		// Solo puede actualizar el password y el estado del usuario

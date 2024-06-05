@@ -144,4 +144,42 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
         return new UsernamePasswordAuthenticationToken(username, password, userDetails.getAuthorities());
     }
+    
+    public AuthResponse updateUser(Integer userId, AuthCreateUserRequest updateUserRequest, boolean isEnabled) {
+        // Buscar el usuario existente por ID
+        UsuarioEntity userEntity = userRepository.findById(userId)
+            .orElseThrow(() -> new UsernameNotFoundException("El usuario con ID " + userId + " no existe."));
+
+        // Actualizar los campos necesarios
+        //userEntity.setUsername(updateUserRequest.username());
+        userEntity.setPassword(passwordEncoder.encode(updateUserRequest.password()));
+        userEntity.setEnabled(isEnabled);
+        //userEntity.setRecursoGgIdRecursoGg(updateUserRequest.id_recurso());
+
+        // Actualizar roles
+        List<String> rolesRequest = updateUserRequest.roleRequest().roleListName();
+        Set<RolEntity> roleEntityList = rolRepository.findByRoleEnumIn(rolesRequest).stream().collect(Collectors.toSet());
+        if (roleEntityList.isEmpty()) {
+            throw new IllegalArgumentException("El rol especifico no existe.");
+        }
+        userEntity.setRoles(roleEntityList);
+
+        // Guardar los cambios
+        UsuarioEntity updatedUser = userRepository.save(userEntity);
+
+        // Preparar respuesta
+        List<RolDto> roles = dtoRepositoryRol.obtenerRolesPorUsuario(updatedUser.getIdUsuario());
+        AuthResponse authResponse = new AuthResponse(updatedUser.getUsername(), updatedUser.getIdUsuario(), updatedUser.getRecursoGgIdRecursoGg(), roles, "Usuario actualizado con exito", null, true);
+        return authResponse;
+    }
+    
+    public void reset(Integer userId, String newPassword) {
+        // Buscar el usuario existente por ID
+        UsuarioEntity userEntity = userRepository.findById(userId)
+            .orElseThrow(() -> new UsernameNotFoundException("El usuario con ID " + userId + " no existe."));
+
+        userEntity.setPassword(passwordEncoder.encode(newPassword));
+        // Guardar los cambios
+        userRepository.save(userEntity);
+    }
 }

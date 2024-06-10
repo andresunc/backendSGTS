@@ -1,5 +1,8 @@
 package Backend.SGTS;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -8,7 +11,10 @@ public class SgtsApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SgtsApplication.class, args);
-		System.out.println("\n> Servidor iniciado correctamente.");
+		LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formattedNow = now.format(formatter);
+        System.out.println("\n> Servidor iniciado correctamente a las: " + formattedNow);
 	}
 
 //	@Bean

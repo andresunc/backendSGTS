@@ -1,6 +1,7 @@
 package Backend.SGTS.Entity;
 
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Set;
 
@@ -25,8 +26,8 @@ public class ReboteEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id_rebote;
 	
-	@Column(name = "fecha", nullable = false)
-	private Timestamp fecha;
+	@Column(name = "fecha")
+	private Date fecha;
 	
 	@Column(name = "rebote_ambiente", precision = 5, scale = 2)
     private BigDecimal reboteAmbiente;

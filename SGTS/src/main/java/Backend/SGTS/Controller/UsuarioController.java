@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 import Backend.SGTS.Entity.PersonaEntity;
 import Backend.SGTS.Entity.RecursoGgEntity;
 import Backend.SGTS.Entity.UsuarioEntity;
+import Backend.SGTS.Entity.Dto.UsuarioDto;
+import Backend.SGTS.Repository.Dto.DtoRepositoryUsuario;
 import Backend.SGTS.Service.PersonaService;
 import Backend.SGTS.Service.RecursoService;
 import Backend.SGTS.Service.UserDetailServiceImpl;
@@ -44,12 +46,19 @@ public class UsuarioController {
 	RecursoService recursoService;
 	@Autowired
 	private UserDetailServiceImpl userDetailService;
+	@Autowired
+    private DtoRepositoryUsuario dtoRepositoryUsuario;
 
 	// Obtengo todos los usuarios
 	@GetMapping("/getAll")
 	public List<UsuarioEntity> getAll() {
 		return usuarioService.getAll();
 	}
+	
+	@GetMapping("/getUsersDto")
+    public List<UsuarioDto> obtenerUsuarios() {
+        return dtoRepositoryUsuario.obtenerUsuarios();
+    }
 
 	// Obtengo un usuario por id
 	@GetMapping("/{id}")

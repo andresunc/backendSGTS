@@ -173,12 +173,16 @@ public class UserDetailServiceImpl implements UserDetailsService {
         return authResponse;
     }
     
-    public void reset(Integer userId, String newPassword) {
+    public void reset(Integer id, String password) {
         // Buscar el usuario existente por ID
-        UsuarioEntity userEntity = userRepository.findById(userId)
-            .orElseThrow(() -> new UsernameNotFoundException("El usuario con ID " + userId + " no existe."));
+        UsuarioEntity userEntity = userRepository.findById(id)
+            .orElseThrow(() -> new UsernameNotFoundException("El usuario con ID " + id + " no existe."));
 
-        userEntity.setPassword(passwordEncoder.encode(newPassword));
+        String encodedPassword = passwordEncoder.encode(password);
+        System.out.println(password);
+        System.out.println("Encoded password: " + encodedPassword);
+
+        userEntity.setPassword(encodedPassword);
         // Guardar los cambios
         userRepository.save(userEntity);
     }

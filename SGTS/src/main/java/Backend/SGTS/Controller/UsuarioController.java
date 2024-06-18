@@ -1,10 +1,12 @@
 package Backend.SGTS.Controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,18 +49,18 @@ public class UsuarioController {
 	@Autowired
 	private UserDetailServiceImpl userDetailService;
 	@Autowired
-    private DtoRepositoryUsuario dtoRepositoryUsuario;
+	private DtoRepositoryUsuario dtoRepositoryUsuario;
 
 	// Obtengo todos los usuarios
 	@GetMapping("/getAll")
 	public List<UsuarioEntity> getAll() {
 		return usuarioService.getAll();
 	}
-	
+
 	@GetMapping("/getUsersDto")
-    public List<UsuarioDto> obtenerUsuarios() {
-        return dtoRepositoryUsuario.obtenerUsuarios();
-    }
+	public List<UsuarioDto> obtenerUsuarios() {
+		return dtoRepositoryUsuario.obtenerUsuarios();
+	}
 
 	// Obtengo un usuario por id
 	@GetMapping("/{id}")
@@ -125,7 +127,7 @@ public class UsuarioController {
 		String email = (String) requestMap.get("email");
 		String rol = (String) requestMap.get("rol");
 		boolean isEnabled = (boolean) requestMap.get("isEnabled");
-		
+
 		PersonaEntity upDatePersona = personaService.getById(idPersona);
 		upDatePersona.setDni(dni);
 		upDatePersona.setNombre(nombre);
@@ -133,13 +135,12 @@ public class UsuarioController {
 		upDatePersona.setTelefono(telefono);
 		upDatePersona.setEmail(email);
 		personaService.update(upDatePersona);
-		
+
 		List<String> roles = new ArrayList<>();
 		roles.add(rol);
 
 		AuthCreateRoleRequest roleRequest = new AuthCreateRoleRequest(roles);
-		AuthCreateUserRequest updatedUserRequest = new AuthCreateUserRequest(
-				""/* no se puede editar el usuario */,
+		AuthCreateUserRequest updatedUserRequest = new AuthCreateUserRequest(""/* no se puede editar el usuario */,
 				"", /* no se edita desde acá, se resetea en resetPassword() */
 				000, /* no se puede editar el idRecurso */
 				roleRequest);
@@ -147,10 +148,18 @@ public class UsuarioController {
 		return ResponseEntity.ok(response);
 	}
 
-	// Reseteo el password
 	@PutMapping("/resetpassword/{id}")
-		public void resetPassword(@PathVariable("id") Integer id, @RequestBody String newPassword) {
-		userDetailService.reset(id, newPassword);
+	public ResponseEntity<Map<String, String>> resetPassword(@PathVariable("id") Integer id, @RequestBody Map<String, String> request) {
+	    try {
+	        String password = request.get("password");
+	        if (password == null) {
+	            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Collections.singletonMap("message", "Password is required"));
+	        }
+	        userDetailService.reset(id, password);
+	        return ResponseEntity.ok(Collections.singletonMap("message", "OK"));
+	    } catch (Exception e) {
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.singletonMap("message", "NO OK"));
+	    }
 	}
 
 	// Actualizo un usuario

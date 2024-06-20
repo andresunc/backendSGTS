@@ -31,7 +31,6 @@ import Backend.SGTS.Service.UsuarioService;
 import Backend.SGTS.security.AuthCreateRoleRequest;
 import Backend.SGTS.security.AuthCreateUserRequest;
 import Backend.SGTS.security.AuthResponse;
-import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/usuario")
@@ -150,6 +149,20 @@ public class UsuarioController {
 
 	@PutMapping("/resetpassword/{id}")
 	public ResponseEntity<Map<String, String>> resetPassword(@PathVariable("id") Integer id, @RequestBody Map<String, String> request) {
+	    try {
+	        String password = request.get("password");
+	        if (password == null) {
+	            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Collections.singletonMap("message", "Password is required"));
+	        }
+	        userDetailService.reset(id, password);
+	        return ResponseEntity.ok(Collections.singletonMap("message", "OK"));
+	    } catch (Exception e) {
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.singletonMap("message", "NO OK"));
+	    }
+	}
+	
+	@PutMapping("/changepassword/{id}")
+	public ResponseEntity<Map<String, String>> changePassword(@PathVariable("id") Integer id, @RequestBody Map<String, String> request) {
 	    try {
 	        String password = request.get("password");
 	        if (password == null) {

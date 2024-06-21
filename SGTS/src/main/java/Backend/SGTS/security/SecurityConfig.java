@@ -43,6 +43,7 @@ public class SecurityConfig {
                     // PUT de /itemChecklist/** accesible para OPE_INT y OPE_EXT
                     http.requestMatchers(HttpMethod.PUT, "/itemChecklist/update").hasAnyRole("OPE_INT", "OPE_EXT", "ADMIN");
                     http.requestMatchers(HttpMethod.PUT, "/usuario/changepassword/**").hasAnyRole("OPE_INT", "OPE_EXT", "ADMIN");
+                    http.requestMatchers(HttpMethod.PUT, "/usuario/update").hasAnyRole("OPE_INT", "OPE_EXT", "ADMIN");
 
                 	// EndPoints accesibles solo para el rol ADMIN
                     http.requestMatchers("/**").hasRole("ADMIN");

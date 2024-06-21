@@ -24,5 +24,5 @@ public class UsuarioDto {
 	private String dni;
 	private String telefono;
 	private String email;
-	private Byte isEnabled;
+	private Boolean isEnabled;
 }

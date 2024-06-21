@@ -115,17 +115,17 @@ public class UsuarioController {
 	}
 
 	@PutMapping("/update")
-	public ResponseEntity<AuthResponse> updateUser(@RequestBody Map<String, Object> requestMap) {
+	public ResponseEntity<AuthResponse> updateUser(@RequestBody UsuarioDto usuarioDto) {
 
-		Integer idUsuario = Integer.valueOf(requestMap.get("idUsuario").toString());
-		Integer idPersona = Integer.valueOf(requestMap.get("idPersona").toString());
-		String nombre = (String) requestMap.get("nombre");
-		String apellido = (String) requestMap.get("apellido");
-		String dni = (String) requestMap.get("dni");
-		String telefono = (String) requestMap.get("telefono");
-		String email = (String) requestMap.get("email");
-		String rol = (String) requestMap.get("rol");
-		boolean isEnabled = (boolean) requestMap.get("isEnabled");
+		Integer idUsuario = usuarioDto.getIdUsuario();
+	    Integer idPersona = usuarioDto.getIdPersona();
+	    String nombre = usuarioDto.getNombre();
+	    String apellido = usuarioDto.getApellido();
+	    String dni = usuarioDto.getDni();
+	    String telefono = usuarioDto.getTelefono();
+	    String email = usuarioDto.getEmail();
+	    String rol = usuarioDto.getRol();
+	    Boolean isEnabled = usuarioDto.getIsEnabled();
 
 		PersonaEntity upDatePersona = personaService.getById(idPersona);
 		upDatePersona.setDni(dni);

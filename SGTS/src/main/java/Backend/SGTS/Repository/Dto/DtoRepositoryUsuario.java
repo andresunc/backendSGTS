@@ -32,7 +32,7 @@ public class DtoRepositoryUsuario {
             usuarioDto.setDni(resultSet.getString("dni"));
             usuarioDto.setTelefono(resultSet.getString("telefono"));
             usuarioDto.setEmail(resultSet.getString("email"));
-            usuarioDto.setIsEnabled(resultSet.getByte("isEnabled"));
+            usuarioDto.setIsEnabled(resultSet.getBoolean("isEnabled"));
 
             return usuarioDto;
         });

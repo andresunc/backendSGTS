@@ -118,14 +118,14 @@ public class UsuarioController {
 	public ResponseEntity<AuthResponse> updateUser(@RequestBody UsuarioDto usuarioDto) {
 
 		Integer idUsuario = usuarioDto.getIdUsuario();
-	    Integer idPersona = usuarioDto.getIdPersona();
-	    String nombre = usuarioDto.getNombre();
-	    String apellido = usuarioDto.getApellido();
-	    String dni = usuarioDto.getDni();
-	    String telefono = usuarioDto.getTelefono();
-	    String email = usuarioDto.getEmail();
-	    String rol = usuarioDto.getRol();
-	    Boolean isEnabled = usuarioDto.getIsEnabled();
+		Integer idPersona = usuarioDto.getIdPersona();
+		String nombre = usuarioDto.getNombre();
+		String apellido = usuarioDto.getApellido();
+		String dni = usuarioDto.getDni();
+		String telefono = usuarioDto.getTelefono();
+		String email = usuarioDto.getEmail();
+		String rol = usuarioDto.getRol();
+		Boolean isEnabled = usuarioDto.getIsEnabled();
 
 		PersonaEntity upDatePersona = personaService.getById(idPersona);
 		upDatePersona.setDni(dni);
@@ -148,31 +148,37 @@ public class UsuarioController {
 	}
 
 	@PutMapping("/resetpassword/{id}")
-	public ResponseEntity<Map<String, String>> resetPassword(@PathVariable("id") Integer id, @RequestBody Map<String, String> request) {
-	    try {
-	        String password = request.get("password");
-	        if (password == null) {
-	            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Collections.singletonMap("message", "Password is required"));
-	        }
-	        userDetailService.reset(id, password);
-	        return ResponseEntity.ok(Collections.singletonMap("message", "OK"));
-	    } catch (Exception e) {
-	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.singletonMap("message", "NO OK"));
-	    }
+	public ResponseEntity<Map<String, String>> resetPassword(@PathVariable("id") Integer id,
+			@RequestBody Map<String, String> request) {
+		try {
+			String password = request.get("password");
+			if (password == null) {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+						.body(Collections.singletonMap("message", "Password is required"));
+			}
+			userDetailService.reset(id, password);
+			return ResponseEntity.ok(Collections.singletonMap("message", "OK"));
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body(Collections.singletonMap("message", "NO OK"));
+		}
 	}
-	
+
 	@PutMapping("/changepassword/{id}")
-	public ResponseEntity<Map<String, String>> changePassword(@PathVariable("id") Integer id, @RequestBody Map<String, String> request) {
-	    try {
-	        String password = request.get("password");
-	        if (password == null) {
-	            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Collections.singletonMap("message", "Password is required"));
-	        }
-	        userDetailService.reset(id, password);
-	        return ResponseEntity.ok(Collections.singletonMap("message", "OK"));
-	    } catch (Exception e) {
-	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.singletonMap("message", "NO OK"));
-	    }
+	public ResponseEntity<Map<String, String>> changePassword(@PathVariable("id") Integer id,
+			@RequestBody Map<String, String> request) {
+		try {
+			String password = request.get("password");
+			if (password == null) {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+						.body(Collections.singletonMap("message", "Password is required"));
+			}
+			userDetailService.reset(id, password);
+			return ResponseEntity.ok(Collections.singletonMap("message", "OK"));
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body(Collections.singletonMap("message", "NO OK"));
+		}
 	}
 
 	// Actualizo un usuario
@@ -196,9 +202,16 @@ public class UsuarioController {
 	}
 
 	// Elimino un usuario de manera logica
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping("/deletelogico/{id}")
 	public ResponseEntity<Void> deleteLogicoUsuario(@PathVariable Integer id) {
 		usuarioService.deleteUsuarioLogica(id);
+		return ResponseEntity.noContent().build();
+	}
+
+	// Elimino un usuario de manera logica
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<Void> delete(@PathVariable Integer id) {
+		usuarioService.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 }

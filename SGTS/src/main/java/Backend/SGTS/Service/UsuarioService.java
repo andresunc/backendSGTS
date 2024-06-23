@@ -45,4 +45,11 @@ public class UsuarioService {
 			usuarioRepository.save(usuario);
 		}
 	}
+	
+	public void delete(Integer idUsuario) {
+		UsuarioEntity usuario = usuarioRepository.findById(idUsuario).orElse(null);
+		if (usuario != null && usuario.isEnabled()) {
+			usuarioRepository.delete(usuario);
+		}
+	}
 }

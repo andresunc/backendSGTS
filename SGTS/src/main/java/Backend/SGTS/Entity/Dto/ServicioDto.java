@@ -24,6 +24,7 @@ public class ServicioDto {
 	private Double total_presupuestado;
 	private String fullname_responsable;
 	private String comentario;
+	private String expediente;
 	private List<ItemChecklistDto> itemChecklistDto;
 	
 	public ServicioDto() {}
@@ -178,6 +179,14 @@ public class ServicioDto {
 
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
+	}
+
+	public String getExpediente() {
+		return expediente;
+	}
+
+	public void setExpediente(String expediente) {
+		this.expediente = expediente;
 	}
 
 	public List<ItemChecklistDto> getItemChecklistDto() {

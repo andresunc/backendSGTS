@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import Backend.SGTS.Entity.RenovarServicioEntity;
 import Backend.SGTS.Entity.ServicioEntity;
 import Backend.SGTS.Service.ServicioService;
 
@@ -76,6 +78,14 @@ public class ServicioController {
 
 		return upDateServicio;
 	}
+	
+	@PostMapping("/renovarServicio")
+	public Integer renovarServicio(@RequestBody RenovarServicioEntity request) {
+        return servicioService.renovarServicio(request.getId_Servicio(), 
+                                               request.getCosto_Servicio(), 
+                                               request.getRecurso_GG_id_Recurso_GG(), 
+                                               request.getEstado_id_Estado());
+    }
 	
 	/* Función anulada, no se puede borrar directamente un servicio */
 	/*

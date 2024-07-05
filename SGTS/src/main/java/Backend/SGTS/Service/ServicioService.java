@@ -39,4 +39,9 @@ public class ServicioService {
 	public void delete(Integer id) {
 		// Método para eliminar un servicio
 	}
+	
+	// Renovar un servicio
+	public Integer renovarServicio(Integer id_Servicio, Double costo_Servicio, Integer recurso_GG_id_Recurso_GG, Integer estado_id_Estado) {
+        return servicioRepository.renovarServicio(id_Servicio, costo_Servicio, recurso_GG_id_Recurso_GG, estado_id_Estado);
+    }
 }

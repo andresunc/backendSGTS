@@ -107,6 +107,10 @@ public class ItemController {
 			upDateItem.setDependenciaIdDependencia(item.getDependenciaIdDependencia());
 			upDateItem.setRubroIdRubro(item.getRubroIdRubro());
 			upDateItem.setTipoItemIdTipoItem(item.getTipoItemIdTipoItem());
+			
+			upDateItem.setDuracionEstandar(item.getDuracionEstandar());
+			upDateItem.setDesvioAcumulado(item.getDuracionEstandar());
+			upDateItem.setContCambios(1);
 
 			itemService.update(upDateItem);
 			return ResponseEntity.ok(upDateItem);

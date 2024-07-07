@@ -14,4 +14,7 @@ public interface ServicioRepository extends JpaRepository<ServicioEntity, Intege
                             @Param("p_Costo_Servicio") Double costo_Servicio, 
                             @Param("p_Recurso_GG_id_Recurso_GG") Integer recurso_GG_id_Recurso_GG, 
                             @Param("p_Estado_id_Estado") Integer estado_id_Estado);
+	
+	@Procedure(name = "CheckServicioRenovado")
+    Boolean checkServicioRenovado(@Param("p_id_Servicio") Integer id_Servicio);
 }

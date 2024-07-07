@@ -44,4 +44,9 @@ public class ServicioService {
 	public Integer renovarServicio(Integer id_Servicio, Double costo_Servicio, Integer recurso_GG_id_Recurso_GG, Integer estado_id_Estado) {
         return servicioRepository.renovarServicio(id_Servicio, costo_Servicio, recurso_GG_id_Recurso_GG, estado_id_Estado);
     }
+	
+	// Checkear si un servicio fue renovado
+	public Boolean isServicioRenovado(Integer idServicio) {
+        return servicioRepository.checkServicioRenovado(idServicio);
+    }
 }

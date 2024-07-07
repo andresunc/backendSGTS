@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -85,6 +86,12 @@ public class ServicioController {
                                                request.getCosto_Servicio(), 
                                                request.getRecurso_GG_id_Recurso_GG(), 
                                                request.getEstado_id_Estado());
+    }
+	
+	@GetMapping("/checkRenovado/{id}")
+    public ResponseEntity<Boolean> checkServicioRenovado(@PathVariable("id") Integer idServicio) {
+        Boolean isRenovado = servicioService.isServicioRenovado(idServicio);
+        return ResponseEntity.ok(isRenovado);
     }
 	
 	/* Función anulada, no se puede borrar directamente un servicio */

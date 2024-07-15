@@ -8,6 +8,7 @@ public class SqlQueriesRecursoGG {
             + "per.Nombre as 'nombre',"
             + "per.Apellido as 'apellido',"
             + "per.Dni as 'dni',"
+            + "per.Email as 'mail',"
             + "rol.rol as 'rol'"
             + "FROM recurso_gg rgg "
             + "LEFT JOIN persona per on per.id_Persona = rgg.Persona_id_Persona "

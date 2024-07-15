@@ -29,6 +29,7 @@ public class DtoRepositoryRecursoGG {
             recursoGgDto.setApellido(resultSet.getString("apellido"));
 			recursoGgDto.setDni(resultSet.getString("dni"));
 			recursoGgDto.setRol(resultSet.getString("rol"));
+			recursoGgDto.setMail(resultSet.getString("mail"));
 
 			return recursoGgDto;
 		});

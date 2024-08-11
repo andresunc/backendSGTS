@@ -58,4 +58,14 @@ public class ItemChecklistService {
 	public void delete(Integer id) {
 		itemChecklistRepository.deleteById(id);
 	}
+	
+	@Transactional 
+    public void reasignarResponsables(String servicios, String items, Integer responsableActual, Integer nuevoResponsable) {
+        itemChecklistRepository.reasignarResponsables(servicios, items, responsableActual, nuevoResponsable);
+    }
+	
+	@Transactional
+	public List<ItemChecklistEntity> getItemsByRecursoGgId(Integer recursoGgId) {
+        return itemChecklistRepository.getItemsByRecursoGgId(recursoGgId);
+    }
 }

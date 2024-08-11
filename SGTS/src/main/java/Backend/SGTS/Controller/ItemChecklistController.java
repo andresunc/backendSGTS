@@ -1,9 +1,12 @@
 package Backend.SGTS.Controller;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import Backend.SGTS.Entity.ItemChecklistEntity;
 import Backend.SGTS.Entity.Dto.ItemChecklistDto;
+import Backend.SGTS.Entity.Dto.ReasignacionResponsablesDto;
 import Backend.SGTS.Service.ItemChecklistService;
 import Backend.SGTS.Service.ItemService;
 import jakarta.transaction.Transactional;
@@ -26,7 +30,7 @@ import jakarta.transaction.Transactional;
 @RestController
 @RequestMapping("/itemChecklist")
 public class ItemChecklistController {
-
+	
 	// Inyecto Servicio de ItemChecklist
 	@Autowired
 	ItemChecklistService itemChecklistService;
@@ -139,4 +143,46 @@ public class ItemChecklistController {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
 	}
+	
+	// Reasignar items a un nuevo responsable
+	@PostMapping("/reasignar-responsables")
+	public ResponseEntity<?> reasignarResponsables(@RequestBody ReasignacionResponsablesDto dto) {
+	    try {
+	        // Convertir listas de enteros a cadenas
+	        String servicios = dto.getServicios().stream()
+	                .map(String::valueOf)
+	                .collect(Collectors.joining(","));
+	        String items = dto.getItems().stream()
+	                .map(String::valueOf)
+	                .collect(Collectors.joining(","));
+
+	        itemChecklistService.reasignarResponsables(servicios, items, dto.getResponsableActual(), dto.getNuevoResponsable());
+	        return ResponseEntity.ok(new HashMap<String, String>() {/**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+			{ 
+	            put("mensaje", "Responsables reasignados correctamente"); 
+	        }}); 
+	    } catch (Exception e) {
+	        e.printStackTrace(); 
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+	                .body("Error al reasignar responsables: " + e.getMessage()); 
+	    }
+	}
+	
+	// Listar todos los items de un recurso
+	@GetMapping("/recurso/{recursoGgId}")
+	public ResponseEntity<List<ItemChecklistEntity>> getItemsByRecursoGgId(@PathVariable Integer recursoGgId) {
+	    try {
+	        List<ItemChecklistEntity> items = itemChecklistService.getItemsByRecursoGgId(recursoGgId);
+	        return ResponseEntity.ok(items);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+	    }
+	}
+
+
 }

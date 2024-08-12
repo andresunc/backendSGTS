@@ -128,6 +128,7 @@ public class UsuarioController {
 		Boolean isEnabled = usuarioDto.getIsEnabled();
 
 		PersonaEntity upDatePersona = personaService.getById(idPersona);
+		
 		upDatePersona.setDni(dni);
 		upDatePersona.setNombre(nombre);
 		upDatePersona.setApellido(apellido);
@@ -211,6 +212,13 @@ public class UsuarioController {
 	// Elimino un usuario de manera logica
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Integer id) {
+		UsuarioEntity currentUser = this.getById(id);
+		
+		Integer recursoId = currentUser.getRecursoGgIdRecursoGg();
+		RecursoGgEntity recurso = recursoService.getById(recursoId);
+		recurso.setEliminado((byte) 1);
+		recursoService.update(recurso);
+		
 		usuarioService.delete(id);
 		return ResponseEntity.noContent().build();
 	}

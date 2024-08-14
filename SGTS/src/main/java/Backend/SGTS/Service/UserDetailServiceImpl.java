@@ -142,6 +142,11 @@ public class UserDetailServiceImpl implements UserDetailsService {
         	System.out.println("Usuario Deshabilitado");
             throw new BadCredentialsException("Usuario Deshabilitado");
         }
+        if (!userDetails.isEnabled()) {
+            System.out.println("Usuario Deshabilitado");
+            throw new BadCredentialsException("Usuario Deshabilitado");
+        }
+
 
         return new UsernamePasswordAuthenticationToken(username, password, userDetails.getAuthorities());
     }

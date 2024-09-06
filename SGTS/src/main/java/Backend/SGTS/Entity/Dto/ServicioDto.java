@@ -26,6 +26,7 @@ public class ServicioDto {
 	private String fullname_responsable;
 	private String comentario;
 	private String expediente;
+	private Integer vencido;
 	private List<ItemChecklistDto> itemChecklistDto;
 	
 	public ServicioDto() {}
@@ -204,6 +205,14 @@ public class ServicioDto {
 
 	public void setIdRecurso(Integer idRecurso) {
 		this.idRecurso = idRecurso;
+	}
+
+	public Integer getVencido() {
+		return vencido;
+	}
+
+	public void setVencido(Integer vencido) {
+		this.vencido = vencido;
 	}
 	
 }

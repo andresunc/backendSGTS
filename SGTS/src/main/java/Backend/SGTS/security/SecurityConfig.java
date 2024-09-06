@@ -45,6 +45,8 @@ public class SecurityConfig {
                     http.requestMatchers(HttpMethod.PUT, "/usuario/changepassword/**").hasAnyRole("OPE_INT", "OPE_EXT", "ADMIN");
                     http.requestMatchers(HttpMethod.PUT, "/usuario/update").hasAnyRole("OPE_INT", "OPE_EXT", "ADMIN");
                     http.requestMatchers(HttpMethod.POST, "/tracking_storage/**").hasAnyRole("OPE_INT", "OPE_EXT", "ADMIN");
+                    http.requestMatchers(HttpMethod.POST, "/historicoestado/**").hasAnyRole("OPE_INT", "OPE_EXT", "ADMIN");
+                    http.requestMatchers(HttpMethod.PUT, "/servicio/**").hasAnyRole("OPE_INT", "OPE_EXT", "ADMIN");
 
                 	// EndPoints accesibles solo para el rol ADMIN
                     http.requestMatchers("/**").hasRole("ADMIN");

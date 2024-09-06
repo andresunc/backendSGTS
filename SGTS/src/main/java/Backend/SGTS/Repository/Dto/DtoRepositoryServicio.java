@@ -28,6 +28,7 @@ public class DtoRepositoryServicio {
 			servicioDto.setIdServicio(resultSet.getInt("idServicio"));
 			servicioDto.setIdTipoServicio(resultSet.getInt("idTipoServicio"));
 			servicioDto.setFecha_alta(resultSet.getObject("fecha_alta", LocalDateTime.class));
+			servicioDto.setIdRecurso(resultSet.getInt("idRecurso"));
 			servicioDto.setTipo(resultSet.getString("tipo"));
 			servicioDto.setIdCliente(resultSet.getInt("idCliente"));
 			servicioDto.setCliente(resultSet.getString("cliente"));
@@ -59,6 +60,7 @@ public class DtoRepositoryServicio {
 			servicioDto.setIdServicio(resultSet.getInt("idServicio"));
 			servicioDto.setIdTipoServicio(resultSet.getInt("idTipoServicio"));
 			servicioDto.setFecha_alta(resultSet.getObject("fecha_alta", LocalDateTime.class));
+			servicioDto.setIdRecurso(resultSet.getInt("idRecurso"));
 			servicioDto.setTipo(resultSet.getString("tipo"));
 			servicioDto.setIdCliente(resultSet.getInt("idCliente"));
 			servicioDto.setCliente(resultSet.getString("cliente"));

@@ -8,6 +8,7 @@ public class ServicioDto {
 	private Integer idServicio;
 	private Integer idTipoServicio;
 	private LocalDateTime fecha_alta;
+	private Integer idRecurso;
 	private String tipo;
 	private Integer idCliente;
 	private String cliente;
@@ -195,6 +196,14 @@ public class ServicioDto {
 
 	public void setItemChecklistDto(List<ItemChecklistDto> itemChecklistDto) {
 		this.itemChecklistDto = itemChecklistDto;
+	}
+
+	public Integer getIdRecurso() {
+		return idRecurso;
+	}
+
+	public void setIdRecurso(Integer idRecurso) {
+		this.idRecurso = idRecurso;
 	}
 	
 }

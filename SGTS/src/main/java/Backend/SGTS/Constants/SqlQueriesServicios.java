@@ -15,6 +15,7 @@ public class SqlQueriesServicios {
             + "    sv.id_Servicio as 'idServicio',"
             + "    tsv.id_Tipo_Servicio as 'idTipoServicio',"
             + "    se.Alta as 'fecha_alta',"
+            + "    se.Recurso_GG_id_Recurso_GG as 'idRecurso',"
             + "    tsv.tipo_servicio as 'tipo',"
             + "    em.id_Empresa as 'idCliente',"
             + "    em.Razon_Social as 'cliente',"
